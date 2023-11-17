@@ -1,0 +1,93 @@
+﻿@model EatWithChef.Areas.Admin.Models.SupplierModel 
+<div class="clearfix">
+<span style="display: -webkit-box; float: left;">
+    <input type="text" id="keywordUpdate" value="" class="form-control medium" style="margin-bottom: 5px; margin-right: 4px; width: 100px; margin-top: 10px" />
+    <input type="text" id="SupplierId" value="@Model.Supplier.Id" hidden="hidden" />
+    <select id="categoryIDUpdate" class="form-control xsmall" style="width: 130px; margin-right: 4px; margin-top: 10px">
+        <option value="0" selected>Danh mục</option>
+        @foreach (var category in Model.ListIngredientCategory)
+        {
+            <option value="@category.Id">@category.Name</option>
+        }
+    </select>
+    <select id="sortUpdate" class="form-control xsmall" style="width: 130px; margin-top: 10px">
+        <option value="Name,ascending" selected>Tên: A -> Z</option>
+        <option value="Name,descending">Tên: Z -> A</option>
+    </select>
+</span>
+<span id="picking_ingredient_instruction" style="float: left; margin-left:20px; margin-right: 10px; color: crimson">
+    <h3 style="color:red">Kéo thả nguyên liệu vào khung bên đây</h3>
+</span>
+    </div>
+<div id="gallery2" class="col-md-7" style="width:375px; min-height: 400px; height: 450px; padding: 5px; overflow: scroll; overflow-x: hidden; border: 3px solid whitesmoke; background-color: white;border: 3px solid cadetblue;">
+    <ul id="list-IngredientItem" class="sortable grid" style="width: 349px; min-height: 350px; z-index: 100">
+    </ul>
+</div>
+<div class="col-md-5 img-modal" style="width: 300px;">
+    <div id="gallery1" class="col-md-5" style="min-width: 270px; min-height: 400px; height: 450px; margin-top: 0px;padding: 5px; overflow: scroll; overflow-x: hidden;border: 3px solid cadetblue; float:right;">
+        <ul class="sortable grid" style="z-index: 1; min-height: 350px; min-width: 240px">
+            @foreach (var item in @Model.ListIngrebySupId)
+            {                            
+                <li id="ingredient-choice-@item.Id" data-id1="@item.Id" style="box-shadow: 3px 3px 10px darkgray; width:100px;height:105px; margin-bottom:10px; ">
+                    <div class="name">
+                        <img src="@item.ImageUrl" style="height:80px; width:80px; margin-bottom:0px;"/>
+                        <div>@item.Name</div>    
+                        </div>             
+                    <button style="margin-left:75px;margin-top:-205px;position:relative;"  class="btn btn-danger btn-xs btn-animate-demo" onclick="removeGallery1(@item.Id,@Model.Supplier.Id,'@Model.Supplier.Name','@item.Name')">&#10005;</button>
+                </li> 
+            }
+        </ul>
+    </div>
+    <div class="pull-right">
+    <button id="submit2" class="btn btn-primary" style="margin-top: 10px; margin-left:30px;font-family:'Times New Roman';font-size:medium" onclick="EditIngredientSupplier(@Model.Supplier.Id)">Lưu</button>
+    <button id="close1" onclick="closepopup()" class="btn btn-primary" data-dismiss="modal" style="margin-top: 10px;margin-left:10px;font-family:'Times New Roman';font-size:medium";>Đóng</button>
+        </div>
+</div>
+
+<script>
+    //$(document).ready(function () {
+
+    //});
+
+
+
+    function UpdateIngredientDefault(oldsupid, ingreid) {
+        var newSupplierId = $("#DefaultSupplier").val();
+        $.ajax({
+            url: "/Supplier/NoSupplyIngredientItem",
+            type: 'POST',
+            async: false,
+            data: { oldsupId: oldsupid, ingreid: ingreid, newsupid: newSupplierId },
+            success: function (data) {
+                document.getElementById("buttonIngreDefault").click();
+                var hm = $('body').wHumanMsg();
+                hm.wHumanMsg('Cập nhập thành công!');
+                //alert($("#ingredient-choice-" + id + " .name").html());
+                $("#list-IngredientItem").append("<li id='ingredient-" + ingreid + "' data-id1='" + ingreid + "' class='ui-draggable' style='position: relative;box-shadow: 3px 3px 10px darkgray'>" + $("#ingredient-choice-" + ingreid + " .name").html() + "</li>");
+                $("#ingredient-choice-" + ingreid).remove();
+
+                $("#ingredient-" + ingreid).draggable({
+                    // brings the item back to its place when dragging is over
+                    revert: true,
+                    // once the dragging starts, we decrease the opactiy of other items
+                    // Appending a class as we do that with CSS
+                    drag: function () {
+                        $(this).addClass("active");
+                        $(this).closest("#product").addClass("active");
+                    },
+                    // removing the CSS classes once dragging is over.
+                    stop: function () {
+                        $(this).removeClass("active").closest("#product").removeClass("active");
+                    }
+                });
+            },
+            error: function (data) {
+                $('.alert-danger', '#myModal-' + id).css("visibility", "visible");
+            }
+        });
+    }
+    function padStr(i) {
+        return (i < 10) ? "0" + i : "" + i;
+    }
+
+</script>

@@ -1,0 +1,230 @@
+﻿@model EatWithChef.Areas.Ecommerce.Models.TrackDishItemModel
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Nguồn gốc thực phẩm";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+
+@section headcss {
+    <style type="text/css">
+        .food-detail ul li {
+            width: 95%;
+        }
+        .gm-style img { max-width: none; }
+        .gm-style label { width: auto; display: inline; }
+    </style>
+}
+
+
+@section scripts {
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyC6nomMAUYtquxAWYrYYRvp2J2kuxlKR2s&sensor=false">
+    </script>
+    <script type="text/javascript">
+        var data = '@Html.Raw(JsonConvert.SerializeObject(Model))';
+        var supplier_list = {};
+        var marker_list = {};
+
+        $(document).ready(function () {
+            var jsonresult = JSON.parse(data);
+
+            var found = false;
+            for (var ingredient_index in jsonresult.ListIngredientForTracking) {
+                for (var supplier_duplicate_index in jsonresult.ListIngredientForTracking[ingredient_index].ListSupplier) {
+                    var supplier_duplicate = jsonresult.ListIngredientForTracking[ingredient_index].ListSupplier[supplier_duplicate_index];
+                    found = false;
+                    for (var supplier_index in supplier_list) {
+                        if (supplier_list[supplier_index].ID == supplier_duplicate.ID) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        supplier_list[supplier_duplicate.ID] = supplier_duplicate;
+                        supplier_list[supplier_duplicate.ID]['ListIngredient'] = [];
+                        supplier_list[supplier_duplicate.ID]['ListIngredient'].push(jsonresult.ListIngredientForTracking[ingredient_index].Name);
+                    } else {
+                        supplier_list[supplier_duplicate.ID]['ListIngredient'].push(jsonresult.ListIngredientForTracking[ingredient_index].Name);
+                    }
+                }
+            }
+        });
+
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 6,
+                center: new google.maps.LatLng(16.051571, 108.21489700000006),
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
+            for (var supplier_key in supplier_list) {
+                var supplier = supplier_list[supplier_key];
+                var Latlng = new google.maps.LatLng(supplier.Lat, supplier.Long);
+                var marker = new google.maps.Marker({
+                    position: Latlng,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    title: supplier.Name
+                });
+
+                var contentString = '<div>' +
+                                        '<h4 style="color:#a40202">' + supplier.Name + '</h4>' +
+                                        '<p><strong>Cung cấp cho món ăn:</strong> ';
+                for (var i in supplier['ListIngredient']) {
+                    contentString += supplier['ListIngredient'][i] + ', '
+                }
+                contentString = contentString.substr(0, contentString.length - 2);
+                contentString += '</p></div>';
+                                        
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                marker_list[supplier_key] = marker;
+                marker_list[supplier_key]['infowindow'] = infowindow;
+
+                google.maps.event.addListener(marker_list[supplier_key], 'click', function () {
+                    for (var i in marker_list) {
+                        marker_list[i]['infowindow'].close();
+                    }
+                    this.setAnimation(google.maps.Animation.DROP);
+                    this['infowindow'].open(map, this);
+                });
+
+                
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+        function show_marker(supplier_id) {
+            // scrollto
+            scrollToElement("#map-canvas", 500, -30);
+
+            for (var i in marker_list) {
+                marker_list[i]['infowindow'].close();
+            }
+            marker_list[supplier_id].setAnimation(google.maps.Animation.DROP);
+            marker_list[supplier_id]['infowindow'].open(map, marker_list[supplier_id]);
+        }
+
+        function scrollToElement(selector, time, verticalOffset) {
+            time = typeof (time) != 'undefined' ? time : 1000;
+            verticalOffset = typeof (verticalOffset) != 'undefined' ? verticalOffset : 0;
+            element = $(selector);
+            offset = element.offset();
+            offsetTop = offset.top + verticalOffset;
+            $('html, body').animate({
+                scrollTop: offsetTop
+            }, time);
+        }
+    </script>
+
+}
+
+<section id="content" class="container">
+    <!--Menu Page Start-->
+    <section class="menu-page">
+        <div class="container">
+            <div class="row-fluid">
+                <section id="content" class="container">
+                    <!--Blog Page Section Start-->
+                    <section class="blog-page-section">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div id="map-canvas" style="width: 100%; min-height: 575px"></div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="heading" style="text-align: center">
+                                    <h2>NGUỒN GỐC THỰC PHẨM</h2>
+                                </div>
+                            </div>
+                            <!--Blog Post End-->
+                            <div class="row-fluid">
+                                <div class="span8">
+                                    <section class="menu-page">
+                                        <div id="accordion-parent" class="accordion accordion-area">
+                                            @foreach (var ingredient in Model.ListIngredientForTracking)
+                                            {
+                                                <div class="accordion-group">
+                                                    <div class="accordion-heading"><a href="#ingredient-@ingredient.ID" data-parent="#accordion-parent" data-toggle="collapse" class="accordion-toggle collapsed">@ingredient.Name</a> </div>
+                                                    <div class="accordion-body collapse" id="ingredient-@ingredient.ID" style="height: 0px;">
+                                                        <div class="accordion-inner" style="padding-top: 30px">
+                                                            <div class="row-fluid">
+                                                                <div class="span12">
+                                                                    <div class="left-box">
+                                                                        <div class="row-fluid">
+                                                                            <div class="blog-frame span6">
+                                                                                <img src="@ingredient.ImageURL" alt="img">
+                                                                            </div>
+                                                                            <div class="blog-text span6">
+                                                                                <p style="font-size: larger; font-weight: 900; font-family: Verdana">Nhà cung cấp</p>
+                                                                                <div class="span12">
+                                                                                    <div class="food-detail" style="margin-top: 5px">
+                                                                                        <ul>
+                                                                                            @foreach (var supplier in ingredient.ListSupplier)
+                                                                                            {
+                                                                                                <li><strong class="date" style="cursor: pointer;" onclick="show_marker(@supplier.ID)">Hiển<span class="mnt">Thị</span></strong>
+                                                                                                    <div class="text" style="float: none"><strong class="title-supplier">@supplier.Name</strong> <strong class="name"><i>tại:</i> @supplier.Address</strong> </div>
+                                                                                                </li>
+                                                                                            }
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
+                                <!--Blog Post End-->
+                                <!--Widget Area Start-->
+                                <div class="span4">
+                                    <div class="widget-area">
+                                        <ul>
+                                            <li>
+                                                <div class="header">
+                                                    <h2>Thông tin Món ăn</h2>
+                                                    <span class="icon-2"></span>
+                                                </div>
+                                                <div class="unique-box">
+                                                    <div class="featured-slider-area">
+                                                        <div class="recepie-box">
+                                                            <div class="recepie-frame">
+                                                                <img src="@Model.dishItemModel.DishImage" alt="img">
+                                                            </div>
+                                                            <div class="text-box">
+                                                                <strong class="title">@Model.dishItemModel.DishName</strong>
+                                                                <strong class="price">Chef.@Model.dishItemModel.ChefName</strong>
+                                                                <strong class="text">Thời điểm Chế biến: @Model.dishItemModel.CookingTime</strong>
+                                                                <strong class="text">@Model.dishItemModel.DishDescription</strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--Widget Area End-->
+                            </div>
+                        </div>
+                    </section>
+                    <!--Blog Page Section End-->
+                </section>
+            </div>
+        </div>
+    </section>
+    <!--Menu Page End-->
+</section>

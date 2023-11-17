@@ -1,0 +1,1311 @@
+﻿@model EatWithChef.Areas.Admin.Models.SupplierModel
+@{
+    ViewBag.Title = "Quản lý nhà cung cấp";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@section headcss {
+    <link href="~/Content/backend/jquery-tabs/css/normalize.css" rel="stylesheet" />
+    <link href="~/Content/backend/jquery-tabs/css/jquery.steps.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+    <style>
+        s .connected, .sortable, .exclude, .handles { margin: auto; padding: 0; width: 310px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+            .sortable.grid { overflow: hidden; }
+
+            .connected li, .sortable li, .exclude li, .handles li { list-style: none; /*border: 1px solid #CCC;*/ /*background: #F6F6F6;*/ font-family: "Tahoma"; color: #1C94C4; margin: 5px; padding: inherit; /*max-height:80px;
+            max-width:80px;*/ /*height: 22px;*/ }
+
+
+        .connected li { list-style: none; /*border: 1px solid #CCC;*/ /*background: #F6F6F6;*/ font-family: "Tahoma"; color: #1C94C4; margin: 5px; padding: inherit; max-height: 140px; min-height: 130px; border-bottom: 1px solid rgb(204, 204, 204); /*max-width:80px;*/ /*height: 22px;*/ }
+
+        .handles span { cursor: move; }
+
+        li.disabled { opacity: 0.5; }
+
+        .sortable.grid li { margin-left: 10px; margin-bottom: 17px; line-height: inherit; float: left; /*margin:auto;*/ width: 100px; height: 110px; text-align: center; }
+        .sortableInfo.grid li { margin-left: 10px; margin-bottom: 17px; line-height: inherit; float: left; /*margin:auto;*/ border: solid; width: 150px; height: 155px; text-align: center; }
+
+
+        li.highlight { background: #FEE25F; }
+
+        #connected { width: 440px; overflow: hidden; margin: auto; }
+
+        .connected { float: none; width: 220px; }
+
+            .connected.no2 { float: none; }
+
+        li.sortable-placeholder { border: 1px dashed #CCC; background: none; }
+        .fc-button-inner { }
+        .ui-draggable { z-index: 1; }
+            .ui-draggable.ui-draggable-dragging.active { z-index: 10; }
+        .content.clearfix { height: 596px; }
+        .btn.has-popover { word-wrap: break-word; white-space: normal; border-style: none; background-color: transparent; text-align: initial; }
+        .pac-container { z-index: 1000000000; }
+        .name { background-color: white; }
+    </style>
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-edit"></i>
+                <span>Quản lí nhà cung cấp</span>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body" style="padding-left: 0px; padding-right: 0px">
+                <div class="clearfix">
+                    <div style="padding-left: 10px; float: left; margin-right: 15px; margin-bottom: 5px; margin-left: 5px">
+                        <button id="editable-sample_new" class="btn btn-primary" href="#myModal" data-toggle="modal" onclick="abc()">
+                            Thêm mới <i class="icon-plus-sign"></i>
+                        </button>
+                    </div>
+                </div>
+                @*Modal Create*@
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Thêm nhà cung cấp</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5 img-modal">
+                                </div>
+                                <div class="col-md-7" style="width: 95%; float: right">
+                                    <div class="form-group">
+                                        <label>Tên</label>
+                                        <input id="Addname" onblur="validateName(0,'Addname')" maxlength="100" style="display: inline; width: 65%; margin-left: 89px" class="form-control" placeholder="Tên nhà cung cấp" onfocus="changeStatusTextBox('Addname')" />
+                                        <p class="alert-danger" style="margin-left: 120px; margin-top: 3px; width: 180px; visibility: hidden">Tên này đã tồn tại!</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Danh mục</label>
+                                        <select id="AddCategory" name="Category" style="display: inline; margin-left: 45px; width: auto" class="form-control xsmall">
+                                            @foreach (var category in Model.ListSupCategory)
+                                            {
+                                                <option value="@category.Id">@category.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input id="AddPhone" onblur="validatePhone('AddPhone')" style="display: inline; width: 65%; margin-left: 22px" class="form-control" placeholder="Điện thoại" onfocus="changeStatusTextBox('AddPhone')" />
+                                        <p class="alert-danger" style="margin-left: 105px; margin-top: 3px; width: 180px; visibility: hidden">Số điện thoại không hợp lệ!</p>
+                                    </div>
+                                    <div>
+                                        <label>Địa chỉ</label>
+                                        <input id="pac-input" style="width: 75%; display: inline; margin-left: 16px" class="form-control" type="text"
+                                            placeholder="Nhập địa chỉ" onfocus="changeStatusTextBox('pac-input')" />
+                                        <p class="alert-danger" style="margin-bottom: 3px; margin-left: 70px; margin-top: 3px; width: 200px; visibility: hidden">Hãy chọn địa chỉ trên bản đồ!</p>
+                                        <input id="lat" class="controls" type="hidden" />
+                                        <input id="long" class="controls" type="hidden" />
+                                        <div style="width: 450px; height: 250px; border-radius: 0; margin-top: 5px; border: #eee 5px solid" id="map-canvas">&nbsp;</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary" type="button" onclick="Add()">Thêm</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               @* Modal View supplier*@
+                <div class="modal fade" id="ModalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 65%; height: 700px;">
+                        <div class="modal-content" style="min-height: 500px; max-height: 720px; max-width: 870px;">
+                            <div class="modal-header">
+                                <button id="buttonView" onclick="closepopup()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Thông tin nhà cung cấp</h4>
+                            </div>
+                            <div id="Modalbodyview" class="modal-body row" style="max-width: 800px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @*  Modal Update Supplier*@
+                <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 65%; height: 700px;">
+                        <div class="modal-content" style="min-height: 500px; max-height: 720px; max-width: 870px;">
+                            <div class="modal-header">
+                                <button id="buttonUpdate" onclick="closepopup()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Thông tin nhà cung cấp</h4>
+                            </div>
+                            <div class="modal-body row" style="max-width: 800px;">
+                                <div id="wizard">
+                                    <h2>Thông tin</h2>
+                                    <section>
+                                        <div id="modalbody">
+                                        </div>
+                                    </section>
+
+                                    <h2>Chọn nguyên liệu</h2>
+                                    <section style="padding-top: 0px;">
+                                        <div id="ModalIngreSup" style="width: 850px;">
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*Modal Update Ingredient of Supplier*@
+                @*<div class="modal fade" id="ModalIngreSup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>*@
+
+                @*Modal Update Supplier default for one ingredient*@
+                <div class="modal fade" id="ModalIngreDefault" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                </div>
+
+                @*Modal Update Suplier default for all ingredient after delete supplier*@
+                <div class="modal fade" id="ModalSupplierDefault" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                </div>
+
+                @*Table Supplier*@
+                <div class="col-md-12">
+                    <div class="panel" style="width: 33%; height: 620px; float: left; background-color: rgb(248, 248, 248);">
+                        <div class="panel-heading text-primary">
+                            <div class="clearfix">
+                                @* <i class="fa fa-user"></i>*@
+                                <span class="" style="display: -webkit-box;">@*pull-right*@
+                                    <input type="text" id="keyword" value="" class="form-control medium" style="width: 50%;" />
+                                    <select id="categoryID" style="width: 50%; margin-left: 5px" class="form-control xsmall">
+                                        <option value="0" selected>Danh mục</option>
+                                        @foreach (var category in Model.ListSupCategory)
+                                        {
+                                            <option value="@category.Id">@category.Name</option>
+                                        }
+                                    </select>
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding-top: 0px">
+                            <table class="table users-table table-condensed table-hover" style="table-layout: fixed;">
+                                <thead>
+                                    <tr>
+                                        <th class="" style="width: 130px;">Tên
+                                            <select id="sort" style="display: inline; background-color: whitesmoke; width: 82px">
+                                                <option value="Name,ascending" selected>A -> Z</option>
+                                                <option value="Name,descending">Z -> A</option>
+                                            </select></th>
+                                        @* <th class="" style="width: 50px !important;">Nguyên liệu</th>*@
+                                        @*<th class="visible-lg" style="width: 130px !important;">ĐT</th>*@
+                                        <th style="width: 22px;">&nbsp;</th>
+                                        <th style="width: 22px;">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="suppliers">
+                                </tbody>
+                            </table>
+                            <ul class="pagination pagination-sm" id="paging" style="margin: 0px">
+                                <li class="disabled"><a href="#">«</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li class="disabled"><a href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel" style="width: 67%; float: right; position: relative;">
+                        <div id="Loadmap" style="height: 620px">&nbsp;</div>
+                        <div style="width: 132px; position: absolute; top: 5px; right: 5px; background-color: white; border-radius: 5px; -moz-border-radius: 5px; -wibkit-border-radius: 5px; border: 1px solid #f5f5f5">
+                            <table class="table table-hover" style="width: 130px; margin-bottom: 0">
+                                <tbody id="">
+                                    @foreach (var category in Model.ListSupCategory)
+                                    {
+                                        <tr>
+                                            <td style="border: 0px; width: 38px;">
+                                                <input class="listcategoryClass" value="@category.Id" id="checkbox-@category.Id" type="checkbox" onclick="codeAddress()" style="cursor:pointer"/></td>
+                                            <td style="border: 0px; width: 92px;">@category.Name</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/jquery.cookie-1.3.1.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/jquery.steps.js"></script>
+    @*<script src="http://120.72.85.102:8010/Scripts/gmaps.js"></script>*@
+    @*<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>*@
+    @*<script src="http://maps.googleapis.com/maps/api/js?client=YOUR_CLIENT_ID&sensor=true_or_false&v=3.15"></script>*@
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyC6nomMAUYtquxAWYrYYRvp2J2kuxlKR2s&sensor=false">
+    </script>
+    <script>
+        function abc() {
+            setTimeout(function () {
+                MapCreate();
+            }, 300);
+        }
+        function validateType(id) {
+            if ($("#" + id).val() == "") {
+                $("#" + id).css("border-color", "red");
+                document.getElementById(id).placeholder = "Không được để trống!";
+                return false;
+            }
+            return true;
+        }
+        function changeStatusTextBox(id) {
+            $("#" + id).css("border-color", "#dddcdc");
+        }
+        function validatePhone(name) {
+            var phone = $("#" + name).val();
+            var number = /^[0-9]{10,11}$/;
+            if (phone != "") {
+                if (!phone.match(number)) {
+                    $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                    return false;
+                }
+                else {
+                    $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                    return true;
+                }
+            }
+        }
+        //Validate Market
+        function validateMarket(lat, long, address) {
+            var lat = $('#' + lat).val();
+            var long = $('#' + long).val();
+            if (lat == "" || long == "") {
+                $($("#" + address)[0]).next('p.alert-danger').css('visibility', 'visible');
+                return false;
+            } else {
+                $($("#" + address)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                return true;
+            }
+        }
+        //Validate marketUpdate
+        function validateMarkerUpdate() {
+            if ($("#UpdateAddress").val().trim() != $("#InputUpdateAddress").val().trim()) {
+                var lat = $('#InputUpdatelat').val();
+                var long = $('#InputUpdatelong').val();
+                if (lat == "" || long == "") {
+                    $($("#UpdateAddress")[0]).next('p.alert-danger').css('visibility', 'visible');
+                    return false;
+                } else {
+                    $($("#UpdateAddress")[0]).next('p.alert-danger').css('visibility', 'hidden');
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+
+        $(document).ready(function () {
+            $("#wizard").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                enableFinishButton: false,
+                enablePagination: false,
+                enableAllSteps: true,
+                titleTemplate: "#title#",
+                cssClass: "tabcontrol"
+            });
+
+
+            get_Supplier(1);
+
+            $("#sort").change(function () {
+                var page = $("#paging li.active a").text();
+                get_Supplier(page);
+            });
+
+            $("#categoryID").change(function () {
+                var page = $("#paging li.active a").text();
+                get_Supplier(1);
+            });
+
+            $("#keyword").keyup(function (e) {
+                //if (e.which == 13) {
+                var page = $("#paging li.active a").text();
+                get_Supplier(page);
+                //}
+            });
+        });
+        function get_Supplier(page) {
+            var keyword = $("#keyword").val();
+            var categoryID = $("#categoryID").val();
+            var sort = $("#sort").val();
+            var sortBy = sort.split(',')[0];
+            var sortDirection = sort.split(',')[1];
+            $.ajax({
+                url: "/Admin/Supplier/GetSupplier",
+                dataType: "json",
+                data: { keyword: keyword, categoryID: categoryID, sortBy: sortBy, sortDirection: sortDirection, page: page },
+                type: 'POST',
+                async: false,
+                success: function (data) {
+                    if (data != null) {
+                        var html = '';
+                        var html2 = '';
+                        // render paging panel
+                        $("#paging").html(html);
+                        if (page == 1) {
+                            html += '<li class="disabled"><a href="#">«</a></li>';
+                        } else {
+                            html += '<li onclick="get_Supplier(1)"><a href="#">«</a></li>';
+                        }
+                        for (var i = 1; i <= data.MaxPage; i++) {
+                            if (i == page) {
+                                html += '<li class="active"><a href="#">' + i + '</a></li>';
+                            } else {
+                                html += '<li onclick="get_Supplier(' + i + ')"><a href="#">' + i + '</a></li>';
+                            }
+                        }
+                        if (page == data.MaxPage) {
+                            html += '<li class="disabled"><a href="#">»</a></li>';
+                        } else {
+                            html += '<li onclick="get_Supplier(' + data.MaxPage + ')"><a href="#">»</a></li>';
+                        }
+                        $("#paging").html(html);
+                        // render dishes
+                        html = '';
+                        $("#suppliers").html(html);
+                        $.each(data.Listsupplier, function (index, supplier) {
+                            if (!supplier.IsAvailable) {
+                                html +=
+                                 '<tr id="type-' + supplier.ID + '">' +
+                                        '<td class="" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ',\'' + supplier.Address + '\')" style="opacity:0.3;word-wrap:break-word;">' + supplier.Name + '</td>' +
+                                        //'<td class="" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ')" style="opacity:0.3;">' + supplier.Count + '</td>' +
+                                       // '<td class="visible-lg" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ','+ supplier.ID+')" style="opacity:0.3;">' + supplier.Phone + '</td>' +
+                                        '<td class="">'+
+                                        '<a onclick="showModalView(' + supplier.ID + ')" class="btn btn-success btn-xs"><i class="icon-edit"></i></a></td>' +
+
+                                        '<td class="">' +
+                                            '<a onclick="Active(' + supplier.ID + ')" class="btn btn-success btn-xs"><i class="icon-refresh"></i></a></td>';
+                            }
+                            if (supplier.IsAvailable) {
+                                html +=
+                                '<tr id="type-' + supplier.ID + '" >' +
+                                       '<td class="btn has-popover" data-content="' + supplier.Count + '" data-title="Số nguyên liệu" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ',\'' + supplier.Address + '\')" style="word-wrap:break-word;">' + supplier.Name + '</td>' +
+                                       //'<td class="" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ')">' + supplier.Count + '</td>' +
+                                       //'<td class="visible-lg" onclick="showmap(' + supplier.Latitude + ',' + supplier.Longitude + ','+ supplier.ID+')">' + supplier.Phone + '</td>' +
+                                       '<td class="">' +
+                                            '<a onclick="showModalUpdate(' + supplier.ID + ')" class="btn btn-success btn-xs"><i class="icon-edit"></i></a></td>' +
+
+                                       '<td class="">' +
+                                           '<a onclick="DeActiveSupplier(' + supplier.ID + ',&apos;' + supplier.Name + '&apos; )" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></td>';
+                            }
+                        });                      
+                        $("#suppliers").html(html);
+                    } else {
+                        $("#suppliers").html("");
+                    }
+                },
+                error: function (errMsg) {
+                    alert("Hệ thống không thể kết nối với cơ sở dữ liệu");
+                }
+            });
+        }
+        function codeAddress() {
+            var list = new Array();
+            $.each($(".listcategoryClass"), function (index, element) {
+                if ($(this).is(':checked')) {
+                    list.push($(this).attr("value"));
+                }
+            });
+            listSearch = list.toString();
+            if (listSearch == "") {
+                return showPos("");
+            }
+            $.ajax({
+                url: "/Admin/Supplier/GetMarkerbyCategory",
+                type: 'POST',
+                dataType: "json",
+                async: false,
+                data: { listSearch: listSearch },
+                success: function (data) {
+                    showPos(data.Listsupplier);
+                    //if ($('#' + control).is(':checked')) {
+                    //    showPos(data);
+                    //}
+                    //else{
+                    //    removePos(data);
+                    //}
+                },
+                error: function (data) {
+                    alert("Failed");
+                },
+            });
+        }
+        function get_ingredients(except_ingredient) {
+            var SupplierId = $("#SupplierId").val();
+            var keyword = $("#keywordUpdate").val();
+            var categoryID = $("#categoryIDUpdate").val();
+            var sort = $("#sortUpdate").val();
+            var sortBy = sort.split(',')[0];
+            var sortDirection = sort.split(',')[1];
+            $.ajax({
+                url: "/Admin/Supplier/GetIngredientIem",
+                dataType: "json",
+                data: { id: SupplierId, keyword: keyword, categoryID: categoryID, sortBy: sortBy, sortDirection: sortDirection, except_ingredient: except_ingredient },
+                type: 'POST',
+                async: true,
+                success: function (data) {
+                    if (data != null) {
+                        var html = '';
+                        // render ingredients
+                        html = '';
+                        $.each(data.ListIngredient, function (index, ingredient) {
+                            html += '<li id="ingredient-' + ingredient.ID + '" data-id1="' + ingredient.ID + '" style="box-shadow: 3px 3px 10px darkgray">' +
+                                '<div class="name">' +
+                                '<img src="' + ingredient.Image + '" style="height:80px; width:80px; margin-bottom:0px;"/>' +
+                                '<div>' + ingredient.Name + '</div>' +
+                                '</div>' +
+                            '</li>';
+                        });
+                        $("#list-IngredientItem").html(html);
+                        DM();
+                    }
+                },
+                error: function (errMsg) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại.');
+                }
+            });
+        }
+        //Js for Edit Modal -------------------------------
+        function DM() {
+            // jQuery Ui Droppable
+            $(".col-md-7 li").draggable({
+                // brings the item back to its place when dragging is over
+                revert: true,
+                // once the dragging starts, we decrease the opactiy of other items
+                // Appending a class as we do that with CSS
+                drag: function () {
+                    $(this).addClass("active");
+                    $(this).closest("#product").addClass("active");
+                },
+
+                // removing the CSS classes once dragging is over.
+                stop: function () {
+                    $(this).removeClass("active").closest("#product").removeClass("active");
+                }
+            });
+            $("#gallery1").droppable({
+                // The class that will be appended to the to-be-dropped-element (basket)
+                activeClass: "active",
+
+                // The class that will be appended once we are hovering the to-be-dropped-element (basket)
+                hoverClass: "hover",
+
+                // The acceptance of the item once it touches the to-be-dropped-element basket
+                // For different values http://api.jqueryui.com/droppable/#option-tolerance
+                tolerance: "touch",
+                drop: function (event, ui) {
+
+                    var gallery1 = $(this),
+                            move = ui.draggable,
+                            itemId = gallery1.find("ul li[data-id1='" + move.attr("data-id1") + "']");
+
+                    // To increase the value by +1 if the same item is already in the basket
+                    if (itemId.html() != null) {
+                        itemId.find("input").val(parseInt(itemId.find("input").val()) + 1);
+                    }
+                    else {
+                        // Add the dragged item to the basket
+                        addgallery1(gallery1, move);
+                        //// Updating the quantity by +1" rather than adding it to the basket
+                        //move.find("input").val(parseInt(move.find("input").val()) + 1);
+                    }
+
+                }
+            });
+            // This function runs onc ean item is added to the galery(menu)
+            function addgallery1(gallery1, move) {
+                gallery1.find("ul").append('<li id="ingredient-choice-' + move.attr("data-id1") + '" data-id1="' + move.attr("data-id1") + '"  style="box-shadow: 3px 3px 10px darkgray; width:100px;height:105px; margin-bottom:10px">'
+                        + $("#ingredient-" + move.attr("data-id1")).html()
+                        + '<button style="margin-left:75px;margin-top:-205px;position:relative;"  class="btn btn-danger btn-xs btn-animate-demo" class="edit" onclick="removeGallery1(' + move.attr("data-id1") + ')">&#10005;</button>');
+                $("#ingredient-" + move.attr("data-id1")).remove();
+            }
+        }
+        function removeGallery1(id, supid, name, ingrename) {
+            //Get Default IngredientItem
+            $.ajax({
+                url: "/Admin/Supplier/GetDefaultIngredientItem",
+                type: "POST",
+                async: false,
+                data: { ingreid: id },
+                success: function (result) {
+                    if (result == supid) {
+                        //var r = confirm(name + ' is Default supplier of ' + ingrename + '. You must choose another Default Supplier for ' + ingrename);
+                        alertify.confirm("Vì " + name + " là nhà cung cấp mặc định của " + ingrename + ". Bạn phải chọn nhà cung cấp mặc định khác cho " + ingrename, function (e) {
+                            if (e) {
+                                showModalIngreDefault(supid, id);
+                            } else {
+
+                            }
+                        })
+                    } else {
+                        //alert($("#ingredient-choice-" + id + " .name").html());
+                        $("#list-IngredientItem").append("<li id='ingredient-" + id + "' data-id1='" + id + "' class='ui-draggable' style='position: relative; box-shadow: 3px 3px 10px darkgray'>"
+                            + "<div class='name'>"
+                            + $("#ingredient-choice-" + id + " .name").html() + "</li>"
+                            + "</div>");
+
+                        $("#ingredient-choice-" + id).remove();
+
+                        $("#ingredient-" + id).draggable({
+                            // brings the item back to its place when dragging is over
+                            revert: true,
+                            // once the dragging starts, we decrease the opactiy of other items
+                            // Appending a class as we do that with CSS
+                            drag: function () {
+                                $(this).addClass("active");
+                                $(this).closest("#product").addClass("active");
+                            },
+                            // removing the CSS classes once dragging is over.
+                            stop: function () {
+                                $(this).removeClass("active").closest("#product").removeClass("active");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        function showModalIngreDefault(supid, ingreid) {
+            $.ajax({
+                url: "/Admin/Supplier/UpdateIngredientItemDefault",
+                type: 'GET',
+                async: false,
+                data: { supid: supid, ingreid: ingreid },
+                success: function (data) {
+                    $("#ModalIngreDefault").modal('show');
+                    $("#ModalIngreDefault").html(data);
+
+                },
+                error: function (data) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại.');
+                },
+            });
+        }
+        function showModalView(id) {
+            $.ajax({
+                url: "/Admin/Supplier/UpdateSupplier",
+                type: 'GET',
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalView").modal('show');
+                    $("#Modalbodyview").html(data);
+                    setTimeout(function () {
+                        showmarkerUpdate();
+                        MapUpdate();
+                    }, 200);
+                },
+                error: function (data) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại.');
+                },
+            });
+        }
+        function showModalUpdate(id) {
+            $.ajax({
+                url: "/Admin/Supplier/UpdateSupplier",
+                type: 'GET',
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalUpdate").modal('show');
+                    $("#modalbody").html(data);
+                    setTimeout(function () {
+                        showmarkerUpdate();
+                        MapUpdate();
+                    }, 200);
+                },
+                error: function (data) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại.');
+                },
+            });
+            $.ajax({
+                url: "/Admin/Supplier/UpdateIngreOfSupplier",
+                type: 'GET',
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    //$("#ModalIngreSup").modal('show');
+                    $("#ModalIngreSup").html(data);
+                    var except_ingredient = '';
+                    $("#gallery1").find("ul").find('li').each(function () {
+                        var current = $(this);
+                        var id = current.attr("data-id1");
+                        except_ingredient += id + ",";
+                    });
+                    if (except_ingredient != "") {
+                        except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                    }
+                    get_ingredients(except_ingredient);
+
+                    $("#sortUpdate").change(function () {
+                        var except_ingredient = '';
+                        $("#gallery1").find("ul").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id1");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_ingredients(except_ingredient);
+                    });
+
+                    $("#categoryIDUpdate").change(function () {
+                        var except_ingredient = '';
+                        $("#gallery1").find("ul").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id1");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_ingredients(except_ingredient);
+                    });
+
+                    $("#keywordUpdate").keyup(function (e) {
+                        var except_ingredient = '';
+                        $("#gallery1").find("ul").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id1");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_ingredients(except_ingredient);
+                    });
+                },
+                error: function (data) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại.');
+                },
+            });
+        }
+        function validateName(id, name) {
+            var check = false;
+            if ($("#" + name).val() != "") {
+                $("#" + name).css("border", "1px solid #e2e2e4");
+                document.getElementById(name).placeholder = "";
+                var suppliername = $("#" + name).val();
+                $.ajax({
+                    url: "/Supplier/checkName",
+                    type: 'POST',
+                    async: false,
+                    data: { id: id, name: suppliername },
+                    success: function (data) {
+                        if (data == 'Success') {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                            check = true;
+                        } else {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                            check = false;
+                        }
+                    },
+                    error: function (errMsg) {
+                        var hm = $("body").wHumanMsg();
+                        hm.wHumanMsg('Lỗi xảy ra. Xin thử lại sau.');
+                        check = false;
+                    }
+                });
+            }
+            return check;
+        }
+
+        //Add
+        function Add() {
+            if (validateType('Addname') == true && validateName(0, 'Addname') == true && validateType('AddPhone') == true && validatePhone('AddPhone') == true
+                && validateType('pac-input') == true && validateMarket('lat', 'long', 'pac-input') == true) {
+                var name = $("#Addname").val();
+                var Category = $("#AddCategory").val();
+                var Address = $("#pac-input").val();
+                var Phone = $("#AddPhone").val();
+                var lat = $("#lat").val();
+                var long = $("#long").val();
+                $.ajax({
+                    url: "/Admin/Supplier/Create",
+                    type: 'POST',
+                    async: false,
+                    data: { Name: name, Address: Address, Phone: Phone, Latitude: lat, Longitude: long, SupplierCategory: Category },
+                    success: function (data) {
+                        if (data != 0) {
+                            document.getElementById("button").click();
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Thêm nhà cung cấp thành công!');
+                            get_Supplier($("#paging li.active a").text());
+                            $("#Addname").val(""); $("#AddPhone").val(""); $("#pac-input").val("");
+                            $("#lat").val(""); $("#long").val("");
+                        }
+                        else {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại!');
+                        }
+                    },
+                    error: function (data) {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi! Xin hãy thử lại!');
+                    },
+                });
+            }
+        }
+
+        //Update
+        function Update(id) {
+            if (validateType('Updatename') == true && validateName(id, 'Updatename') == true && validateType('UpdatePhone') == true && validatePhone('UpdatePhone') == true
+                && validateType('UpdateAddress') == true && validateMarkerUpdate() == true) {
+                var name = $("#Updatename").val();
+                var Category = $("#UpdateCategory").val();
+                var Address = $("#UpdateAddress").val();
+                var Phone = $("#UpdatePhone").val();
+                var lat = $("#Updatelat").val();
+                var long = $("#Updatelong").val();
+                //var IsAvailable = $("#IsAvailable")[0].checked;
+                $.ajax({
+                    url: "/Admin/Supplier/Update",
+                    type: 'POST',
+                    async: false,
+                    data: { Id: id, Name: name, Address: Address, Phone: Phone, Latitude: lat, Longitude: long, SupplierCategory: Category },
+                    success: function (data) {
+                        if (data != 0) {
+                            document.getElementById("buttonUpdate").click();
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Cập nhập nhà cung cấp thành công!');
+                            get_Supplier($("#paging li.active a").text());
+                            $("#Updatename").val(""); $("#UpdatePhone").val(""); $("#UpdateAddress").val("");
+                        }
+                        else {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, xin hay thử lại!');
+                        }
+                    },
+                    error: function (data) {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi, xin hay thử lại!');
+                    },
+                });
+            }
+        }
+        //Restore Supplier
+        function Active(id) {
+            alertify.confirm("Bạn có chắn chắn muốn phục hồi nhà cung cấp này!.", function (e) {
+                if (e) {
+                    // user clicked "ok"
+                    $.ajax({
+                        url: "/Admin/Supplier/ActiveSupplier",
+                        type: 'POST',
+                        async: false,
+                        data: { supid: id },
+                        success: function (data) {
+                            get_Supplier($("#paging li.active a").text());
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Phục hồi nhà cung cấp thành công!');
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!');
+                        },
+                    });
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        }
+        //Delete Supplier
+        function DeActiveSupplier(id, name) {
+            $.ajax({
+                url: "/Admin/Supplier/CheckDefaultSupplier",
+                type: 'POST',
+                dataType: "json",
+                async: false,
+                data: { supid: id },
+                success: function (data) {
+                    if (data.Count != 0) {
+                        alertify.confirm("Vì " + name + " là nhà cung cấp mặc định của 1 số nguyên liệu khác. Muốn xóa, bạn phải chọn 1 nhà cung cấp mặc định cho các nguyên liệu đó", function (e) {
+                            if (e) {
+                                // user clicked "ok"
+                                showModalUpdateIngreDefault(id);
+                            } else {
+                                // user clicked "cancel"
+                            }
+                        });
+                    }
+                    else {
+                        alertify.confirm("Bạn có chắc chắn muốn xóa!.", function (e) {
+                            if (e) {
+                                // user clicked "ok"
+                                DeleteSupplier(id);
+                                setTimeout(function () {
+                                    get_Supplier($("#paging li.active a").text());
+                                }, 200);
+                            } else {
+                                // user clicked "cancel"
+                            }
+                        });
+
+                    }
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!');
+                },
+            });
+        }
+        //show Modal update supplier default for all ingredient after delete supplier
+        function showModalUpdateIngreDefault(id) {
+            $.ajax({
+                url: "/Admin/Supplier/UpdateAllIngredientItemDefault",
+                type: 'GET',
+                async: false,
+                data: { supid: id },
+                success: function (data) {
+                    $("#ModalSupplierDefault").modal('show');
+                    $("#ModalSupplierDefault").html(data);
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!');
+                },
+            });
+        }
+
+        //update supplier default for all ingredient after delete supplier
+        function UpdateAllIngredientDefault(id) {
+            var listIngredient = new Array();
+            var i = 0;
+            $("#gallery2").find("tr").each(function () {
+                var current = $(this);
+                var id = current.attr("data-id2");
+                var supid = $("#SupplierTH-" + i).val();
+                var ingredient = new Object();
+                ingredient.Id = id;
+                ingredient.SupId = supid;
+                listIngredient.push(ingredient);
+                i++;
+            });
+            var dataInfo = JSON.stringify(listIngredient);
+            $.ajax({
+                url: "/Admin/Supplier/UpdateAllIngredientDefault",
+                type: "POST",
+                async: false,
+                data: { info: dataInfo, OldSupid: id },
+                success: function (result) {
+                    document.getElementById("buttonAllIngreDefault").click();
+                    DeleteSupplier(id);
+                    get_Supplier($("#paging li.active a").text());
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!');
+                }
+            });
+        }
+        //DeleteSupplier
+        function DeleteSupplier(id) {
+            $.ajax({
+                url: "/Admin/Supplier/DeleteSupplier",
+                type: "POST",
+                async: false,
+                data: { id: id },
+                success: function (result) {
+                    setTimeout(function () {
+                        get_Supplier($("#paging li.active a").text());
+                    }, 200);
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xóa nhà cung cấp thành công!');
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!');
+                }
+            });
+        }
+
+        //Edit IngredientItem
+        function EditIngredientSupplier(SupId) {
+            //get dish
+            var listIngredient = new Array();
+            $("#gallery1").find("ul").find('li').each(function () {
+                var current = $(this);
+                var id = current.attr("data-id1");
+                var dish1 = new Object();
+                dish1.Id = id;
+                listIngredient.push(dish1);
+            });
+            if (listIngredient.length == 0) {
+                alert("Cần có ít nhất một nguyên liệu");
+            } else {
+                var dataInfo = JSON.stringify(listIngredient);
+                $.ajax({
+                    url: "/Admin/Supplier/UpdateIngredientOfSup",
+                    type: "POST",
+                    data: { info: dataInfo, SupId: SupId },
+                    success: function (result) {
+                        document.getElementById("buttonUpdate").click();
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Cập nhập thành công!');
+                        setTimeout(function () { get_Supplier($("#paging li.active a").text()); }, 200);
+                    }
+                });
+            }
+        }
+        //Close popup update
+        function closepopup() {
+            get_Supplier($("#paging li.active a").text());
+        }
+        //Map of Create Modal
+        function MapCreate() {
+            var mapOptions = {
+                center: new google.maps.LatLng(10.8230989, 106.6296638),
+                zoom: 13
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+
+            var input = (
+            document.getElementById('pac-input'));
+            var options = {
+                componentRestrictions: {
+                    country: 'vn',
+                }
+            };
+            var autocomplete = new google.maps.places.Autocomplete(input, options, { types: ["geocode"] });
+            autocomplete.bindTo('bounds', map);
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: map
+            });
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    return;
+                }
+                //// If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+                $('#lat').val(place.geometry.location.lat());
+                $('#long').val(place.geometry.location.lng());
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                      (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(map, marker);
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', MapCreate);
+
+        //Map of Update Modal
+        var geocoderUpdate;
+        var mapUpdate;
+        function MapUpdate() {
+            geocoderUpdate = new google.maps.Geocoder();
+            var id = document.getElementById('map-update');
+            var mapOptions = {
+                center: new google.maps.LatLng(10.8230989, 106.6296638),
+                zoom: 13
+            };
+            mapUpdate = new google.maps.Map(document.getElementById('map-update'),
+              mapOptions);
+            var input = (
+            document.getElementById('UpdateAddress'));
+            var options = {
+                componentRestrictions: {
+                    country: 'vn',
+                }
+            };
+            var autocomplete = new google.maps.places.Autocomplete(input, options, { types: ["geocode"] });
+            autocomplete.bindTo('bounds', mapUpdate);
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: mapUpdate
+            });
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    return;
+                }
+                //delete old market
+                if (oldMarkersUpdate && oldMarkersUpdate.length !== 0) {
+                    for (var i = 0; i < oldMarkersUpdate.length; ++i) {
+                        oldMarkersUpdate[i].setMap(null);
+                    }
+                }
+                //// If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    mapUpdate.fitBounds(place.geometry.viewport);
+                } else {
+                    mapUpdate.setCenter(place.geometry.location);
+                    mapUpdate.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+                $('#Updatelat').val(place.geometry.location.lat());
+                $('#Updatelong').val(place.geometry.location.lng());
+                $('#InputUpdatelat').val(place.geometry.location.lat());
+                $('#InputUpdatelong').val(place.geometry.location.lng());
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                      (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(mapUpdate, marker);
+            });
+        }
+        //show marker Update     
+        var oldMarkersUpdate = null;
+        var markerUpdate;
+        function showmarkerUpdate() {
+            oldMarkersUpdate = [];
+            var Address = $('#UpdateAddress').val();
+            var lat = parseFloat($('#Updatelat').val());
+            var lng = parseFloat($('#Updatelong').val());
+            var latlng = new google.maps.LatLng(lat, lng);
+            geocoderUpdate.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        mapUpdate.setZoom(11);
+                        markerUpdate = new google.maps.Marker({
+                            position: latlng,
+                            map: mapUpdate
+                        });
+                        infowindow.setContent(Address);
+                        infowindow.open(mapUpdate, markerUpdate);
+                        oldMarkersUpdate.push(markerUpdate);
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', MapUpdate);
+
+        //Map of page index
+        var geocoderLoad;
+        var mapLoad;
+        var infowindow = new google.maps.InfoWindow();
+
+        function LoadMap() {
+            geocoderLoad = new google.maps.Geocoder();
+            var mapOptions = {
+                center: new google.maps.LatLng(10.8230989, 106.6296638),
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+
+            };
+            mapLoad = new google.maps.Map(document.getElementById('Loadmap'),
+              mapOptions);
+        }
+        var oldMarkers = [];
+        var markersString = [];
+        var dict_infowindow = {};
+
+        function shiftArray(array, item) {
+            for (var i = 0; i < array.length - 1; i++) {
+                if (i >= item) {
+                    array[i] = array[i + 1];
+                }
+            }
+            array.pop();
+        }
+        function notContent(content, item) {
+            for (var i = 0; i < content.length; i++) {
+                if (content[i].Latitude == item.Latitude && content[i].Longitude == item.Longitude) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        function removePos(array) {
+
+            var content = [];
+            for (var i = 0; i < markersString.length; i++) {
+                for (var j = 0; j < array.Listsupplier.length; j++) {
+                    if (markersString[i].Latitude == array.Listsupplier[j].Latitude && markersString[i].Longitude == array.Listsupplier[j].Longitude && notContent(content, array.Listsupplier[j]) == false) {
+                        oldMarkers[i].setMap(null);
+                        content.push(array.Listsupplier[j]);
+                        shiftArray(oldMarkers, i);
+                        shiftArray(markersString, i);
+                        i--;
+                        break;
+                    }
+                }
+            }
+        }
+        function getIcon(type) {
+            switch (type % 4) {
+                case 1: return "/../images/Supplier/markerA.png";
+                case 2: return "/../images/Supplier/marker_orange.png";
+                case 3: return "/../images/Supplier/marker_grey.png";
+                default: return "/../images/Supplier/marker_black.png";
+            }
+        }
+        function showPos(Listsupplier) {
+            markers = Array();
+            infoWindows = Array();
+            var markerBounds = new google.maps.LatLngBounds();
+            var image = '/../Content/images/Supplier/schools_maps.png';
+            for (var i = 0; i < oldMarkers.length; i++) {
+                oldMarkers[i].setMap(null);
+            }
+            oldMarkers = [];
+            if (markersString.length == 0) {
+                while (oldMarkers.length > 0) {
+                    oldMarkers[oldMarkers.length - 1].setMap(null);
+                    oldMarkers.pop();
+                }
+            }
+
+            for (var i = 0; i < Listsupplier.length ; i++) {
+                var lat = parseFloat(Listsupplier[i].Latitude);
+                var lng = parseFloat(Listsupplier[i].Longitude);
+                var latlng = new google.maps.LatLng(lat, lng);
+                markerBounds.extend(latlng);
+                var icon = Listsupplier[i].Category;
+                var Inforwindow = new google.maps.InfoWindow({
+                    content: '<div>Tên: ' + Listsupplier[i].Name + '</br>' +
+                                   'Đt: ' + Listsupplier[i].Phone + '</br>' +
+                                   'Đ/C: ' + Listsupplier[i].Address +
+                             '<div>'
+                });
+                //var key = lat + "-" + lng;
+                //dict_infowindow[key] = Inforwindow;
+                markersString.push(Listsupplier[i]);
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: mapLoad,
+                    icon: getIcon(Listsupplier[i].Category),
+                    flat: true,
+                    infoWindowIndex: i
+                });
+                //var info_window = GetApproximateInfoWindow(dict_infowindow, latlng);
+
+                //if (info_window != null){
+                //Inforwindow.setContent(results[0].formatted_address);
+                google.maps.event.addListener(marker, 'mouseover', function (event) {
+                    //info_window.open(mapLoad, marker);
+                    mapLoad.panTo(event.latLng);
+                    infoWindows[this.infoWindowIndex].open(mapLoad, this);
+                });
+                google.maps.event.addListener(marker, 'mouseout', function () {
+                    infoWindows[this.infoWindowIndex].close();
+                })
+                    oldMarkers.push(marker);
+                    markers.push(marker);
+                    infoWindows.push(Inforwindow);
+                    mapLoad.fitBounds(markerBounds);
+                
+            }
+        }
+
+        function GetApproximateInfoWindow(dict, location) {
+            var lat = location.lat();
+            var lng = location.lng();
+            var key_location = '';
+            for (var i = lat.toString().length; i > 0; i--) {
+                for (var j = lng.toString().length; j > 0; j--) {
+                    key_location = lat.toString().substr(0, i) + '-' + lat.toString().substr(0, j);
+
+                    for (key_dict in dict) {
+                        var key_split = key_dict.split('-');
+                        var key_to_compare = key_split[0].substr(0, i) + '-' + key_split[1].substr(0, j);
+                        if (key_location == key_to_compare) {
+                            return dict[key_dict];
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        function showmap(lat, long, address) {
+            //delete old market
+            if (oldMarkers && oldMarkers.length !== 0) {
+                while (oldMarkers.length > 0) {
+                    oldMarkers[oldMarkers.length - 1].setMap(null);
+                    oldMarkers.pop();
+                }
+            }
+            //Add a new marker
+            oldMarkers = [];
+            markersString = [];
+            var lat = parseFloat(lat);
+            var lng = parseFloat(long);
+            var latlng = new google.maps.LatLng(lat, lng);            
+            var Inforwindow = new google.maps.InfoWindow({
+                content: '<div>' + address + '<div>'
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                animation: google.maps.Animation.DROP,
+                map: mapLoad
+            });
+            mapLoad.setZoom(18);
+            Inforwindow.open(mapLoad, marker);
+            oldMarkers.push(marker);
+            //geocoderLoad.geocode({ 'latLng': latlng }, function (results, status) {
+            //    if (status == google.maps.GeocoderStatus.OK) {
+            //        if (results[1]) {
+            //            mapLoad.setZoom(11);
+            //            var marker = new google.maps.Marker({
+            //                position: latlng,
+            //                animation: google.maps.Animation.DROP,
+            //                map: mapLoad
+            //            });
+            //            infowindow.setContent(results[1].formatted_address);
+            //            infowindow.open(mapLoad, marker);
+            //            oldMarkers.push(marker);
+            //        } else {
+            //            alert('Không tìm tấy địa điểm!');
+            //        }
+            //    } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            //        setTimeout(function () {
+            //            showmap(lat, long);
+            //        }, 200);
+            //    }
+            //});
+        }
+        google.maps.event.addDomListener(window, 'load', LoadMap);
+    </script>
+}

@@ -1,0 +1,66 @@
+﻿@model EatWithChef.Areas.Admin.Models.CreateProduceSessionModel
+
+@if (Model.ListIngredientWithSupplier == null || Model.ListIngredientWithSupplier.Count == 0)
+{
+    <div class="alert alert-info fade in">
+        Nguyên liệu cho Món ăn chưa được tạo. Xin hãy tạo nguyên liệu cho Món ăn và quay lại sau.
+    </div>
+}
+else if (Model.ListIngredientWithSupplier != null && Model.ListIngredientWithSupplier.Count > 0)
+{
+    <input type="hidden" id="id_add" name="id_add" value="@Model.Dish.Id" />
+    <div class="form-group">
+        <label><strong>Món ăn</strong></label>
+        <input type="text" disabled class="form-control" id="name_add" name="name_add" style="display: inline; margin-left: 50px; width: 50%" class="form-control" value="@Model.Dish.Name"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Hình ảnh</strong></label>
+        <img src="@Model.Dish.Image" class="small-thumb-produce" width="100px" height="100px" style="margin-left:38px"/>
+    </div>
+    <div class="form-group">
+        <label><strong>Số lượng</strong></label>
+        <input type="text" class="form-control" id="quantity_add" name="quantity_add" style="display: inline; margin-left: 42px; width: 18%" class="form-control" value="5" />
+    </div>
+
+    <div class="form-group">
+        <label><strong>Nguyên liệu</strong></label>
+        <div style="margin-left: 87px">
+            <table>
+                @foreach (var ingredientWithSupplier in Model.ListIngredientWithSupplier)
+                { 
+                    <tr>
+                        <td></td>
+                        <td>Chọn Nhà cung cấp cho <strong>@ingredientWithSupplier.Name</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-success">@ingredientWithSupplier.Name</span></td>
+                        <td>
+                            <select multiple="" name="ingredient_item_add" style="width: 300px" class="populate select2-offscreen" tabindex="-1" default-ingredient-item="@ingredientWithSupplier.DefaultIngredientItem">
+                                @foreach (var supplier in ingredientWithSupplier.ListSupplier)
+                                {
+                                    <option value="@supplier.IngredientItemID">@supplier.Name</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="clearfix">
+        <span class="pull-left">
+            <button class="btn btn-round btn-default" onclick="SetDefaultSupplier()"><i class="icon-mail-reply"></i>&nbsp;Khôi phục mặc định</button>
+        </span>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary" type="button" onclick="ProduceSession()" style="float:right; margin-right:50px"><i class="icon-food"></i>&nbsp;Chế biến</button>
+        <p class="alert-danger" style="visibility: hidden">Lỗi hệ thống! Xin hãy thử lại sau.</p>
+    </div>
+}
+else
+{
+    <div class="alert alert-info fade in">
+        Lỗi hệ thống! Xin hãy thử lại sau.
+    </div>
+}
+

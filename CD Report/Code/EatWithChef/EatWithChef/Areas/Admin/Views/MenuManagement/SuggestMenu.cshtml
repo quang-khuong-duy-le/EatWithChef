@@ -1,0 +1,380 @@
+﻿<!--CSS chart-->
+
+<style>
+
+    body {
+        background: #fff;
+        color: #333;
+    }
+
+    a, a:visited, a:link, a:active {
+        color: #333;
+    }
+
+        a:hover {
+            color: #00f;
+        }
+
+    .charts_container {
+        width: 900px;
+        height: 420px;
+        margin: 10px auto;
+    }
+
+    .chart_container_centered {
+        text-align: center;
+        width: 900px;
+        height: 420px;
+        margin: 10px auto;
+    }
+
+    .chart_container {
+        width: 400px;
+        height: 400px;
+        margin: 0px 25px;
+        float: left;
+    }
+
+    .footer {
+        font-size: small;
+        text-align: right;
+    }
+</style>
+
+
+<!--Model chart-->
+
+<div class="modal-dialog" style="width: 845px">
+    <div class="modal-content" style="min-height:600px;">
+        <div class="modal-header" style="background-color: #f34541;height:50px">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    @*        <h4 class="modal-title" style="font-family:monospace;font-size:24px;margin-left: 65px;">Thống Kê Số Lượng Thức Ăn Đã Bán</h4>*@
+            <h4 class="modal-title" style="font-family:serif;font-size:20px;color: white;font-weight:bold;">Thống Kê Số Lượng Thức Ăn Đã Bán  <i class="icon-bar-chart icon-large" style="color:white !important"></i></h4>
+        </div>
+             <div class="modal-body row">
+                     <div class="col-md-5 img-modal" style="width:600px">
+                                  <div class="chart_container_centered" style="max-width:600px;margin-left: -20px;">
+                                            <div   style="width:360px; max-height:50px;margin-bottom: 30px;margin-top: -15px;margin-left: 38px;">
+
+                                                <a style="margin-left: -310px;">Theo Quý</a>
+                                                    <div id='external-events2' style="border-bottom: solid;border-top:solid; padding-bottom: 10px;/* margin-top: -10px; */padding-top: 2.5px;/* border-top: solid; */height: 38px;width: 550px;padding-left: 5px;border-left: solid;margin-left:-20px;border-right: solid;">              
+                                                        <a style="float: left;">Thời Gian</a>
+                                                <select id="SelectQuy" style="float: left;margin-left:7px;width: 80px;">
+                                                    <option value="1" selected="selected">Qúy 1</option>
+                                                    <option value="2" >Qúy 2</option>
+                                                    <option value="3">Qúy 3</option>
+                                                    <option value="3">Qúy 4</option>
+                                                    </select>
+                                                         <a style="float: left;margin-left:18px">Năm</a>
+                                                <select id="SelectYear" style="float: left;margin-left: 23px;width: 80px;">
+                                                            @foreach (var item in ViewBag.NumberYear)
+                                                            {
+                                                                 <option value="@item">@item</option>
+                                                               
+                                                            }
+                                                            
+                                                            
+                                                           
+                                                 </select>
+                                                <a style="float: left;margin-left:18px">Số Lượng</a>
+                                                <select id="TopNumber" style="float: left;margin-left:7px">
+                                                            <option value="2">2</option>
+                                                             <option value="4">4</option>
+                                                             <option value="6">6</option>  
+                                                             <option value="8">8</option>
+                                                             <option value="10">10</option>
+                                                            
+                                                           
+                                                 </select>
+                                                
+
+
+
+                                                
+                                                 <div class="pull-right">
+                                                <button class="btn btn-primary" style="margin-right:35px;height: 27px;font-size: 12px; float: right;margin-right: 5px;" type="button" onclick="submitSugestRequest() "><div class="text-success icon-search icon-small align-right" style="color: white !important;font-size:initial"> Kết Quả</button>
+                                          </div>
+                                                </div>
+
+                                                 <a style="margin-left:-280px">Theo Thời gian</a>
+                                                <div id='external-events3' style="border-bottom: solid;padding-bottom: 10px;/* margin-top: -10px; */padding-top: 2.5px; border-top: solid; height: 38px;width: 550px;margin-left:-20px;padding-left: 5px;border-left: solid;border-right: solid;">
+                                                    <a style="float: left;">Từ ngày</a>
+                                                    <input style="width: 90px;height: 23px;" type="text"  id="datepickerChart1" class="datepicker" placeholder="Bắt đầu" />
+                                                      <a style="margin-left:5px">Đến ngày</a>
+                                                    <input type="text" style="width: 90px;height: 23px;" id="datepickerChart2" class="datepicker"  placeholder="Kết thúc"/>
+                   
+                                                    <a style="margin-left:5px">Số Lượng</a>
+                                                <select id="TopNumber2" style="margin-left:1px">
+                                                            <option value="2">2</option>
+                                                             <option value="4">4</option>
+                                                             <option value="6">6</option>  
+                                                             <option value="8">8</option>
+                                                             <option value="10">10</option>
+                                                    </select>
+                                                <button class="btn btn-primary" style="height: 26px;font-size: 12px;width:95px ;float: right;margin-right:6px;" type="button" onclick="submitSuggestRequest2()"><div class="text-success icon-search icon-small align-right" style="color: white !important;font-size:initial"> Kết quả</button>
+                                                    </div>
+                                                </div>
+                                                <canvas id="chartCanvas13" width="600" height="400" style="margin-top:15px;margin-left:5px">
+            
+                                                </canvas>
+                                           </div> 
+                                    </div>
+                 <div class="col-md-7" style=" width:200px; min-height: 243px; max-height: 243px;margin-top:16px;overflow: scroll; overflow-x: hidden;border:solid">
+                                         <ul id="listDishInTop" class="sortablesuggest grid" style="width: 200px; margin-left:-50px; list-style:none">
+
+                                           </ul>
+                     </div>
+
+                <a style="margin-top:5px">Chọn Ngày</a> <input type="text" id="datepicker1" class="datepicker" style=" width: 110px; height: 23px;margin-left:5px;margin-top:10px;border:solid"/>
+                                            <button class="btn btn-primary" style="font-size: 14px;margin-top: 10px;height: 30px;" type="button" onclick="CreateMenuBySuggest()"><i class="text-success icon-plus-sign icon-large align-right" style="color: white !important;"/> Tạo Menu</button>
+                     
+             </div>
+            
+       
+
+       
+    </div>
+    </div>
+
+<script>
+
+    // Summit menu suggest by qua:
+    $(function () {
+        $(".datepicker").datepicker({
+            format: 'dd/mm/yyyy'
+            
+        });
+
+    });
+
+    function submitSugestRequest() {
+     
+        var selectQuy = $("#SelectQuy").val();
+        var topNumber = $("#TopNumber").val();
+        var selectYear = $("#SelectYear").val();
+        var OrNumber = [];
+        var DishName = [];
+        var DishId = [];
+        var DishPrice = [];
+        var chart13 = new AwesomeChart('chartCanvas13');
+        chart13.chartType = "pareto";
+
+        chart13.randomColors = true;
+        chart13.chartLineStrokeStyle = 'rgba(0, 0, 200, 0.5)';
+        chart13.chartPointFillStyle = 'rgb(0, 0, 200)';
+        
+        $("#listDishInTop").empty();
+
+        $.ajax({
+            url: "/MenuManagement/GetSuggestByQuater",
+            type: "GET",
+            data: { quaNumber: selectQuy, topNumber: topNumber, selectYear: selectYear },
+            success: function (result) {
+                var data = JSON.parse(result);
+                for (var i = 0; i < data.length; i++) {
+                   
+                    OrNumber.push(data[i].Number);
+                    DishName.push(data[i].Name);
+                    DishId.push(data[i].Id);
+                    DishPrice.push(data[i].Price)
+                    $("#listDishInTop").append("<li id=" + data[i].Id + ">" + "<input type=" + "checkbox" + " id=" + data[i].Id + " name=" + "checkDish" + " value=" + data[i].Price + ">" + data[i].Name + "<br>" + "</li>");
+                    
+                }
+               
+
+                var canvas = document.getElementById('chartCanvas13');
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                chart13.data = OrNumber;
+                chart13.labels = DishName;
+                chart13.draw();
+                if (data.length<1) {
+                    alertify.alert("Không có món ăn nào được bán trong thời gian này !");
+                }
+
+            },
+            error: function () {
+                
+                alert("Failed");
+            },
+        });
+    }
+
+    function parseDateString( dateString)
+    {
+        var dateParts = dateString.split("/");
+        return dateParts[1]+"/"+dateParts[0]+"/"+dateParts[2];
+    }
+
+    //
+    //Sumit menu suggest by time:
+    function submitSuggestRequest2() {
+        var stardate = $("#datepickerChart1").val();
+        stardate = parseDateString(stardate);
+        var enddate = $("#datepickerChart2").val();
+        enddate = parseDateString(enddate);
+
+        var topNumber = $("#TopNumber2").val();
+        
+        var OrNumber = [];
+        var DishName = [];
+        var DishId = [];
+        var DishPrice = [];
+        var chart13 = new AwesomeChart('chartCanvas13');
+        chart13.chartType = "pareto";
+        //chart13.title = "Biểu Đồ";
+        chart13.randomColors = true;
+        chart13.chartLineStrokeStyle = 'rgba(0, 0, 200, 0.5)';
+        chart13.chartPointFillStyle = 'rgb(0, 0, 200)';
+        $("#listDishInTop").empty();
+        var startDate = new Date(stardate);
+        
+        startDate.setDate(startDate.getDate() + 14);
+     
+
+        var endDate = new Date(enddate);
+   
+       
+        if (startDate.getTime() >= endDate.getTime() && new Date(enddate).getTime() >= new Date(stardate).getTime()) {
+
+            $.ajax({
+                url: "/MenuManagement/SuggestMenuByTime",
+                type: "GET",
+                data: { star: stardate, end: enddate },
+                success: function (result) {
+                  
+                    var data = JSON.parse(result);
+                    if (data.length < 1) {
+                        alertify.alert("Không có món ăn nào được bán trong thời gian này !");
+                      
+
+                    }
+                    if (topNumber < data.length) {
+                        for (var i = 0; i < topNumber; i++) {
+
+                            OrNumber.push(data[i].Number);
+                            DishName.push(data[i].Name);
+                            DishId.push(data[i].Id);
+                            DishPrice.push(data[i].Price)
+                            $("#listDishInTop").append("<li id=" + data[i].Id + ">" + "<input type=" + "checkbox" + " id=" + data[i].Id + " name=" + "checkDish" + " value=" + data[i].Price + ">" + data[i].Name + "<br>" + "</li>");
+
+                        }
+
+                    }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+
+                            OrNumber.push(data[i].Number);
+                            DishName.push(data[i].Name);
+                            DishId.push(data[i].Id);
+                            DishPrice.push(data[i].Price)
+                            $("#listDishInTop").append("<li id=" + data[i].Id + ">" + "<input type=" + "checkbox" + " id=" + data[i].Id + " name=" + "checkDish" + " value=" + data[i].Price + ">" + data[i].Name + "<br>" + "</li>");
+                        }
+
+                    }
+                 
+                    var canvas = document.getElementById('chartCanvas13');
+                    var context = canvas.getContext('2d');
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    chart13.data = OrNumber;
+                    chart13.labels = DishName;
+                    chart13.draw();
+
+
+                    
+
+                },
+                error: function () {
+
+                    alert("fail");
+                },
+            });
+        } else {
+            alertify.error("Thời gian chọn không được quá 14 ngày và phải hơn 1 ngày. Nếu muốn xem tổng quát hơn, hãy chọn xem theo quý ");
+        }
+
+    }
+
+    ///create menu by suggest
+    function CreateMenuBySuggest() {
+  
+        var selectDate = $("#datepicker1").val();
+        selectDate = parseDateString(selectDate);
+        var checkDate = new Date(selectDate);
+        var listDish = new Array();
+
+        $('#listDishInTop input:checkbox').each(function () {
+            if (this.checked) {
+                var id = $(this).attr("id");
+                var price = $(this).val();
+
+                var dish1 = new Object();
+                dish1.Id = id;
+                dish1.Price = price;
+                dish1.Quota = 20;
+                listDish.push(dish1);
+            }
+        });
+        var dataInfo = JSON.stringify(listDish);
+        if (listDish.length == 0) {
+            alertify.alert("Cần có ít nhất một món ăn trong Menu");
+        } else {
+            var check = true;
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (checkDate.getFullYear() < yyyy) {
+                check = false;
+
+            }
+            else if (checkDate.getFullYear() == yyyy & checkDate.getMonth() + 1 < mm) {
+
+                check = false;
+
+            }
+            else if (checkDate.getFullYear() == yyyy & checkDate.getMonth() + 1 == mm & checkDate.getDate() < dd) {
+
+                check = false;
+            }
+
+
+            if (check == true) {
+
+                $.ajax({
+                    url: "/MenuManagement/CreateListDishToMenu",
+                    type: "POST",
+                    data: { info: dataInfo, dt: selectDate, timeClose: "17:00:00" },
+                    success: function (result) {
+                        if (result == "Success") {
+                            window.location.reload();
+                        }
+                        else alertify.alert("Menu trong ngày này đã có, bạn có thể chỉnh sửa trong giao diện lịch");
+                    }
+
+                });
+            }
+            else {
+
+                alertify.alert("Bạn không thể tạo Menu trong quá khứ, xin chọn ngày khác sau ngày" + " " + dd + "/" + mm + "/" + yyyy);
+            }
+
+
+        }
+    }
+
+    $("#datepicker1").datepicker({
+        format: 'dd/mm/yyyy'
+    });
+
+    $("#datepickerChart1").datepicker({
+        format: 'dd/mm/yyyy'
+    });
+
+    $("#datepickerChart2").datepicker({
+        format: 'dd/mm/yyyy'
+    });
+
+</script>
+
+ 

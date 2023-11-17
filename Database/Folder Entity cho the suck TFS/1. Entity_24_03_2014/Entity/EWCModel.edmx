@@ -1,0 +1,1521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EWCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EWCModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="EWCModel.Store.Bill" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Chef" EntityType="EWCModel.Store.Chef" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dish" EntityType="EWCModel.Store.Dish" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DishCategory" EntityType="EWCModel.Store.DishCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DishItem" EntityType="EWCModel.Store.DishItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DishMenu" EntityType="EWCModel.Store.DishMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DishTag" EntityType="EWCModel.Store.DishTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ingredient" EntityType="EWCModel.Store.Ingredient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IngredientCategory" EntityType="EWCModel.Store.IngredientCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IngredientDish" EntityType="EWCModel.Store.IngredientDish" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IngredientDishItem" EntityType="EWCModel.Store.IngredientDishItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IngredientItem" EntityType="EWCModel.Store.IngredientItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Menu" EntityType="EWCModel.Store.Menu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="EWCModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetail" EntityType="EWCModel.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Supplier" EntityType="EWCModel.Store.Supplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SupplierCategory" EntityType="EWCModel.Store.SupplierCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="EWCModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="EWCModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="EWCModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Membership" EntityType="EWCModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="EWCModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="EWCModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="EWCModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Dish__Category__1B0907CE" Association="EWCModel.Store.FK__Dish__Category__1B0907CE">
+            <End Role="DishCategory" EntitySet="DishCategory" />
+            <End Role="Dish" EntitySet="Dish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dish__ChefID__4AB81AF0" Association="EWCModel.Store.FK__Dish__ChefID__4AB81AF0">
+            <End Role="Chef" EntitySet="Chef" />
+            <End Role="Dish" EntitySet="Dish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishMenu__DishID__2E1BDC42" Association="EWCModel.Store.FK__DishMenu__DishID__2E1BDC42">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="DishMenu" EntitySet="DishMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishMenu__MenuID__2F10007B" Association="EWCModel.Store.FK__DishMenu__MenuID__2F10007B">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="DishMenu" EntitySet="DishMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishTag__DishID__4CA06362" Association="EWCModel.Store.FK__DishTag__DishID__4CA06362">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="DishTag" EntitySet="DishTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishTag__TagID__4F7CD00D" Association="EWCModel.Store.FK__DishTag__TagID__4F7CD00D">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="DishTag" EntitySet="DishTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingredien__Categ__08EA5793" Association="EWCModel.Store.FK__Ingredien__Categ__08EA5793">
+            <End Role="IngredientCategory" EntitySet="IngredientCategory" />
+            <End Role="Ingredient" EntitySet="Ingredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingredien__Suppl__4E88ABD4" Association="EWCModel.Store.FK__Ingredien__Suppl__4E88ABD4">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="IngredientItem" EntitySet="IngredientItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__DishI__48CFD27E" Association="EWCModel.Store.FK__OrderDeta__DishI__48CFD27E">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__534D60F1" Association="EWCModel.Store.FK__OrderDeta__Order__534D60F1">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_UserProfile" Association="EWCModel.Store.FK_Bill_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_Chef" Association="EWCModel.Store.FK_DishItem_Chef">
+            <End Role="Chef" EntitySet="Chef" />
+            <End Role="DishItem" EntitySet="DishItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_Dish" Association="EWCModel.Store.FK_DishItem_Dish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="DishItem" EntitySet="DishItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_OrderDetail" Association="EWCModel.Store.FK_DishItem_OrderDetail">
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+            <End Role="DishItem" EntitySet="DishItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientDish_Dish" Association="EWCModel.Store.FK_IngredientDish_Dish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="IngredientDish" EntitySet="IngredientDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientDish_Ingredient" Association="EWCModel.Store.FK_IngredientDish_Ingredient">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="IngredientDish" EntitySet="IngredientDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientDishItem_DishItem" Association="EWCModel.Store.FK_IngredientDishItem_DishItem">
+            <End Role="DishItem" EntitySet="DishItem" />
+            <End Role="IngredientDishItem" EntitySet="IngredientDishItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientDishItem_IngredientItem" Association="EWCModel.Store.FK_IngredientDishItem_IngredientItem">
+            <End Role="IngredientItem" EntitySet="IngredientItem" />
+            <End Role="IngredientDishItem" EntitySet="IngredientDishItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientItem_Ingredient" Association="EWCModel.Store.FK_IngredientItem_Ingredient">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="IngredientItem" EntitySet="IngredientItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Bill" Association="EWCModel.Store.FK_Order_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="EWCModel.Store.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_SupplierCategory" Association="EWCModel.Store.FK_Supplier_SupplierCategory">
+            <End Role="SupplierCategory" EntitySet="SupplierCategory" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="EWCModel.Store.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Chef">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+          <Property Name="NumberOfRate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ChefID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CookingGuide" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="NumberOfRate" Type="int" Nullable="false" />
+          <Property Name="NumOfOrderQua1" Type="int" Nullable="false" />
+          <Property Name="NumOfOrderQua2" Type="int" Nullable="false" />
+          <Property Name="NumOfOrderQua3" Type="int" Nullable="false" />
+          <Property Name="NumOfOrderQua4" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DishCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DishItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ChefID" Type="int" Nullable="false" />
+          <Property Name="DishID" Type="int" Nullable="false" />
+          <Property Name="OrderDetailID" Type="int" />
+          <Property Name="QRCode" Type="nvarchar(max)" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CookingTime" Type="datetime" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DishMenu">
+          <Key>
+            <PropertyRef Name="DishID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="DishID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="DishPrice" Type="int" Nullable="false" />
+          <Property Name="Quota" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DishTag">
+          <Key>
+            <PropertyRef Name="DishID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="DishID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="IsTracibility" Type="bit" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientDish">
+          <Key>
+            <PropertyRef Name="IngredientID" />
+            <PropertyRef Name="DishID" />
+          </Key>
+          <Property Name="IngredientID" Type="int" Nullable="false" />
+          <Property Name="DishID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientDishItem">
+          <Key>
+            <PropertyRef Name="DishItemID" />
+            <PropertyRef Name="IngredientItemID" />
+          </Key>
+          <Property Name="DishItemID" Type="int" Nullable="false" />
+          <Property Name="IngredientItemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="int" Nullable="false" />
+          <Property Name="IngredientID" Type="int" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="IsDefaultSupplier" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplyDate" Type="datetime" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="ClosedTimeSession" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="int" Nullable="false" />
+          <Property Name="ReceiverName" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="ReceiverPhone" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ReceiverAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReceiverEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TotalPayment" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="OrderStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="int" Nullable="false" />
+          <Property Name="DishID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="SupplierCategory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="IsAvailable" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
+          <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="IsFemale" Type="bit" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Dish__Category__1B0907CE">
+          <End Role="DishCategory" Type="EWCModel.Store.DishCategory" Multiplicity="1" />
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DishCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dish__ChefID__4AB81AF0">
+          <End Role="Chef" Type="EWCModel.Store.Chef" Multiplicity="1" />
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chef">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="ChefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishMenu__DishID__2E1BDC42">
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="1" />
+          <End Role="DishMenu" Type="EWCModel.Store.DishMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishMenu">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishMenu__MenuID__2F10007B">
+          <End Role="Menu" Type="EWCModel.Store.Menu" Multiplicity="1" />
+          <End Role="DishMenu" Type="EWCModel.Store.DishMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishTag__DishID__4CA06362">
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="1" />
+          <End Role="DishTag" Type="EWCModel.Store.DishTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishTag">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishTag__TagID__4F7CD00D">
+          <End Role="Tag" Type="EWCModel.Store.Tag" Multiplicity="1" />
+          <End Role="DishTag" Type="EWCModel.Store.DishTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishTag">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingredien__Categ__08EA5793">
+          <End Role="IngredientCategory" Type="EWCModel.Store.IngredientCategory" Multiplicity="1" />
+          <End Role="Ingredient" Type="EWCModel.Store.Ingredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingredient">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingredien__Suppl__4E88ABD4">
+          <End Role="Supplier" Type="EWCModel.Store.Supplier" Multiplicity="1" />
+          <End Role="IngredientItem" Type="EWCModel.Store.IngredientItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientItem">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__DishI__48CFD27E">
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="1" />
+          <End Role="OrderDetail" Type="EWCModel.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__534D60F1">
+          <End Role="Order" Type="EWCModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="EWCModel.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_UserProfile">
+          <End Role="UserProfile" Type="EWCModel.Store.UserProfile" Multiplicity="0..1" />
+          <End Role="Bill" Type="EWCModel.Store.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_Chef">
+          <End Role="Chef" Type="EWCModel.Store.Chef" Multiplicity="1" />
+          <End Role="DishItem" Type="EWCModel.Store.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chef">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="ChefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_Dish">
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="1" />
+          <End Role="DishItem" Type="EWCModel.Store.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_OrderDetail">
+          <End Role="OrderDetail" Type="EWCModel.Store.OrderDetail" Multiplicity="0..1" />
+          <End Role="DishItem" Type="EWCModel.Store.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="OrderDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientDish_Dish">
+          <End Role="Dish" Type="EWCModel.Store.Dish" Multiplicity="1" />
+          <End Role="IngredientDish" Type="EWCModel.Store.IngredientDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientDish">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientDish_Ingredient">
+          <End Role="Ingredient" Type="EWCModel.Store.Ingredient" Multiplicity="1" />
+          <End Role="IngredientDish" Type="EWCModel.Store.IngredientDish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientDish">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientDishItem_DishItem">
+          <End Role="DishItem" Type="EWCModel.Store.DishItem" Multiplicity="1" />
+          <End Role="IngredientDishItem" Type="EWCModel.Store.IngredientDishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DishItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientDishItem">
+              <PropertyRef Name="DishItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientDishItem_IngredientItem">
+          <End Role="IngredientItem" Type="EWCModel.Store.IngredientItem" Multiplicity="1" />
+          <End Role="IngredientDishItem" Type="EWCModel.Store.IngredientDishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientDishItem">
+              <PropertyRef Name="IngredientItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientItem_Ingredient">
+          <End Role="Ingredient" Type="EWCModel.Store.Ingredient" Multiplicity="1" />
+          <End Role="IngredientItem" Type="EWCModel.Store.IngredientItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientItem">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Bill">
+          <End Role="Bill" Type="EWCModel.Store.Bill" Multiplicity="1" />
+          <End Role="Order" Type="EWCModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="EWCModel.Store.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="EWCModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_SupplierCategory">
+          <End Role="SupplierCategory" Type="EWCModel.Store.SupplierCategory" Multiplicity="1" />
+          <End Role="Supplier" Type="EWCModel.Store.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="SupplierCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="EWCModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="EWCModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EWCModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EWCEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="EWCModel.Bill" />
+          <EntitySet Name="Chefs" EntityType="EWCModel.Chef" />
+          <EntitySet Name="Dishes" EntityType="EWCModel.Dish" />
+          <EntitySet Name="DishCategories" EntityType="EWCModel.DishCategory" />
+          <EntitySet Name="DishItems" EntityType="EWCModel.DishItem" />
+          <EntitySet Name="DishMenus" EntityType="EWCModel.DishMenu" />
+          <EntitySet Name="Ingredients" EntityType="EWCModel.Ingredient" />
+          <EntitySet Name="IngredientCategories" EntityType="EWCModel.IngredientCategory" />
+          <EntitySet Name="IngredientItems" EntityType="EWCModel.IngredientItem" />
+          <EntitySet Name="Menus" EntityType="EWCModel.Menu" />
+          <EntitySet Name="Orders" EntityType="EWCModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="EWCModel.OrderDetail" />
+          <EntitySet Name="Suppliers" EntityType="EWCModel.Supplier" />
+          <EntitySet Name="SupplierCategories" EntityType="EWCModel.SupplierCategory" />
+          <EntitySet Name="sysdiagrams" EntityType="EWCModel.sysdiagram" />
+          <EntitySet Name="Tags" EntityType="EWCModel.Tag" />
+          <EntitySet Name="UserProfiles" EntityType="EWCModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="EWCModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="EWCModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="EWCModel.webpages_Roles" />
+          <AssociationSet Name="FK_Bill_UserProfile" Association="EWCModel.FK_Bill_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Bill" Association="EWCModel.FK_Order_Bill">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dish__ChefID__4AB81AF0" Association="EWCModel.FK__Dish__ChefID__4AB81AF0">
+            <End Role="Chef" EntitySet="Chefs" />
+            <End Role="Dish" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_Chef" Association="EWCModel.FK_DishItem_Chef">
+            <End Role="Chef" EntitySet="Chefs" />
+            <End Role="DishItem" EntitySet="DishItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dish__Category__1B0907CE" Association="EWCModel.FK__Dish__Category__1B0907CE">
+            <End Role="DishCategory" EntitySet="DishCategories" />
+            <End Role="Dish" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishMenu__DishID__2E1BDC42" Association="EWCModel.FK__DishMenu__DishID__2E1BDC42">
+            <End Role="Dish" EntitySet="Dishes" />
+            <End Role="DishMenu" EntitySet="DishMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__DishI__48CFD27E" Association="EWCModel.FK__OrderDeta__DishI__48CFD27E">
+            <End Role="Dish" EntitySet="Dishes" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_Dish" Association="EWCModel.FK_DishItem_Dish">
+            <End Role="Dish" EntitySet="Dishes" />
+            <End Role="DishItem" EntitySet="DishItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishItem_OrderDetail" Association="EWCModel.FK_DishItem_OrderDetail">
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+            <End Role="DishItem" EntitySet="DishItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DishMenu__MenuID__2F10007B" Association="EWCModel.FK__DishMenu__MenuID__2F10007B">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="DishMenu" EntitySet="DishMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingredien__Categ__08EA5793" Association="EWCModel.FK__Ingredien__Categ__08EA5793">
+            <End Role="IngredientCategory" EntitySet="IngredientCategories" />
+            <End Role="Ingredient" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientItem_Ingredient" Association="EWCModel.FK_IngredientItem_Ingredient">
+            <End Role="Ingredient" EntitySet="Ingredients" />
+            <End Role="IngredientItem" EntitySet="IngredientItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ingredien__Suppl__4E88ABD4" Association="EWCModel.FK__Ingredien__Suppl__4E88ABD4">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="IngredientItem" EntitySet="IngredientItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__534D60F1" Association="EWCModel.FK__OrderDeta__Order__534D60F1">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_SupplierCategory" Association="EWCModel.FK_Supplier_SupplierCategory">
+            <End Role="SupplierCategory" EntitySet="SupplierCategories" />
+            <End Role="Supplier" EntitySet="Suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="DishTag" Association="EWCModel.DishTag">
+            <End Role="Dish" EntitySet="Dishes" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="IngredientDish" Association="EWCModel.IngredientDish">
+            <End Role="Dish" EntitySet="Dishes" />
+            <End Role="Ingredient" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="IngredientDishItem" Association="EWCModel.IngredientDishItem">
+            <End Role="DishItem" EntitySet="DishItems" />
+            <End Role="IngredientItem" EntitySet="IngredientItems" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="EWCModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="UserProfile" Relationship="EWCModel.FK_Bill_UserProfile" FromRole="Bill" ToRole="UserProfile" />
+          <NavigationProperty Name="Orders" Relationship="EWCModel.FK_Order_Bill" FromRole="Bill" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Chef">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <Property Name="NumberOfRate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="EWCModel.FK__Dish__ChefID__4AB81AF0" FromRole="Chef" ToRole="Dish" />
+          <NavigationProperty Name="DishItems" Relationship="EWCModel.FK_DishItem_Chef" FromRole="Chef" ToRole="DishItem" />
+        </EntityType>
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ChefID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CookingGuide" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="NumberOfRate" Type="Int32" Nullable="false" />
+          <Property Name="NumOfOrderQua1" Type="Int32" Nullable="false" />
+          <Property Name="NumOfOrderQua2" Type="Int32" Nullable="false" />
+          <Property Name="NumOfOrderQua3" Type="Int32" Nullable="false" />
+          <Property Name="NumOfOrderQua4" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chef" Relationship="EWCModel.FK__Dish__ChefID__4AB81AF0" FromRole="Dish" ToRole="Chef" />
+          <NavigationProperty Name="DishCategory" Relationship="EWCModel.FK__Dish__Category__1B0907CE" FromRole="Dish" ToRole="DishCategory" />
+          <NavigationProperty Name="DishMenus" Relationship="EWCModel.FK__DishMenu__DishID__2E1BDC42" FromRole="Dish" ToRole="DishMenu" />
+          <NavigationProperty Name="OrderDetails" Relationship="EWCModel.FK__OrderDeta__DishI__48CFD27E" FromRole="Dish" ToRole="OrderDetail" />
+          <NavigationProperty Name="DishItems" Relationship="EWCModel.FK_DishItem_Dish" FromRole="Dish" ToRole="DishItem" />
+          <NavigationProperty Name="Tags" Relationship="EWCModel.DishTag" FromRole="Dish" ToRole="Tag" />
+          <NavigationProperty Name="Ingredients" Relationship="EWCModel.IngredientDish" FromRole="Dish" ToRole="Ingredient" />
+        </EntityType>
+        <EntityType Name="DishCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="EWCModel.FK__Dish__Category__1B0907CE" FromRole="DishCategory" ToRole="Dish" />
+        </EntityType>
+        <EntityType Name="DishItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ChefID" Type="Int32" Nullable="false" />
+          <Property Name="DishID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDetailID" Type="Int32" />
+          <Property Name="QRCode" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="CookingTime" Type="DateTime" Precision="3" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Chef" Relationship="EWCModel.FK_DishItem_Chef" FromRole="DishItem" ToRole="Chef" />
+          <NavigationProperty Name="Dish" Relationship="EWCModel.FK_DishItem_Dish" FromRole="DishItem" ToRole="Dish" />
+          <NavigationProperty Name="OrderDetail" Relationship="EWCModel.FK_DishItem_OrderDetail" FromRole="DishItem" ToRole="OrderDetail" />
+          <NavigationProperty Name="IngredientItems" Relationship="EWCModel.IngredientDishItem" FromRole="DishItem" ToRole="IngredientItem" />
+        </EntityType>
+        <EntityType Name="DishMenu">
+          <Key>
+            <PropertyRef Name="DishID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="DishID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="DishPrice" Type="Int32" Nullable="false" />
+          <Property Name="Quota" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dish" Relationship="EWCModel.FK__DishMenu__DishID__2E1BDC42" FromRole="DishMenu" ToRole="Dish" />
+          <NavigationProperty Name="Menu" Relationship="EWCModel.FK__DishMenu__MenuID__2F10007B" FromRole="DishMenu" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsTracibility" Type="Boolean" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IngredientCategory" Relationship="EWCModel.FK__Ingredien__Categ__08EA5793" FromRole="Ingredient" ToRole="IngredientCategory" />
+          <NavigationProperty Name="IngredientItems" Relationship="EWCModel.FK_IngredientItem_Ingredient" FromRole="Ingredient" ToRole="IngredientItem" />
+          <NavigationProperty Name="Dishes" Relationship="EWCModel.IngredientDish" FromRole="Ingredient" ToRole="Dish" />
+        </EntityType>
+        <EntityType Name="IngredientCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Ingredients" Relationship="EWCModel.FK__Ingredien__Categ__08EA5793" FromRole="IngredientCategory" ToRole="Ingredient" />
+        </EntityType>
+        <EntityType Name="IngredientItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="Int32" Nullable="false" />
+          <Property Name="IngredientID" Type="Int32" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="IsDefaultSupplier" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Ingredient" Relationship="EWCModel.FK_IngredientItem_Ingredient" FromRole="IngredientItem" ToRole="Ingredient" />
+          <NavigationProperty Name="Supplier" Relationship="EWCModel.FK__Ingredien__Suppl__4E88ABD4" FromRole="IngredientItem" ToRole="Supplier" />
+          <NavigationProperty Name="DishItems" Relationship="EWCModel.IngredientDishItem" FromRole="IngredientItem" ToRole="DishItem" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ApplyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="ClosedTimeSession" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DishMenus" Relationship="EWCModel.FK__DishMenu__MenuID__2F10007B" FromRole="Menu" ToRole="DishMenu" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BillId" Type="Int32" Nullable="false" />
+          <Property Name="ReceiverName" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ReceiverPhone" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ReceiverAddress" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ReceiverEmail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TotalPayment" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OrderStatus" Type="Int32" />
+          <NavigationProperty Name="Bill" Relationship="EWCModel.FK_Order_Bill" FromRole="Order" ToRole="Bill" />
+          <NavigationProperty Name="OrderDetails" Relationship="EWCModel.FK__OrderDeta__Order__534D60F1" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+          <Property Name="DishID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dish" Relationship="EWCModel.FK__OrderDeta__DishI__48CFD27E" FromRole="OrderDetail" ToRole="Dish" />
+          <NavigationProperty Name="DishItems" Relationship="EWCModel.FK_DishItem_OrderDetail" FromRole="OrderDetail" ToRole="DishItem" />
+          <NavigationProperty Name="Order" Relationship="EWCModel.FK__OrderDeta__Order__534D60F1" FromRole="OrderDetail" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="SupplierCategory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IngredientItems" Relationship="EWCModel.FK__Ingredien__Suppl__4E88ABD4" FromRole="Supplier" ToRole="IngredientItem" />
+          <NavigationProperty Name="SupplierCategory1" Relationship="EWCModel.FK_Supplier_SupplierCategory" FromRole="Supplier" ToRole="SupplierCategory" />
+        </EntityType>
+        <EntityType Name="SupplierCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="IsAvailable" Type="Boolean" />
+          <NavigationProperty Name="Suppliers" Relationship="EWCModel.FK_Supplier_SupplierCategory" FromRole="SupplierCategory" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Dishes" Relationship="EWCModel.DishTag" FromRole="Tag" ToRole="Dish" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsFemale" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="EWCModel.FK_Bill_UserProfile" FromRole="UserProfile" ToRole="Bill" />
+          <NavigationProperty Name="webpages_Roles" Relationship="EWCModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserProfiles" Relationship="EWCModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Bill_UserProfile">
+          <End Role="UserProfile" Type="EWCModel.UserProfile" Multiplicity="0..1" />
+          <End Role="Bill" Type="EWCModel.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Bill">
+          <End Role="Bill" Type="EWCModel.Bill" Multiplicity="1" />
+          <End Role="Order" Type="EWCModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dish__ChefID__4AB81AF0">
+          <End Role="Chef" Type="EWCModel.Chef" Multiplicity="1" />
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chef">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="ChefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_Chef">
+          <End Role="Chef" Type="EWCModel.Chef" Multiplicity="1" />
+          <End Role="DishItem" Type="EWCModel.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chef">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="ChefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dish__Category__1B0907CE">
+          <End Role="DishCategory" Type="EWCModel.DishCategory" Multiplicity="1" />
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DishCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishMenu__DishID__2E1BDC42">
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="1" />
+          <End Role="DishMenu" Type="EWCModel.DishMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishMenu">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__DishI__48CFD27E">
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="1" />
+          <End Role="OrderDetail" Type="EWCModel.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_Dish">
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="1" />
+          <End Role="DishItem" Type="EWCModel.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DishItem_OrderDetail">
+          <End Role="OrderDetail" Type="EWCModel.OrderDetail" Multiplicity="0..1" />
+          <End Role="DishItem" Type="EWCModel.DishItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishItem">
+              <PropertyRef Name="OrderDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DishMenu__MenuID__2F10007B">
+          <End Role="Menu" Type="EWCModel.Menu" Multiplicity="1" />
+          <End Role="DishMenu" Type="EWCModel.DishMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DishMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingredien__Categ__08EA5793">
+          <End Role="IngredientCategory" Type="EWCModel.IngredientCategory" Multiplicity="1" />
+          <End Role="Ingredient" Type="EWCModel.Ingredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingredient">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientItem_Ingredient">
+          <End Role="Ingredient" Type="EWCModel.Ingredient" Multiplicity="1" />
+          <End Role="IngredientItem" Type="EWCModel.IngredientItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientItem">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ingredien__Suppl__4E88ABD4">
+          <End Role="Supplier" Type="EWCModel.Supplier" Multiplicity="1" />
+          <End Role="IngredientItem" Type="EWCModel.IngredientItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IngredientItem">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__534D60F1">
+          <End Role="Order" Type="EWCModel.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="EWCModel.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_SupplierCategory">
+          <End Role="SupplierCategory" Type="EWCModel.SupplierCategory" Multiplicity="1" />
+          <End Role="Supplier" Type="EWCModel.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="SupplierCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DishTag">
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="*" />
+          <End Role="Tag" Type="EWCModel.Tag" Multiplicity="*" />
+        </Association>
+        <Association Name="IngredientDish">
+          <End Role="Dish" Type="EWCModel.Dish" Multiplicity="*" />
+          <End Role="Ingredient" Type="EWCModel.Ingredient" Multiplicity="*" />
+        </Association>
+        <Association Name="IngredientDishItem">
+          <End Role="DishItem" Type="EWCModel.DishItem" Multiplicity="*" />
+          <End Role="IngredientItem" Type="EWCModel.IngredientItem" Multiplicity="*" />
+        </Association>
+        <Association Name="webpages_UsersInRoles">
+          <End Role="webpages_Roles" Type="EWCModel.webpages_Roles" Multiplicity="*" />
+          <End Role="UserProfile" Type="EWCModel.UserProfile" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EWCModelStoreContainer" CdmEntityContainer="EWCEntities">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="EWCModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chefs">
+            <EntityTypeMapping TypeName="EWCModel.Chef">
+              <MappingFragment StoreEntitySet="Chef">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="NumberOfRate" ColumnName="NumberOfRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dishes">
+            <EntityTypeMapping TypeName="EWCModel.Dish">
+              <MappingFragment StoreEntitySet="Dish">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ChefID" ColumnName="ChefID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CookingGuide" ColumnName="CookingGuide" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="NumberOfRate" ColumnName="NumberOfRate" />
+                <ScalarProperty Name="NumOfOrderQua1" ColumnName="NumOfOrderQua1" />
+                <ScalarProperty Name="NumOfOrderQua2" ColumnName="NumOfOrderQua2" />
+                <ScalarProperty Name="NumOfOrderQua3" ColumnName="NumOfOrderQua3" />
+                <ScalarProperty Name="NumOfOrderQua4" ColumnName="NumOfOrderQua4" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DishCategories">
+            <EntityTypeMapping TypeName="EWCModel.DishCategory">
+              <MappingFragment StoreEntitySet="DishCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DishItems">
+            <EntityTypeMapping TypeName="EWCModel.DishItem">
+              <MappingFragment StoreEntitySet="DishItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChefID" ColumnName="ChefID" />
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="QRCode" ColumnName="QRCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CookingTime" ColumnName="CookingTime" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DishMenus">
+            <EntityTypeMapping TypeName="EWCModel.DishMenu">
+              <MappingFragment StoreEntitySet="DishMenu">
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="DishPrice" ColumnName="DishPrice" />
+                <ScalarProperty Name="Quota" ColumnName="Quota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="EWCModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="IsTracibility" ColumnName="IsTracibility" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientCategories">
+            <EntityTypeMapping TypeName="EWCModel.IngredientCategory">
+              <MappingFragment StoreEntitySet="IngredientCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientItems">
+            <EntityTypeMapping TypeName="EWCModel.IngredientItem">
+              <MappingFragment StoreEntitySet="IngredientItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="IsDefaultSupplier" ColumnName="IsDefaultSupplier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="EWCModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="ClosedTimeSession" ColumnName="ClosedTimeSession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="EWCModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverPhone" ColumnName="ReceiverPhone" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverEmail" ColumnName="ReceiverEmail" />
+                <ScalarProperty Name="TotalPayment" ColumnName="TotalPayment" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="EWCModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="EWCModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="SupplierCategory" ColumnName="SupplierCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierCategories">
+            <EntityTypeMapping TypeName="EWCModel.SupplierCategory">
+              <MappingFragment StoreEntitySet="SupplierCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EWCModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="EWCModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="EWCModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IsFemale" ColumnName="IsFemale" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="EWCModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="EWCModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="EWCModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DishTag" TypeName="EWCModel.DishTag" StoreEntitySet="DishTag">
+            <EndProperty Name="Dish">
+              <ScalarProperty Name="Id" ColumnName="DishID" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="Id" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="IngredientDish" TypeName="EWCModel.IngredientDish" StoreEntitySet="IngredientDish">
+            <EndProperty Name="Dish">
+              <ScalarProperty Name="Id" ColumnName="DishID" />
+            </EndProperty>
+            <EndProperty Name="Ingredient">
+              <ScalarProperty Name="Id" ColumnName="IngredientID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="IngredientDishItem" TypeName="EWCModel.IngredientDishItem" StoreEntitySet="IngredientDishItem">
+            <EndProperty Name="DishItem">
+              <ScalarProperty Name="Id" ColumnName="DishItemID" />
+            </EndProperty>
+            <EndProperty Name="IngredientItem">
+              <ScalarProperty Name="Id" ColumnName="IngredientItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="EWCModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

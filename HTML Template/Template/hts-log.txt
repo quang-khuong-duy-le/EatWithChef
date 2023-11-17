@@ -1,0 +1,28 @@
+HTTrack3.47-22+htsswf+htsjava launched on Thu, 02 Jan 2014 17:27:01 at http://html.crunchpress.net/kc/kc_fullview/ +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2013], %s -->" -%l "en, en, *" http://html.crunchpress.net/kc/kc_fullview/ -O1 E:\Study\Capstone\Template\Template +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+17:27:03	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/robots.txt (from primary/primary)
+17:34:35	Error: 	"No Content" (204) at link m.addthisedge.com/live/t00/oh.gif? (from s7.addthis.com/js/300/addthis_widget.js)
+17:34:35	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/progress-img.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/progress-active.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/progress-active2.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/progress-active3.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/progress-active4.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/images/border.png (from html.crunchpress.net/kc/kc_fullview/css/custom.css)
+17:34:35	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/img/glyphicons-halflings.png (from html.crunchpress.net/kc/kc_fullview/css/bootstrap.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/img/glyphicons-halflings-white.png (from html.crunchpress.net/kc/kc_fullview/css/bootstrap.css)
+17:34:35	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/fonts/flexslider-icon.eot (from html.crunchpress.net/kc/kc_fullview/css/flexslider.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/fonts/flexslider-icon.eot? (from html.crunchpress.net/kc/kc_fullview/css/flexslider.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/fonts/flexslider-icon.woff (from html.crunchpress.net/kc/kc_fullview/css/flexslider.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/fonts/flexslider-icon.ttf (from html.crunchpress.net/kc/kc_fullview/css/flexslider.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/fonts/flexslider-icon.svg (from html.crunchpress.net/kc/kc_fullview/css/flexslider.css)
+17:34:35	Error: 	"" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/css/mCSB_buttons.png (from html.crunchpress.net/kc/kc_fullview/css/jquery.mCustomScrollbar.css)
+17:34:36	Error: 	"Internal Server Error" (500) after 2 retries at link html.crunchpress.net/kc/kc_fullview/www.addthis.com/ (from s7.addthis.com/js/300/addthis_widget.js)
+
+HTTrack Website Copier/3.47-22 mirror complete in 7 minutes 35 seconds : 401 links scanned, 354 files written (8749781 bytes overall) [8898785 bytes received at 19557 bytes/sec], 6921 bytes transferred using HTTP compression in 1 files, ratio 38%, 1.1 requests per connection
+(17 errors, 0 warnings, 0 messages)

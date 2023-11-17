@@ -1,0 +1,153 @@
+﻿<div class="modal-dialog" style="width: 660px; margin-top:35px">
+    <div class="modal-content" style="min-height:500px; max-height:  650px;margin-top:-25px;border: solid white;">
+        <div class="modal-header" style="background-color: #f34541;height:50px">
+            <input type="hidden" id="inputgetdate1" value="@ViewBag.Menu.ApplyDate" />
+            <input id="inputgetMenu2" type="hidden" value="@ViewBag.Menu.Id" />
+             <input type="hidden" id="MenuTitle2" value="@ViewBag.Menu.Name" />
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style="font-family:serif;font-size:20px;color: white;font-weight:bold;margin-top: -5px;"> @ViewBag.Menu.Name  <i class="text-success icon-book icon-large align-right" style="color: white !important" ></i></h4>
+         
+        </div>
+        <div class="modal-body row" style="max-width:600px;">
+              <div style="margin-bottom: 10px;font-size: large;font-family:cursive;margin-top: -10px;">
+            
+                    <a style="margin-left:10px">Thực Đơn/</a>
+                    <a style="font-size:14px;font-weight:bold;">Xuất Hiện Đến</a>
+                     @*<input type="text" id="timepicker2" style="width:90px;margin-left:5px;border-radius: 5px;border: solid darkslateblue;text-align: center;" value="@ViewBag.ClosedTime"/>*@
+                  <label>@ViewBag.ClosedTime</label>
+                </div>
+           
+
+
+             <div class="col-md-7" style=" width:600px; min-height: 410px; max-height: 410px;margin-left:16px;overflow: scroll; overflow-x: hidden;border: solid 8px rgba(0,0,0,.7); background-color: rgb(243, 243, 158);">
+                 <div id="searchByName-Our2">      
+                 <select id="DishCate2" >
+                                  <option value="0" >Tất Cả</option>
+                                   @foreach (var item in ViewBag.ListCat)
+                                   {
+                             <option value="@item.Id" >@item.Name</option>
+                                   }
+                             </select>
+                        <input id="searchByNameInfo" placeholder="Nhập tên để tìm kiếm"/>
+                     </div>
+                <ul id="list-dish2" class="sortableInfo grid" style="width: 520px;margin-left:-10px;margin-top:30px; list-style:none">
+           
+                           
+                        @foreach (var item in ViewBag.ListDishMenu)
+                        {
+                            <li id="dish2-choice-@item.DishMenu.dishs.Id" data-id2="@item.DishMenu.dishs.Id" style="background-color:white">
+                                <div >
+                                    <div id="image-dish2-@item.DishMenu.dishs.Id" style="max-height:100px; max-width:100px" ><img src="@item.DishMenu.dishs.Image" style="max-height:100px; max-width:100px; margin-left:25px; margin-top:5px; border:solid 1px"/></div>
+                                    <div>
+                                    <div id="name-dish2-@item.DishMenu.dishs.Id" style="color:#1C94C4">@item.DishMenu.dishs.Name</div>
+                                    <a id="price-dish2-@item.DishMenu.dishs.Id">@item.DishMenu.dishmenus.DishPrice</a> đ<br/>
+                                    <a id="quota-dish2-@item.DishMenu.dishs.Id">@item.DishMenu.dishmenus.Quota</a> Phần
+                                     <a id="cat-dish2-@item.DishMenu.dishs.Id" data-catid2="@item.DishCategory.Id" hidden="hidden">@item.DishCategory.Id</a>
+                                    </div>
+                                </div>
+                            
+                            </li> 
+                        }
+                </ul>
+                 
+               
+            </div>
+
+             <button id="Pin2" class ="btn btn-primary btn-xl btn-animate-demo" style="max-width:70px;margin-top: 10px;margin-left:250px;font-family:monospace;font-size:medium"; onclick="PinMenu()"><i class="text-success icon-external-link icon-small align-right" style="color: white !important"/> Mẫu</button>
+                 <button id="close2" class="btn btn-danger btn-xl btn-animate-demo" data-dismiss="modal" style="max-width:60px;margin-top: 10px;margin-left:10px;font-family:serif;font-size:medium";>Đóng</button>
+
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    var mainList = new Array();
+
+    $('#myModal2').ready(function () {
+
+        //Search by name:
+        $('#searchByName-Our2').bind('input', function () {
+            search();
+        });
+
+
+        //get main list
+        $("#list-dish2").find('li').each(function () {
+            var current = $(this);
+            var id = current.attr("data-id2");
+            var price = $("#price-dish2-" + id).html();
+            var quota = $("#quota-dish2-" + id).html();
+            var cat = $("#cat-dish2-" + id).html();
+            var html = $("#dish2-choice-" + id).html();
+            var dish = new Object();
+
+            dish.Id = id;
+            dish.Price = price;
+            dish.Quota = quota;
+            dish.Cat = cat
+            dish.html = html;
+            mainList.push(dish);
+        });
+
+        //Search by cat:
+        $("#DishCate2").change(function () {
+            search();
+        });
+    });
+
+    function search() {
+
+
+        var listDish2 = new Array();
+        //get dish in category
+        var selectCat = $("#DishCate2").val();
+        for (var i = 0; i < mainList.length; i++) {
+            if (mainList[i].Cat == selectCat || selectCat == 0) {
+                listDish2.push(mainList[i]);
+            }
+        }
+
+        //search:
+        var keywordinfo = $("#searchByNameInfo").val();
+        console.log("tao---" + keywordinfo);
+        for (var i = 0; i < listDish2.length; i++) {
+           
+            var html = "<div>" + listDish2[i].html + "</div>";
+            var id = '#name-dish2-' + listDish2[i].Id;
+           
+            var elements = $(html);
+            var name = $(id, elements).html().trim();
+            console.log(name);
+            var pos = name.search(keywordinfo);
+            if (pos == -1) {
+                listDish2.splice(i, 1);
+                --i;
+            }
+        }
+
+        //show list menu
+        $("#list-dish2").html("");
+        for (var i = 0; i < listDish2.length; i++) {
+            $("#list-dish2").append("<li id='dish2-" + (listDish2[i]).Id + "' data-id2='" + (listDish2[i]).Id +
+                "' class='ui-draggable' style='position: relative;background-color:white'>" + (listDish2[i]).html + "</li>");
+        }
+    }
+    function PinMenu() {
+        var selectMenuId = parseInt($("#inputgetMenu2").val());
+        var menuTitle = $("#MenuTitle2").val();
+        $.ajax({
+            url: "/MenuManagement/PinMenu",
+            type: "POST",
+            data: { Id: selectMenuId, title: menuTitle },
+            success: function (result) {
+                window.location.reload();
+            }
+        });
+    }
+
+
+
+</script>

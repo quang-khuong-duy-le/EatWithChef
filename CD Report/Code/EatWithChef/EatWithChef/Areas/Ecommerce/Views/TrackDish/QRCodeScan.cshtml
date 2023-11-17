@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Quét QRCode";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+
+@section scripts {
+    <script src="~/Content/frontend/jquery.webcamqrcode/js/jquery.webcamqrcode.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $('document').ready(function () {
+                $('#qrcodebox').WebcamQRCode({
+                    onQRCodeDecode: function (p_data) {
+                        window.location = "/ecommerce/nguon-goc-thuc-pham/" + p_data;
+                    }
+                });
+
+                $('#btn_start').click(function () {
+                    $('#qrcodebox').WebcamQRCode().start();
+                });
+
+                $('#btn_stop').click(function () {
+                    $('#qrcodebox').WebcamQRCode().stop();
+                });
+            });
+        })(jQuery);
+    </script>
+}
+
+<section id="content" class="container">
+    <!--Menu Page Start-->
+    <section class="menu-page">
+        <div class="container">
+            <div class="row-fluid">
+                <section id="content" class="container">
+                    <!--Blog Page Section Start-->
+                    <section class="blog-page-section">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="heading" style="text-align: center">
+                                    <h2 style="font-weight: 800">Quét QRCode</h2>
+                                </div>
+                                <div class="span8" style="float:right">
+                                    <div id="accordion-parent" class="accordion accordion-area">
+                                        <div class="accordion-group">
+                                            <div class="accordion-heading"><a href="#instruction" data-parent="#accordion-parent" data-toggle="collapse" class="accordion-toggle collapsed">Hướng Dẫn</a> </div>
+                                            <div class="accordion-body collapse" id="instruction" style="height: 0px; border-color: red">
+                                                <div class="accordion-inner" style="padding-top: 30px">
+                                                    <div class="row-fluid">
+                                                        <div class="span12">
+                                                            <div class="left-box">
+                                                                <div class="row-fluid">
+                                                                    <div>
+                                                                        <p>- Ấn vào "Bắt đầu quét" để bắt đầu quá trình quét.</p>
+                                                                        <p>- Ấn "Allow" như hình bên dưới để mở webcam.</p>
+                                                                        <img src="/Images/qrcode-allow-instruction.png" width="300px" height="300px" />
+                                                                        <p>- Đặt hình QR Code vào giữa camera và giữ im chờ hệ thống quét.</p>
+                                                                        <p>- Ấn nút "Tạm dừng" để dừng quá trình quét.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="width: 350px; height: 350px; margin-top: 30px">
+                                    <div id="qrcodebox" style="width:100%; height:100%; margin-bottom:5px">
+                                    </div>
+                                    <input type="button" class="btns btn-submit-3" value="Bắt đầu quét" id="btn_start" title="Bắt đầu quét" style="float:left">
+                                    <input type="button" class="btns btn-submit-3" value="Tạm dừng" id="btn_stop" title="Tạm dừng" style="float:right; background-color:#49945E !important">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                    <!--Blog Page Section End-->
+                </section>
+            </div>
+        </div>
+    </section>
+    <!--Menu Page End-->
+</section>

@@ -1,0 +1,114 @@
+﻿@model Domain.Entity.Order
+@using Domain.Utility
+@if(Model != null){
+<div class='col-sm-12'>
+    <div class='box'>
+        <div class='box-content'>
+            <div class='pull-left'>
+                @if(Model.OrderStatus == (int)OrderStatusEnum.WaitForProcess){
+                <button class='btn btn-success'>
+                    <i class="icon-check icon-white"></i>
+                    Xác nhận</button>
+                }
+                <button class='btn btn-primary'>
+                    <i class="icon-edit icon-white"></i>
+                    Cập nhật</button>
+            </div>
+            @if(Model.OrderStatus != (int)OrderStatusEnum.Cancel && Model.OrderStatus != (int)OrderStatusEnum.Delivered){
+            <div class='pull-right'>
+                <button class='btn'>
+                    <i class="icon-trash"></i>
+                    Hủy</button>
+            </div>
+            }
+            <div class='clearfix'></div>
+            <hr class='hr-normal'>
+            <table class='table table-hover'>
+                <thead>
+                    <tr>
+                        <th>Món ăn</th>
+                        <th>
+                            <div class='text-center'>Số lượng</div>
+                        </th>
+                        <th>
+                            <div class='text-right'>Đơn giá</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @Html.Action("GetOrderDetailByOrderId", "OrderManagement", new {OrderId = Model.Id })
+                </tbody>
+            </table>
+            <div class='text-right'>
+                <h3 class='subtotal contrast'>@Model.TotalPayment</h3>
+            </div>
+            <hr class='hr-normal'>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <div class='lead'>
+                        <i class='icon-calendar contrast'></i>
+                        Ngày đặt món
+                    </div>
+                </div>
+                <div class='col-sm-7 col-sm-offset-1'>
+                        <strong>@string.Format("{0:dd/MM/yyyy}",Model.OrderDate)</strong>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <div class='lead'>
+                        <i class='icon-calendar contrast'></i>
+                        Ngày giao món
+                    </div>
+                </div>
+                <div class='col-sm-7 col-sm-offset-1'>
+                        <strong>@string.Format("{0:dd/MM/yyyy}",Model.DeliveryDate)</strong>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <div class='lead'>
+                        <i class='icon-envelope contrast'></i>
+                        Giao hàng
+                    </div>
+                </div>
+                <div class='col-sm-7 col-sm-offset-1'>
+                    <address>
+                        <strong>@Model.ReceiverAddress</strong>
+                        <br />
+                        <abbr title='Phone'>Số điện thoại:</abbr>
+                        @Model.ReceiverPhone
+                               
+                    </address>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <div class='lead'>
+                        <i class='icon-user contrast'></i>
+                        Khách hàng
+                               
+                    </div>
+                </div>
+                <div class='col-sm-7 col-sm-offset-1'>
+                    <address>
+                        <strong>@Model.ReceiverName</strong>
+                        <br>
+                        <a href="javascript:void(0)">@Model.ReceiverEmail</a>
+                    </address>
+                </div>
+            </div>
+            <div class='form-actions form-actions-padding'>
+                <ul class='pager'>
+                    <li class='previous'>
+                        <a href='#'>← Previous order</a>
+                    </li>
+                    <li class='next'>
+                        <a href='#'>Next order →</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<EatWithChef.Areas.Ecommerce.Models.DishCategoryViewModel>
+@using EatWithChef.Areas.Ecommerce.Models
+@{
+    //Get List DishViewModel from model
+    List<DishViewModel> ListDish = new List<DishViewModel>();
+    foreach (var item in Model)
+    {
+        for (int i = 0; i < item.ListDish.Count; i++)
+        {
+            ListDish.Add(item.ListDish.ElementAt(i));
+        }
+    }
+}
+@if (ViewBag.MenuDate != null)
+{
+    
+    int counter = 0;
+    DateTime MenuDate = (DateTime)ViewBag.MenuDate;
+    if (Model == null || Model.Count() == 0 || Model.FirstOrDefault().ListDish == null || Model.FirstOrDefault().ListDish.Count == 0)
+    {
+        if (MenuDate != null)
+        {
+        <div class="row-fluid">
+            <div class="span12">
+                <h1>Chưa có món ăn cho ngày @String.Format("{0:dd/MM/yyyy}", @MenuDate.Date)</h1>
+            </div>
+        </div>
+        }
+        else
+        {
+        <div class="row-fluid">
+            <div class="span12">
+                <h1>Đường dẫn không hợp lệ</h1>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+        @Html.Partial("DishDetailSliderPartial", ListDish)
+        <section class="blog-page-section">
+            <section class="menu-page">
+                <div class="container">
+                    <div class="row-fluid" id="all-dish">
+                        @if (Model.Count() > 0)
+                        {
+
+                            //Browse Dish Category --> Display Dish in category.
+                            foreach (var item in Model)
+                            {
+                                int j = 0;
+                                int i = 0;
+                                //Begin list dish in category.
+                            <section id="data-@item.CategoryID">
+                                <h1 class="category-name-list-dish">@item.CategoryName</h1>
+
+                                @while (i < item.ListDish.Count)
+                                {
+                                    <div class="row-fluid">
+                                        @while (i < item.ListDish.Count && j < 3)
+                                        { 
+                                            <div class="span4 mix @item.ListDish.ElementAt(i).ListTagID" style="padding: 40px 0;">
+                                                <div class="menu-box" style="box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border: 0; background-color: rgba(0,0,0,0);">
+                                                    <div class="thumb">
+                                                        @if(item.ListDish.ElementAt(i).Quota <= 0)
+                                                        {
+                                                            <div class="dish-in-cart sold-out" onclick="ShowDishDetail(@counter)"></div>                                                        
+                                                        } 
+                                                        else
+                                                        {
+                                                            <div class="dish-in-cart" id="dish-in-cart-@item.ListDish.ElementAt(i).DishID" onclick="ShowDishDetail(@counter)"></div>
+                                                        }
+                                                        <img id="image-@item.ListDish.ElementAt(i).DishID" src="@item.ListDish.ElementAt(i).DishImage" onclick="ShowDishDetail(@counter)" style="border:1px solid #ccc"/>
+                                                    </div>
+                                                    <div class="text" style="padding: 12px 0">
+                                                        <div style="margin: 5px 0 5px; width: 100%; font-size: 13px; color: #404241; line-height: 18px;">
+                                                            <img src="@item.ListDish.ElementAt(i).ImageURL" style="height:53px;width:53px; float:left; margin-right:20px; border:1px solid #ccc;"/>
+                                                            <a href="javascript:void(0)" onclick="ShowDishDetail(@counter)"><strong class="title" style="font-size:15px; font-weight:bold" id="disk-@item.ListDish.ElementAt(i).DishID">@item.ListDish.ElementAt(i).DishName</strong></a>
+                                                            <br />
+                                                            Đầu bếp @item.ListDish.ElementAt(i).ChefName
+                                                            <br />
+                                                            <ul class="testimonial-star pull-left" style="margin: 3px 0 0 0">
+                                                                <li><a href="#"></a></li>
+                                                                <li><a href="#"></a></li>
+                                                                <li><a href="#"></a></li>
+                                                                <li><a href="#"></a></li>
+                                                                <li><a href="#"></a></li>
+                                                            </ul>
+                                                            <div style="clear: both"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="menu-box-bottom" style="padding: 10px 0 0 0">
+                                                        <p id="price-dish-@item.ListDish.ElementAt(i).DishID">@item.ListDish.ElementAt(i).DishPrice</p>
+                                                         @if(item.ListDish.ElementAt(i).Quota <= 0)
+                                                        {
+                                                            <div class="disable-add-button">
+                                                                <div>
+                                                                    <img src="~/Content/images/add-button.png" />
+                                                                    Thêm
+                                                                </div>
+                                                            </div>
+                                                        } 
+                                                        else
+                                                        {
+                                                            <div id="add-button-@item.ListDish.ElementAt(i).DishID" class="add-button" onclick="addToCart(@item.ListDish.ElementAt(i).DishID)">
+                                                                <div>
+                                                                    <img src="~/Content/images/add-button.png" />
+                                                                    Thêm
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            j++;
+                                            i++;
+                                            counter++;
+                                        }
+                                    </div>
+                                        j = 0;
+                                }
+                            </section>
+                                //End list dish in category.
+                            }
+                        }
+                    </div>
+                </div>
+            </section>
+        </section>
+    }
+    <input type="hidden" id="menu-id" value="@ViewBag.Menu" />
+}

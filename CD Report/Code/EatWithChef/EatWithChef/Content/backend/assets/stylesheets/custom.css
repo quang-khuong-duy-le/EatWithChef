@@ -1,0 +1,48 @@
+﻿#thumbPopup {
+    z-index:10000;
+}
+    #thumbPopup img {
+        width:350px;
+        height:250px;
+    }
+.media-gal {
+    width: 100%;
+    margin-top:10px;
+}
+    .media-gal .item {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 7px;
+        width: 225px;
+        height: 246px;
+        border: 1px solid #ddd;
+        float: left;
+    }
+        .media-gal .item p {
+            margin-top:5px
+        }
+        .media-gal .item img {
+            height: 200px;
+            width: 100%;
+        }
+
+.dataTables_paginate.paging_bootstrap.pagination ul{
+    list-style: none;
+    display: inline-flex;
+    margin-top:5px;
+}
+    .dataTables_paginate.paging_bootstrap.pagination ul li{
+        border: 1px solid #dddddd;
+        padding: 5px 10px 5px 10px;
+    }
+        .dataTables_paginate.paging_bootstrap.pagination ul li:hover{
+            background-color:#dddddd;
+            cursor:pointer;
+        }
+    .dataTables_paginate.paging_bootstrap.pagination ul li a:hover{
+        text-decoration:none;
+    }
+
+.datepicker.dropdown-menu {
+    z-index: 2000;
+}

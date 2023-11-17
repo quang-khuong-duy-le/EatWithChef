@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EatWithChef.Areas.Ecommerce.Models.DishOrderViewModel>
+@using Domain.Entity
+@if (Model != null || Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+    <div style="font-weight:bold">Đơn hàng ngày @String.Format("{0:dd/MM/yyyy}", item.MenuDate)</div>
+    <div class="list-dish">
+        @for (int i = 0; i < item.ListDish.Count;i++ )
+        {
+            <div class="dish-item">
+                <div class="dish-image"><center><img src="@item.ListDish.ElementAt(i).DishImage"/></center></div>
+                <div class="dish-name" title="@item.ListDish.ElementAt(i).DishName">@item.ListDish.ElementAt(i).DishName</div>
+                <div class="dish-price">@item.ListDish.ElementAt(i).DishPrice X</div>
+                <select class="quantity">
+                    @{
+                        for(int j = 0; j <= 10; j++)
+                        {
+                            if(item.ListQuantity.ElementAt(i) == j)
+                            {
+                                <option selected="selected">@j</option>
+                            } 
+                            else if (j == 0)
+                            {
+                                <option onclick="">Remove</option>
+                            } 
+                            else 
+                            {
+                                <option onclick="">@j</option>  
+                            }
+                        }
+                    }
+                </select>
+            </div>
+        }
+    </div>
+    }
+}
+else
+{ 
+    <h4>Bạn chưa có món ăn trong giỏ hàng! Xem <a href="/Ecommerce/Menu">món ngon hôm nay</a></h4>
+}

@@ -1,0 +1,844 @@
+﻿@model EatWithChef.Areas.Admin.Models.ListDishCategoryModel
+@{
+    ViewBag.Title = "Quản lý Món Ăn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section headcss {
+    <link href="~/Content/backend/jQuery-Tagit-master/css/tagit-simple-green.css" rel="stylesheet" />
+    <link href="~/Content/backend/jquery-tabs/css/jquery.steps.css" rel="stylesheet" />
+    <link href="~/Content/backend/jquery-sortable/sortable-dish-ingredient.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/custom.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+    <style type="text/css">
+        .ui-helper-hidden-accessible {
+            display: none;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-edit"></i>
+                <span>@ViewBag.Title</span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body">
+                <input type="hidden" id="LogoUrl" name="LogoUrl" value="" />
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <button id="editable-sample_new" class="btn btn-primary" href="#myModal-add" data-toggle="modal">
+                            Tạo Mới &nbsp;<i class="icon-plus-sign"></i>
+                        </button>
+                    </span>
+                    <span class="pull-right">
+                        <a href="/Admin/DishCategoryManagement/Index">
+                            <button class="btn btn-primary" data-toggle="modal">
+                                Danh Mục Món Ăn &nbsp;<i class="icon-tasks"></i>
+                            </button>
+                        </a>
+                    </span>
+                </div>
+
+                <div class="clearfix">
+                    <span style="display: -webkit-box; float: right">
+                        <label style="margin-top: 15px">
+                            Tìm kiếm
+                            <input type="text" id="keyword" value="" class="form-control search" />
+                        </label>
+                    </span>
+                    <span style="display: -webkit-box; float: left;">
+                        <label style="margin-top: 15px">
+                            Danh mục
+                            <select id="categoryID" class="form-control xsmall" style="width: auto; margin-right: 4px">
+                                <option value="0" selected>Tất cả danh mục</option>
+                                @foreach (var category in Model.ListDishCategory)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </select>
+                        </label>
+
+                        <label style="margin-top: 15px">
+                            Sắp xếp
+                            <select id="sort" class="form-control xsmall" style="width: auto">
+                                <option value="Name,ascending" selected>Tên: A đến Z</option>
+                                <option value="Name,descending">Tên: Z đến A</option>
+                                <option value="Price,ascending">Giá: thấp đến cao</option>
+                                <option value="Price,descending">Giá: cao đến thấp</option>
+                            </select>
+                        </label>
+                    </span>
+                </div>
+
+                <div id="dishes" class="media-gal clearfix">
+                </div>
+                <div class="col-md-12 text-center clearfix">
+                    <ul class="pagination" id="paging">
+                        <li><a href="#">← Đầu</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">Cuối →</a></li>
+                    </ul>
+                </div>
+                @*Modal Create*@
+                <div class="modal fade" id="myModal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 75%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Thêm Món Ăn</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5 img-modal">
+                                </div>
+                                <div id="wizard">
+                                    <h2>Thông tin Món Ăn</h2>
+                                    <section>
+                                        <div style="width: 100%; float: right; padding: 50px; padding-top: 10px">
+                                            <div class="form-group">
+                                                <label>Tên</label>
+                                                <input type="text" class="form-control" id="name_add" name="name_add" onblur="validateType('name_add')" maxlength="100" style="display: inline; margin-left: 50px; width: 50%" class="form-control" />
+                                                <p class="alert-danger" style="display: inline; margin-left: 30px; visibility: hidden">Tên này đã tồn tại!</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Danh mục</label>
+                                                <select id="categoryID_add" name="categoryID_add" style="display: inline; margin-left: 6px; width: auto" class="form-control xsmall">
+                                                    @foreach (var category in Model.ListDishCategory)
+                                                    {
+                                                        <option value="@category.Id">@category.Name</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Giá</label>
+                                                <input type="text" class="form-control" id="price_add" name="price_add" style="display: inline; margin-left: 52px; width: 20%">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tags</label>
+                                                <ul id="newsTags" name="newsTags"></ul>
+                                                <input id="taglist" name="taglist" type="hidden" />
+                                                <input id="taglistId" name="taglistId" type="hidden" />
+                                            </div>
+                                            <div class="form-group" style="height: 40px; margin-bottom: 5px">
+                                                <label>Hình ảnh</label>
+                                                <div class="fileupload fileupload-exists" data-provides="fileupload">
+                                                    <span class="btn btn-white btn-file" onclick="browse_image(this, image_add)">
+                                                        <span class="fileupload-new"><i class="icon-refresh"></i>Chọn hình</span>
+                                                        <span class="fileupload-exists"><i class="icon-refresh"></i>Chọn hình</span>
+                                                        <input type="hidden" id="image_add" name="image_add" value="">
+                                                    </span>
+                                                    <span class="fileupload-preview" style="margin-left: 5px;"></span>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-top:25px">
+                                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('next');"><i class="icon-circle-arrow-right"></i>Tiếp tục</button>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <h2>Mô tả</h2>
+                                    <section>
+                                        <div style="width: 100%;">
+                                            <div class="form-group">
+                                                <textarea rows="3" id="description_add" name="description_add"></textarea>
+                                            </div>
+                                            <div class="pull-right" style="margin-top: 10px;">
+                                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('previous');"><i class="icon-circle-arrow-left"></i>Trở lại</button>
+                                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('next');"><i class="icon-circle-arrow-right"></i>Tiếp tục</button>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <h2>Hướng dẫn nấu</h2>
+                                    <section>
+                                        <div style="width: 100%;">
+                                            <div class="form-group">
+                                                <textarea rows="3" id="cookingGuide_add" name="cookingGuide_add"></textarea>
+                                            </div>
+                                            <div class="pull-right" style="margin-top: 10px;">
+                                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('previous');"><i class="icon-circle-arrow-left"></i>Trở lại</button>
+                                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('next');"><i class="icon-circle-arrow-right"></i>Tiếp tục</button>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <h2>Chọn nguyên liệu</h2>
+                                    <section>
+                                        <div class="clearfix">
+                                            <span style="display: -webkit-box; float: left;">
+                                                <label>
+                                                    Tìm kiếm
+                                                    <input type="text" id="pick_keyword_add" value="" class="form-control medium" maxlength="100" style="margin-bottom: 5px; margin-right: 4px; width: 150px; margin-top: 0px" />
+                                                </label>
+                                                <label>
+                                                    Danh mục
+                                                    <select id="pick_ingredient_categoryID_add" class="form-control small" style="width: 160px; margin-right: 4px; margin-top: 0px">
+                                                        @foreach (var cate in Model.ListIngredientCategory)
+                                                        {
+                                                            <option value="@cate.Id">@cate.Name</option>
+                                                        }
+                                                    </select>
+                                                </label>
+                                            </span>
+                                            <span id="picking_ingredient_instruction" style="float: right; margin-right: 10px; margin-top: 30px">
+                                                <h5 style="color: crimson">Kéo thả nguyên liệu vào khung bên đây</h5>
+                                            </span>
+                                        </div>
+                                        <div class="col-md-7" style="min-height: 400px; max-height: 400px; padding: 5px; overflow: scroll; overflow-x: hidden; border: 3px solid cadetblue;">
+                                            <ul id="pick_list_ingredient" class="connected sortable list" style="width: 100%; min-height: 350px; z-index: 100">
+                                            </ul>
+                                        </div>
+
+                                        <div id="gallery" class="" style="min-width: 270px; min-height: 400px; max-height: 400px; margin-top: 0px; padding: 5px; float: right; overflow: scroll; overflow-x: hidden; border: 3px solid cadetblue;">
+                                            <ul id="pick_selected_ingredient" class="connected sortable list no2" style="z-index: 1; min-height: 350px; min-width: 240px">
+                                            </ul>
+                                        </div>
+                                        <div class="pull-right" style="margin-top: 30px">
+                                            <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('previous');"><i class="icon-circle-arrow-left"></i>Trở lại</button>
+                                            <button class="btn btn-primary" type="button" onclick="AddDish()"><i class="icon-plus-sign"></i>Thêm Mới</button>
+                                            <p class="alert-danger alert-error" id="error_message" style="visibility: hidden; margin-top: 5px">Lỗi xảy ra, xin hãy thử lại sau.</p>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 75%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Sửa thông tin Món ăn</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5 img-modal">
+                                </div>
+                                <div id="myModal-Update-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+            </div>
+        </section>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/Content/backend/jquery-tabs/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/jquery.steps.js"></script>
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/jQuery-Tagit-master/js/tagit.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+    <script src="~/Content/backend/jquery-sortable/jquery.sortable.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/select2/select2.js"></script>
+    <script src="~/Content/backend/jQuery-Tagit-master/js/tagit-init.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+
+    <script type="text/javascript">
+        var initialize_add = false;
+        $(document).ready(function () {
+
+            // init modal add
+            $('#myModal-add').on('shown.bs.modal', function (e) {
+                if (!initialize_add) {
+                    // wizard
+                    $("#wizard").steps({
+                        headerTag: "h2",
+                        bodyTag: "section",
+                        transitionEffect: "slideLeft",
+                        enableFinishButton: false,
+                        enablePagination: false,
+                        enableAllSteps: true,
+                        titleTemplate: "#title#",
+                        cssClass: "tabcontrol",
+                        onStepChanged: function (event, currentIndex, newIndex) {
+                            if (currentIndex == 0) {
+                                $('.modal-content', '#myModal-add').css('height', '530px');
+                            } else if (currentIndex == 3) {
+                                for (var i = 0; i < 3; i++) {
+                                    $('#picking_ingredient_instruction').fadeOut(700);
+                                    $('#picking_ingredient_instruction').fadeIn(700);
+                                }
+                                $('.modal-content', '#myModal-add').css('height', '730px');
+                            } else {
+                                $('.modal-content', '#myModal-add').css('height', '770px');
+                            }
+                        },
+                    });
+
+
+                    CKEDITOR.replace('description_add', {
+                        height: 300,
+                        extraPlugins: 'uploadimage',
+                        filebrowserBrowseUrl: '/Admin/Admin/BrowseFile'
+                    });
+                    CKEDITOR.replace('cookingGuide_add', {
+                        height: 300,
+                        extraPlugins: 'uploadimage',
+                        filebrowserBrowseUrl: '/Admin/Admin/BrowseFile'
+                    });
+                    CKEDITOR.config.forcePasteAsPlainText = true;
+                    CKEDITOR.config.toolbar_SimpleCode = [
+                        ['Cut', 'Copy', 'Paste', 'PasteText'],
+                        ['Undo', 'Redo'],
+                        ['Bold', 'Italic', 'Underline']
+                    ];
+
+                    $('div[class="content clearfix"]').css('height', '700px');
+                    $('div[class="modal-content"]').css('height', '530px');
+                    // tags
+                    InitNewsEditor();
+                    // picking ingredient
+                    get_picking_ingredient($('#pick_keyword_add').val(), $('#pick_ingredient_categoryID_add').val(), '', 'pick_list_ingredient');
+                    // event
+                    $("#pick_keyword_add").keyup(function (e) {
+                        var except_ingredient = '';
+                        $("#pick_selected_ingredient").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_picking_ingredient($('#pick_keyword_add').val(), $('#pick_ingredient_categoryID_add').val(), except_ingredient, 'pick_list_ingredient');
+                    });
+
+                    $("#pick_ingredient_categoryID_add").change(function () {
+                        var except_ingredient = '';
+                        $("#pick_selected_ingredient").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_picking_ingredient($('#pick_keyword_add').val(), $('#pick_ingredient_categoryID_add').val(), except_ingredient, 'pick_list_ingredient');
+                    });
+
+                    initialize_add = true;
+                } else {
+                    $('#image_add').val('');
+                    $('span.fileupload-preview').text('');
+                }
+            })
+
+            get_dishes(1);
+
+            $("#sort").change(function () {
+                //var page = $("#paging li.active a").text();
+                get_dishes(1);
+            });
+
+            $("#categoryID").change(function () {
+                //var page = $("#paging li.active a").text();
+                get_dishes(1);
+            });
+
+            $("#keyword").keyup(function (e) {
+                var page = $("#paging li.active a").text();
+                get_dishes(page);
+            });
+
+        });
+
+        function browse_image(sender, image_hidden) {
+            var w = 700;
+            var h = 450;
+            var left = (screen.width / 2) - (w / 2);
+            var top = (screen.height / 2) - (h / 2);
+            var browse_window = window.open('/admin/admin/BrowseFile', 'GetImageFromElfinder', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            browse_window.onbeforeunload = function () {
+                var image = $('#LogoUrl').val();
+                if (image != '') {
+                    $(image_hidden).val(image);
+                    var index = image.lastIndexOf('/');
+                    var filename = image.substring(index + 1, image.length);
+                    $(sender).next('span.fileupload-preview').text(filename);
+                }
+                $('#LogoUrl').val('');
+            }
+        }
+
+        function validateEmpty(id) {
+            if ($("#" + id).val() == "") {
+                $("#" + id).css("border-color", "red");
+                document.getElementById(id).placeholder = "Xin hãy nhập nội dung!";
+                return false;
+            } else {
+                $("#" + id).css("border", "1px solid #e2e2e4");
+                document.getElementById(id).placeholder = "";
+                return true;
+            }
+        }
+
+        function validateType(id, dish_id) {
+            if ($("#" + id).val() == "") {
+                $("#" + id).css("border-color", "red");
+                document.getElementById(id).placeholder = "Tên món ăn không được TRỐNG!";
+                return false;
+            } else {
+                $("#" + id).css("border", "1px solid #e2e2e4");
+                document.getElementById(id).placeholder = "";
+
+                var url = "/DishManagement/CheckDishName?name=" + $("#" + id).val();
+                if (typeof dish_id != 'undefined') {
+                    url += "&dishid=" + dish_id;
+                } else {
+                    url += "&dishid=0";
+                }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    async: false,
+                    success: function (data) {
+                        if (data == 'Success') {
+                            $($("#" + id)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                            return true;
+                        } else {
+                            $($("#" + id)[0]).next('p.alert-danger').css('visibility', 'visible');
+                            return false;
+                        }
+                    },
+                    error: function (errMsg) {
+                        var hm = $("body").wHumanMsg();
+                        hm.wHumanMsg('Lỗi xảy ra. Xin thử lại sau.', { theme: 'red' });
+                        return false;
+                    }
+                });
+            }
+        }
+
+        function validateInteger(id) {
+            var value = $("#" + id).val();
+            if (Math.floor(value) != value || !$.isNumeric(value) && value <= 0) {
+                $("#" + id).css("border-color", "red");
+                $("#" + id).val('');
+                document.getElementById(id).placeholder = "Số dương!";
+                return false;
+            }
+            $("#" + id).css("border", "1px solid #e2e2e4");
+            document.getElementById(id).placeholder = "";
+            return true;
+        }
+
+        function validateImage(type) {
+            if (type == 'update') {
+                var filename = $('#image_update').val();
+            } else {
+                var filename = $('#image_add').val();
+            }
+            var extension = filename.substr((filename.lastIndexOf('.') + 1));
+            if (extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == '') {
+                if (type == 'update') {
+                    $('.alert-warning', '#myModal-update').css('visibility', 'hidden');
+                } else if (type == 'add') {
+                    $('.alert-warning', '#myModal-add').css('visibility', 'hidden');
+                }
+                return true;
+            } else {
+                if (type == 'update') {
+                    $('.alert-warning', '#myModal-update').css('visibility', 'visible');
+                } else if (type == 'add') {
+                    $('.alert-warning', '#myModal-add').css('visibility', 'visible');
+                }
+                return false;
+            }
+        }
+
+        function get_picking_ingredient(keyword, ingredient_category_id, except_ingredient, target_container) {
+            $.ajax({
+                url: "/IngredientManagement/GetPickingIngredients",
+                dataType: "json",
+                data: { keyword: keyword, categoryID: ingredient_category_id, except_ingredient: except_ingredient },
+                type: 'POST',
+                async: true,
+                success: function (data) {
+                    var html = '';
+                    // render ingredients
+                    if (data.ListIngredient != null && data.ListIngredient.length != 0) {
+                        $.each(data.ListIngredient, function (index, ingredient) {
+                            html += '<li data-id="' + ingredient.ID + '" style="border:1px solid">' +
+                                                    '<div style="word-wrap: break-word;">' +
+                                                        '<center><img src="' + ingredient.Image + '" width="80px" height="80px" style=""/></center>' +
+                                                        '<center>' + ingredient.Name + '</center>' +
+                                                    '</div>' +
+                                                '</li>';
+                        });
+                    }
+                    $("#" + target_container).html(html);
+                    $('.connected').sortable({
+                        connectWith: '.connected'
+                    });
+                },
+                error: function (errMsg) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Lỗi kết nối. Xin thử lại sau.', { theme: 'red' });
+                }
+            });
+        }
+
+        function get_dishes(page) {
+            var keyword = $("#keyword").val();
+            var categoryID = $("#categoryID").val();
+            var sort = $("#sort").val();
+            var sortBy = sort.split(',')[0];
+            var sortDirection = sort.split(',')[1];
+            $.ajax({
+                url: "/DishManagement/GetDishes",
+                dataType: "json",
+                data: { keyword: keyword, categoryID: categoryID, sortBy: sortBy, sortDirection: sortDirection, page: page },
+                type: 'POST',
+                async: true,
+                success: function (data) {
+                    var html = '';
+                    // render paging panel
+                    $("#paging").html(html);
+                    if (page == 1) {
+                        html += '<li class="disabled"><a href="#paging">«</a></li>';
+                    } else {
+                        html += '<li onclick="get_dishes(1)"><a href="#paging">«</a></li>';
+                    }
+                    for (var i = 1; i <= data.MaxPage; i++) {
+                        if (i == page) {
+                            html += '<li class="active"><a href="#paging">' + i + '</a></li>';
+                        } else {
+                            html += '<li onclick="get_dishes(' + i + ')"><a href="#paging">' + i + '</a></li>';
+                        }
+                    }
+                    if (page == data.MaxPage) {
+                        html += '<li class="disabled"><a href="#paging">»</a></li>';
+                    } else {
+                        html += '<li onclick="get_dishes(' + data.MaxPage + ')"><a href="#paging">»</a></li>';
+                    }
+                    $("#paging").html(html);
+
+                    // render dishes
+                    if (data.ListDish != null && data.ListDish.length != 0) {
+                        html = '';
+                        $.each(data.ListDish, function (index, dish) {
+                            html += '<div class="image item" style="width:218px">' +
+                                        '<a href="javascript:ShowUpdateModal(' + dish.ID + ');" >' +
+                                            '<img src="' + dish.Image + '" alt="" />' +
+                                        '</a>' +
+                                        '<p>' + dish.Name + '</p>' +
+                                    '</div>';
+                        });
+                        $("#dishes").html(html);
+                    } else {
+                        $("#dishes").html("");
+                    }
+                },
+                error: function (errMsg) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Lỗi xảy ra. Xin thử lại!', { theme: 'red' });
+                }
+            });
+        }
+
+        function AddDish() {
+            var valid = true;
+            if (validateType('name_add') == false) {
+                valid = false;
+            }
+            if (validateInteger('price_add') == false) {
+                valid = false;
+            }
+            if (!valid) {
+                $('#wizard').steps('previous');
+                return;
+            }
+
+            //var formdata = new FormData();
+            //formdata.append("name", $("#name_add").val());
+            //formdata.append("description", CKEDITOR.instances['description_add'].getData());
+            //formdata.append("cookingGuide", CKEDITOR.instances['cookingGuide_add'].getData());
+            //formdata.append("categoryID", $("#categoryID_add").val());
+            //formdata.append("price", $("#price_add").val());
+            //formdata.append("image", $("#image_add").val());
+            //formdata.append("taglist", $("#taglist", "#myModal-add").val());
+            //// picking ingredient
+            //var selected_ingredient = "";
+            //$("#pick_selected_ingredient").find('li').each(function () {
+            //    var current = $(this);
+            //    var id = current.attr("data-id");
+            //    selected_ingredient += id + ",";
+            //});
+            //if (selected_ingredient != "") {
+            //    selected_ingredient = selected_ingredient.substring(0, selected_ingredient.length - 1);
+            //} else {
+            //    $('#wizard').steps('next');
+            //    for (var i = 0; i < 3; i++) {
+            //        $('#picking_ingredient_instruction').fadeOut(700);
+            //        $('#picking_ingredient_instruction').fadeIn(700);
+            //    }
+            //    return;
+            //}
+            //formdata.append("selected_ingredient", selected_ingredient);
+
+            var requestData = {};
+            requestData['id'] = $("#id").val();
+            requestData['name'] = $("#name_add").val();
+            requestData['description'] = CKEDITOR.instances['description_add'].getData();
+            requestData['cookingGuide'] = CKEDITOR.instances['cookingGuide_add'].getData();
+            requestData['categoryID'] = $("#categoryID_add").val();
+            requestData['price'] = $("#price_add").val();
+            requestData['image'] = $("#image_add").val();
+            requestData['taglist'] = $("#taglist", "#myModal-add").val();
+            // picking ingredient
+            var selected_ingredient = "";
+            $("#pick_selected_ingredient").find('li').each(function () {
+                var current = $(this);
+                var id = current.attr("data-id");
+                selected_ingredient += id + ",";
+            });
+            if (selected_ingredient != "") {
+                selected_ingredient = selected_ingredient.substring(0, selected_ingredient.length - 1);
+            } else {
+                $('#wizard').steps('next');
+                for (var i = 0; i < 3; i++) {
+                    $('#picking_ingredient_instruction').fadeOut(700);
+                    $('#picking_ingredient_instruction').fadeIn(700);
+                }
+                return;
+            }
+            requestData['selected_ingredient'] = selected_ingredient;
+
+            $.ajax({
+                url: "/Admin//DishManagement/CreateDish",
+                type: 'POST',
+                async: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: { 'json': JSON.stringify(requestData) },
+                success: function (data) {
+                    if (data == "Success") {
+                        $('.alert-danger.alert-error', '#myModal-add').css("visibility", "hidden");
+                        $('#myModal-add').modal('toggle');
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Thao tác thành công!', { theme: 'green' });
+                        setTimeout(function () { get_dishes($("#paging li.active a").text()); }, 200);
+                    } else {
+                        $('#error_message.alert-danger.alert-error', '#myModal-add').css("visibility", "visible");
+                    }
+                },
+                error: function (data) {
+                    $('#error_message.alert-danger.alert-error', '#myModal-add').css("visibility", "visible");
+                }
+            });
+        }
+
+        function ShowUpdateModal(id) {
+            $.ajax({
+                url: "/Admin/DishManagement/UpdateDish?DishID=" + id,
+                type: 'GET',
+                async: false,
+                success: function (data) {
+                    $('#myModal-update').modal('show');
+                    $('#myModal-Update-body').html(data);
+                    var taglistStr = $('#taglist_update', "#myModal-update").val();
+
+                    // wizard
+                    $("#wizard_update").steps({
+                        headerTag: "h2",
+                        bodyTag: "section",
+                        transitionEffect: "slideLeft",
+                        enableFinishButton: false,
+                        enablePagination: false,
+                        enableAllSteps: true,
+                        titleTemplate: "#title#",
+                        cssClass: "tabcontrol",
+                        onStepChanged: function (event, currentIndex, newIndex) {
+                            if (currentIndex == 0) {
+                                $('.modal-content', '#myModal-update').css('height', '566px');
+                            } else if (currentIndex == 3) {
+                                for (var i = 0; i < 3; i++) {
+                                    $('#picking_ingredient_instruction_update').fadeOut(700);
+                                    $('#picking_ingredient_instruction_update').fadeIn(700);
+                                }
+                                $('.modal-content', '#myModal-update').css('height', '766px');
+                            } else {
+                                $('.modal-content', '#myModal-update').css('height', '790px');
+                            }
+                        },
+                    });
+
+                    CKEDITOR.replace('description_update', {
+                        height: 300,
+                        extraPlugins: 'uploadimage',
+                        filebrowserBrowseUrl: '/Admin/Admin/BrowseFile'
+                    });
+                    CKEDITOR.replace('cookingGuide_update', {
+                        height: 300,
+                        extraPlugins: 'uploadimage',
+                        filebrowserBrowseUrl: '/Admin/Admin/BrowseFile'
+                    });
+                    CKEDITOR.config.forcePasteAsPlainText = true;
+                    CKEDITOR.config.toolbar_SimpleCode = [
+                        ['Cut', 'Copy', 'Paste', 'PasteText'],
+                        ['Undo', 'Redo'],
+                        ['Bold', 'Italic', 'Underline']
+                    ];
+
+                    $('div[class="content clearfix"]').css('height', '700px');
+                    $('div[class="modal-content"]').css('height', '566px');
+                    // tags
+                    InitNewsEditorWithPrePopulate(taglistStr.split(','));
+                    // picking ingredient
+                    var except_ingredient = '';
+                    $("#pick_selected_ingredient_update").find('li').each(function () {
+                        var current = $(this);
+                        var id = current.attr("data-id");
+                        except_ingredient += id + ",";
+                    });
+                    if (except_ingredient != "") {
+                        except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                    }
+                    get_picking_ingredient($('#pick_keyword_update').val(), $('#pick_ingredient_categoryID_update').val(), except_ingredient, 'pick_list_ingredient_update');
+                    // event
+                    $("#pick_keyword_update").keyup(function (e) {
+                        var except_ingredient = '';
+                        $("#pick_selected_ingredient_update").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_picking_ingredient($('#pick_keyword_update').val(), $('#pick_ingredient_categoryID_update').val(), except_ingredient, 'pick_list_ingredient_update');
+                    });
+
+                    $("#pick_ingredient_categoryID_update").change(function () {
+                        var except_ingredient = '';
+                        $("#pick_selected_ingredient_update").find('li').each(function () {
+                            var current = $(this);
+                            var id = current.attr("data-id");
+                            except_ingredient += id + ",";
+                        });
+                        if (except_ingredient != "") {
+                            except_ingredient = except_ingredient.substring(0, except_ingredient.length - 1);
+                        }
+                        get_picking_ingredient($('#pick_keyword_update').val(), $('#pick_ingredient_categoryID_update').val(), except_ingredient, 'pick_list_ingredient_update');
+                    });
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Lỗi kết nối. Xin thử lại sau.', { theme: 'red' });
+                }
+            });
+        }
+
+
+        function UpdateDish() {
+            var valid = true;
+            if (validateType('name_update', $("#id").val()) == false) {
+                valid = false;
+            }
+            if (validateInteger('price_update') == false) {
+                valid = false;
+            }
+            if (!valid) {
+                $('#wizard_update').steps('previous');
+                return;
+            }
+
+            var requestData = {};
+            requestData['id'] = $("#id").val();
+            requestData['name'] = $("#name_update").val();
+            requestData['description'] = CKEDITOR.instances['description_update'].getData();
+            requestData['cookingGuide'] = CKEDITOR.instances['cookingGuide_update'].getData();
+            requestData['categoryID'] = $("#categoryID_update").val();
+            requestData['price'] = $("#price_update").val();
+            requestData['image'] = $("#image_update").val();
+            requestData['taglist'] = $("#taglist_update", "#myModal-update").val();
+            // picking ingredient
+            var selected_ingredient = "";
+            $("#pick_selected_ingredient_update").find('li').each(function () {
+                var current = $(this);
+                var id = current.attr("data-id");
+                selected_ingredient += id + ",";
+            });
+            if (selected_ingredient != "") {
+                selected_ingredient = selected_ingredient.substring(0, selected_ingredient.length - 1);
+            } else {
+                $('#wizard_update').steps('next');
+                for (var i = 0; i < 3; i++) {
+                    $('#picking_ingredient_instruction_update').fadeOut(700);
+                    $('#picking_ingredient_instruction_update').fadeIn(700);
+                }
+                return;
+            }
+            requestData['selected_ingredient'] = selected_ingredient;
+
+            $.ajax({
+                url: "/Admin/DishManagement/UpdateDish",
+                type: 'POST',
+                async: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: { 'json': JSON.stringify(requestData) },
+                success: function (data) {
+                    if (data != 'Error') {
+                        $('.alert-danger.alert-error', '#myModal-update').css("visibility", "hidden");
+                        $('#myModal-update').modal('toggle');
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Thao tác thành công!', { theme: 'green' });
+                        setTimeout(function () { get_dishes($("#paging li.active a").text()); }, 200);
+                    } else {
+                        $('#error_message', '#myModal-update').css("visibility", "visible");
+                    }
+                },
+                error: function (data) {
+                    $('#error_message', '#myModal-update').css("visibility", "visible");
+                }
+            });
+        }
+
+        function DeleteDish(sender) {
+            alertify.confirm("Bạn có thực sự muốn xóa?", function (e) {
+                if (!e) {
+                    return;
+                } else {
+                    var id = $(sender).data('id');
+                    $.ajax({
+                        url: "/DishManagement/DeleteDish?id=" + id,
+                        type: 'POST',
+                        async: false,
+                        success: function (data) {
+                            if (data == 'Success') {
+                                $('#myModal-update').modal('toggle');
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xóa thành công!', { theme: 'green' });
+                                setTimeout(function () { get_dishes($("#paging li.active a").text()); }, 200);
+                            } else {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xóa thất bại!', { theme: 'red' });
+                            }
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Lỗi xảy ra! Xin thử lại sau', { theme: 'red' });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

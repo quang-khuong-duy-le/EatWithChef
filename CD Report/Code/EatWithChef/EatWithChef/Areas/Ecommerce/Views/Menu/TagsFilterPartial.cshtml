@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Domain.Entity.Tag>
+@foreach (var item in Model)
+{ 
+    <li>
+        <p class="filter" data-filter=".@item.Id">@item.Name</p>
+    </li>
+}

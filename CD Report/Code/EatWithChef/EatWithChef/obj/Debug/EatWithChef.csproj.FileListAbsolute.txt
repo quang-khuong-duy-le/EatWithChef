@@ -1,0 +1,106 @@
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\EatWithChef.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\EatWithChef.pdb
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Antlr3.Runtime.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Domain.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.Core.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\ElFinder.Net.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\EntityFramework.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Newtonsoft.Json.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Net.Http.Formatting.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Helpers.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.WebHost.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Mvc.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Optimization.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Razor.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Razor.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\WebGrease.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.Data.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.WebData.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\OnBarcode.Barcode.ASPNET.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Domain.pdb
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\EntityFramework.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Newtonsoft.Json.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Net.Http.Formatting.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Helpers.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.WebHost.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Mvc.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.Razor.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Razor.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.Data.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.WebData.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.Core.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.csprojResolveAssemblyReference.cache
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.dll
+C:\Users\Lubu\Dropbox\Visual Studio\Projects\Capstone-Project\EWC-ver0.1\ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.pdb
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\EatWithChef.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\EatWithChef.pdb
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Antlr3.Runtime.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Domain.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.AspNet.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.Core.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\ElFinder.Net.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\EntityFramework.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.Infrastructure.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Newtonsoft.Json.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Net.Http.Formatting.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Helpers.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.WebHost.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Mvc.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Optimization.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Razor.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Deployment.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Razor.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\WebGrease.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.Data.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.WebData.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\OnBarcode.Barcode.ASPNET.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Domain.pdb
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\EntityFramework.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Newtonsoft.Json.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Net.Http.Formatting.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Helpers.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Http.WebHost.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Mvc.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.Razor.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Deployment.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\System.Web.WebPages.Razor.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.Data.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\WebMatrix.WebData.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.AspNet.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.Core.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OAuth.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.csprojResolveAssemblyReference.cache
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.dll
+E:\2. Du an\14. ForkVN\EatWithChef\EatWithChef\obj\Debug\EatWithChef.pdb

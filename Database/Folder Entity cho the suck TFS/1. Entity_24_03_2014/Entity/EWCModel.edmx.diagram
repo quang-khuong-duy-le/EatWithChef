@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a22747884364781afd8dd49be23ed37" Name="Diagram1">
+        <EntityTypeShape EntityType="EWCModel.Bill" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Chef" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Dish" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.DishCategory" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.DishItem" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.DishMenu" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Ingredient" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.IngredientCategory" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.IngredientItem" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Menu" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Order" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.OrderDetail" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Supplier" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.SupplierCategory" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.Tag" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.UserProfile" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.webpages_Membership" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.webpages_OAuthMembership" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EWCModel.webpages_Roles" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <AssociationConnector Association="EWCModel.FK_Bill_UserProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_Order_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__Dish__ChefID__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_DishItem_Chef" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__Dish__Category__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__DishMenu__DishID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__OrderDeta__DishI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_DishItem_Dish" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_DishItem_OrderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__DishMenu__MenuID__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__Ingredien__Categ__08EA5793" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_IngredientItem_Ingredient" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__Ingredien__Suppl__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK__OrderDeta__Order__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.FK_Supplier_SupplierCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.DishTag" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.IngredientDish" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.IngredientDishItem" ManuallyRouted="false" />
+        <AssociationConnector Association="EWCModel.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,131 @@
+.container-pie {
+	float:left;
+	margin:0 0 0 14px;
+}
+.chart {
+    float: left;
+    margin:0 0 0 45px;
+	width:107px;
+}
+.chart:first-child{
+	margin:0;
+}
+.chart strong.title{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #404241;
+	text-transform:uppercase;
+    text-align:left;
+	font-weight:600;
+	display:block;
+}
+.percentage span{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #404241;
+	text-transform:uppercase;
+    text-align: center;
+	font-weight:600;
+}
+.percentage,
+.label {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #404241;
+	text-transform:uppercase;
+    text-align: center;
+	font-weight:normal;
+}
+.dark {
+    background:none;
+}
+
+.dark .percentage-light,
+.dark .label {
+    text-align: center;
+    color: #999;
+    font-weight: 100;
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
+}
+.easyPieChart {
+    position: relative;
+    text-align: center;
+	margin:0 0 14px 0;
+}
+
+.easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+/*new css added*/
+
+.social-box{
+	transition: all 1s ease 0s;
+	-moz-transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+}
+.frame:hover .social-box{
+	padding:22px 0 50px 45px
+}
+.events-box ul li .caption{
+	transition: all 1s ease 0s;
+	-moz-transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+	width:100%;
+	left:50%;
+	right:auto;
+}
+.events-box ul li:hover .caption{
+	left:0px;
+	
+}
+.accordion-list li .frame .caption{
+	left:100%;
+	transition: all 0.5s ease-in 0s;
+	-moz-transition: all 0.5s ease 0s;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.accordion-list li:hover .frame .caption{
+	left:0px;
+}
+.accordion-list li .frame strong.price{
+	right:9px;
+}
+.menu-box .thumb{
+	background:#000 !important;
+}
+.menu-box .thumb img{
+
+	filter:alpha(opacity=40); 
+	transition: all 0.5s ease-in 0s;
+	-moz-transition: all 0.5s ease 0s;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.menu-box:hover .thumb img{
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+
+/*Effects Start*/
+.blog-frame img:hover, .featured-dishes .frame:hover, .recent-post-frame:hover, .recepie-frame img:hover, .chef-team-frame:hover, .dishe-deatil .frame:hover, .today-recepie-box .frame:hover, .recepie-menu-box .frame:hover, .product-outer .frame:hover, .meet-team .frame:hover, .left-data .frame:hover{
+	opacity:0.6;
+	filter:alpha(opacity=40);
+	transition: all 1s ease 0s;
+	-moz-transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+}
+
+
+/*Effects End*/
+
+
+@media screen and (max-device-width: 480px) {
+  .container{
+    width: 100%;
+  }
+}

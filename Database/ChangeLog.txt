@@ -1,0 +1,80 @@
+21/01/2014: NhanNT 
+- Add SupplierCategory to SupplerTable
+12/02/2014: NhanNT
+- Add table IngredientDishItem
+- Delete DishItemID in IngredientItem table
+
+21/02/2014: NhanNT
+- Add ProcedureSession table
+- Add IngredientDish table
+- Add Quantity to DishItem
+
+21/02/2014: Ver5. DuyLQK
+- Add DishID in DishItem, make relation ship with Dish table 
+
+25/02/2014 DuyLQK
+- Remove table ProcedureSession
+- Delete attribute SupplyDate
+
+25/02/2014 NhanNT
+- Add DeliveryDate for OrderTable
+- Add ReceiverName for OrderTable 
+
+25/02/2014 DuyLQK
+- Remove CreateDate in DishItem
+
+26/02/2014 BaoTQ 
+- Add MenuSuggestion table
+
+26/02/2014 DuyLQK 
+- Remove IngredientSupplier table --> IngredientItem
+- Add Default Supplier to Ingredient table.
+- Insert few record to test
+- Update not null in table OrderDetail
+
+27/02/2014 DuyLQK 
+- Move DefaultSupplier from Ingredient to IngredientItem
+- Add field Quota of DishMenu
+- Add field ClosedTimeSession of Menu
+
+
+28/02/2014 DuyLQK 
+- Add field IsAvailable to IngredientItem
+
+01/03/2014 NhanNT
+- Add Quarter to Dish table.
+
+04/03/2014 NhanNT
+- Remove table Menu suggestion.
+- Add ReceiverAddress, ReceiverPhone, ReceiverEmail to order table.
+
+07/03/2014 DuyLQK
+- Add field Year to Dish
+
+24/03/2014 NhanNT 
+- Add Bill Table
+- Update Order Table
+
+26/03/2014 NhanNT
+- Add Skill Table
+- Add ChefSkill Table
+
+27/03/2014 DuyLQK
+- Add records for Ingredient, Skill, ChefSkill
+
+28/03/2014 DuyLQK
+- Delete field Rate of Chef
+- Add UserFollowChef table
+
+01/04/2014 DuyLQK
+- Add table DishOrderSummary
+- Fix OrderDetail + DishItem
+
+13/04/2014 Ver30 NhanNT 
+- Add FAQ table
+- Add FAQComment table
+- Add FAQLike table
+- Add DishLike table
+- Add Customer table
+- Change references Bill_UserProfile --> Bill_Customer
+- Remove UserFollowChef table

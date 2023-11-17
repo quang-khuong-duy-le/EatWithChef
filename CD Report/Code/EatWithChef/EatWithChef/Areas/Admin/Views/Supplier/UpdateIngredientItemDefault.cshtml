@@ -1,0 +1,33 @@
+﻿@model EatWithChef.Areas.Admin.Models.SupplierModel 
+<div class="modal-dialog" style="width: 400px;">
+    <div class="modal-content" style="border: 1px solid beige;">
+        <div class="modal-header">
+            <button id="buttonIngreDefault" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Thay đổi nhà cung cấp mặc định cho @Model.IngredientbyId.Name</h4>
+        </div>
+        <div class="modal-body row">
+            <div class="col-md-7" style="width: 95%; float: right">
+                <div class="form-group">
+                    <label>Nhà cung cấp mặc định :</label>
+                    <select id="DefaultSupplier" name="Supplier" style="width:60%">
+                        @foreach (var supplier in Model.AllSupplier)
+                        {
+                            if (supplier.Id == @Model.Supplier.Id)
+                            { 
+                            
+                            }
+                            else
+                            {                                       
+                            <option value="@supplier.Id" >@supplier.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary" type="button" onclick="UpdateIngredientDefault(@Model.Supplier.Id,@Model.IngredientbyId.Id)">Lưu</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

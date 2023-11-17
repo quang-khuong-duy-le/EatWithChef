@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "ChefDetailPage";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+@section headcss{
+    <link href="~/Content/frontend/timeline/css/timeline.css" rel="stylesheet" />
+    <link href="~/Content/frontend/timeline/css/timeline_light.css" rel="stylesheet" />
+    <script src="~/Content/frontend/timeline/javascript/jquery.js"></script>
+    <script src="~/Content/frontend/timeline/javascript/demo.js"></script>
+}
+@model EatWithChef.Areas.Ecommerce.Models.ChefViewModel
+@using Domain.Entity
+
+<div class="chef-all-detail">
+    <input type="hidden" id="Chef-Id" value="@Model.Chef.UserId" />
+    <div class="header-chef-detail" style="background-image:url(/Content/frontend/images/backround-chef.jpg)"></div>
+    <div class="control-chef">
+        <div class="content-avatar">
+            <div class="avatar" style="background-image:url(/Content/frontend/images/team-img-1.jpg)"></div>
+            <ul>
+                <li onclick="changeTabChefInfo('faq-for-chef',this)"  class="active"><a href="javascript:void(0)">Michael Schaecher</a></li>
+                <li onclick="changeTabChefInfo('chef-info',this)"><a href="javascript:void(0)">Thông tin</a></li>
+                <li onclick="changeTabChefInfo('main',this)"><a href="javascript:void(0)">Món ăn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="list-dish-chef" onclick="closeFrame()"></div>
+    <div id="content-detail" style="z-index:0;margin:0 auto;">
+        <div id="faq-for-chef" class="tab-chef-info active">
+            <div class="create-faq">
+                <div class="create-title">Chia sẻ thắc mắc của bạn</div>
+                <textarea id="content-post-faq" onfocus="$('.create-faq').css('max-height','200px')" placeholder="Hãy cùng chia sẻ"></textarea>
+                <div class="faq-create-control">
+                    <input type="button" value="Chia sẻ" onclick="postFAQ()" />
+                </div>
+            </div>
+            <div class="faq-content">
+                @foreach(FAQDTO item in Model.FAQs)
+                {
+                    <div class="faq-item" data-id="@item.FAQId">
+                        <div class="faq-title">
+                            <img src="@item.CustomerImageURL" />
+                            <p>
+                                @item.CustomerName
+                            </p>
+                            <span>April 15, 2014</span>
+                        </div>
+                        <div class="faq-content-question">
+                            @item.Question
+                        </div>
+                        <div class="faq-content-answer">
+                            @item.Answer
+                        </div>
+                        <div class="faq-like">
+                            <p>Thích</p>
+                            <p>Bình luận</p>
+                            <p>@item.NumOfLike đã thích câu hỏi</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="introduction-chef">Bà là đầu bếp nữ nổi tiếng từng được mời sang Mỹ, Australia, Trung Quốc… để giảng dạy các món ăn Việt Nam.</div>
+            <div class="review-customer">
+                <div class="review-title">Đánh giá gần đây</div>
+            </div>
+        </div>
+
+        <div id="chef-info" class="tab-chef-info">
+
+        </div>
+
+        <div id="main" class="tab-chef-info">
+            <div class="description-chef">
+                <div>Bà là đầu bếp nữ nổi tiếng từng được mời sang Mỹ, Australia, Trung Quốc… để giảng dạy các món ăn Việt Nam. Công việc nấu nướng trở thành nỗi đam mê lớn trong bà. Bà luôn tìm tòi, nghiên cứu để tạo ra nhiều món ăn mới.</div>
+            </div>
+            <div id="list-dish-chef"></div>
+            <div id="timeline"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function changeTabChefInfo(tab, thisElement) {
+        var listTab = $(".tab-chef-info");
+        var listControl = thisElement.parentNode.getElementsByTagName("li");
+
+        for (var i = 0; i < listTab.length; i++) {
+            $(listTab[i]).removeClass("active");
+            $(listTab[i]).css("z-index", "-1 !important");
+            $(listControl[i]).removeClass("active");
+        }
+
+        $(thisElement).addClass("active");
+        $("#" + tab).addClass("active");
+        $("#" + tab).css("z-index", "1 !important");
+    }
+
+    function postFAQ() {
+        var question = $("#content-post-faq").val();
+
+        if (question == "") {
+            $("#content-post-faq").attr("placeholder", "Bạn cần cho chúng tôi biết thắc mắc của bạn trước khi gửi!");
+            return;
+        }
+
+        $.ajax({
+            url: "/ecommerce/Chef/CreateFAQ",
+            type: "POST",
+            async: false,
+            data: { chefId: $("#Chef-Id").val(), customerId: 5, question: question },
+            success: function (data) {
+                if (data == 1) {
+                    location.reload();
+                } else {
+                    alert("Có lỗi trong quá trình xữ lý!");
+                }
+            }
+        });
+    }
+
+        (function() {
+                var timeout_id = null;
+
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = "../../Content/frontend/timeline/javascript/timeline.min.js";
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                ga.onload = function() {
+                    clearTimeout(timeout_id);
+
+                    ga.parentNode.removeChild(ga);
+                    changeDemo(1);
+                };
+
+                var iefix = function() {
+                    clearTimeout(timeout_id);
+                    if (typeof Timeline != 'undefined') {
+                        changeDemo(1);
+                    } else {
+                        timeout_id = setTimeout(iefix, 2000);
+                    }
+                }
+
+                timeout_id = setTimeout(iefix, 2000);
+            })();
+</script>

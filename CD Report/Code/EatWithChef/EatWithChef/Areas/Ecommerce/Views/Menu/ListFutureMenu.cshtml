@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Domain.Entity.Menu>
+@using System.Globalization
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        string sDate = "";
+        switch (item.ApplyDate.DayOfWeek)
+        {
+            case DayOfWeek.Monday: sDate = "Thứ Hai";
+                break;
+            case DayOfWeek.Tuesday: sDate = "Thứ Ba";
+                break;
+            case DayOfWeek.Wednesday: sDate = "Thứ Tư";
+                break;
+            case DayOfWeek.Thursday: sDate = "Thứ Năm";
+                break;
+            case DayOfWeek.Friday: sDate = "Thứ Sáu";
+                break;
+            case DayOfWeek.Saturday: sDate = "Thứ Bảy";
+                break;
+            case DayOfWeek.Sunday: sDate = "Chủ Nhật";
+                break;
+        }
+        
+        string[] names = CultureInfo.GetCultureInfo("en-US").DateTimeFormat.AbbreviatedDayNames;
+        
+        if (ViewBag.MenuDate == item.ApplyDate) 
+        {
+            <li onclick="GetDataMenu(@item.Id, this)" data-active="1" style="background-color:rgb(243, 243, 243);" ><span style="display:none" id="choice-menu-@item.Id">@sDate @item.ApplyDate.Day/@item.ApplyDate.Month </span>@sDate <p>@names[(int) item.ApplyDate.DayOfWeek] @item.ApplyDate.Day/@item.ApplyDate.Month</p></li>
+        }
+        else
+        {
+            <li onclick="GetDataMenu(@item.Id, this)" data-active="0" ><span style="display:none" id="choice-menu-@item.Id">@sDate @item.ApplyDate.Day/@item.ApplyDate.Month </span>@sDate <p>@names[(int) item.ApplyDate.DayOfWeek] @item.ApplyDate.Day/@item.ApplyDate.Month</p></li>
+        }
+    }
+}

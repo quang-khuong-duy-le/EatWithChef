@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BD87B82-747C-4E6E-BF7F-5F1DF06158FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="OnBarcode.Barcode.ASPNET, Version=6.0.0.30809, Culture=neutral, PublicKeyToken=a775cebcbc8b82dd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utility\Lib\OnBarcode.Barcode.ASPNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogic\Abstract\IOrderServices.cs" />
+    <Compile Include="BusinessLogic\Concrete\OrderServices.cs" />
+    <Compile Include="DataAccess\Abstract\IUserProfileRepository.cs" />
+    <Compile Include="DataAccess\Abstract\ISupplierRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IProduceSessionRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IIngredientRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IChefRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IDishRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IMenuRepository.cs" />
+    <Compile Include="DataAccess\Abstract\IOrderRepository.cs" />
+    <Compile Include="DataAccess\Concrete\ChefRepository.cs" />
+    <Compile Include="DataAccess\Concrete\UserProfileRepository.cs" />
+    <Compile Include="DataAccess\Concrete\OrderRepository.cs" />
+    <Compile Include="DataAccess\Concrete\SupplierRepository.cs" />
+    <Compile Include="DataAccess\Concrete\ProduceSessionRepository.cs" />
+    <Compile Include="DataAccess\Concrete\IngredientRepository.cs" />
+    <Compile Include="DataAccess\Concrete\DishRepository.cs" />
+    <Compile Include="DataAccess\Concrete\MenuRepository.cs" />
+    <Compile Include="Entity\Bill.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Chef.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChefDTO.cs" />
+    <Compile Include="Entity\ChefSkill.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Customer.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Dish.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DishCategory.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DishDTO.cs" />
+    <Compile Include="Entity\DishItem.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DishMenu.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DishOrderSummary.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EWCModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EWCModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EWCModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EWCModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EWCModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ExtendModel.cs" />
+    <Compile Include="Entity\FAQ.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FAQComment.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FAQDTO.cs" />
+    <Compile Include="Entity\Ingredient.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\IngredientCategory.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\IngredientItem.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Menu.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MenuDTO.cs" />
+    <Compile Include="Entity\Order.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderDetail.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderDetailDishItem.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderDTO.cs" />
+    <Compile Include="Entity\ProduceSessionGenerateDTO.cs" />
+    <Compile Include="Entity\Skill.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Supplier.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SupplierCategory.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sysdiagram.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Tag.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserProfile.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_Membership.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_OAuthMembership.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_Roles.cs">
+      <DependentUpon>EWCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ConvertStringHelper.cs" />
+    <Compile Include="Utility\FileHelper.cs" />
+    <Compile Include="Utility\JsonHelper.cs" />
+    <Compile Include="Utility\OrderByHelper.cs" />
+    <Compile Include="Utility\Enumeration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Entity\EWCModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EWCModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\EWCModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EWCModel.edmx</DependentUpon>
+      <LastGenOutput>EWCModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\EWCModel.edmx.diagram">
+      <DependentUpon>EWCModel.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\EWCModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EWCModel.edmx</DependentUpon>
+      <LastGenOutput>EWCModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utility\Lib\ElFinder.Net.dll" />
+    <Content Include="Utility\Lib\OnBarcode.Barcode.ASPNET.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
