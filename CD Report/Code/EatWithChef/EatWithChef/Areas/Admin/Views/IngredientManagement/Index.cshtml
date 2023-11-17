@@ -1,0 +1,504 @@
+﻿@model EatWithChef.Areas.Admin.Models.IngredientModel
+@{
+    ViewBag.Title = "Quản lý nguyên liệu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- page start-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-edit"></i>
+                <span>Quản lí nguyên liệu</span>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <button id="editable-sample_new" class="btn btn-primary" href="#myModal" data-toggle="modal">
+                            Thêm mới <i class="icon-plus-sign"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span style="display: -webkit-box; float: right">
+                        <label>
+                            Tìm kiếm:
+                        <input type="text" id="keyword" value="" class="form-control medium" style="margin-bottom: 5px; margin-right: 4px; width: auto" />
+                        </label>
+                    </span>
+
+                    <span style="display: -webkit-box; float: left;">
+                        <select id="categoryID" class="form-control xsmall" style="width: auto; margin-right: 4px; margin-top: 18px">
+                            <option value="0" selected>Danh mục</option>
+                            @foreach (var category in Model.ListIngreCategory)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                        <select id="sort" class="form-control xsmall" style="width: auto; margin-top: 18px">
+                            <option value="Name,ascending" selected>Tên: A đến Z</option>
+                            <option value="Name,descending">Tên: Z đến A</option>
+                        </select>
+                    </span>
+                </div>
+                <div id="gallery" class="media-gal clearfix">
+                </div>
+                <div class="col-md-12 text-center clearfix">
+                    <ul class="pagination" id="paging">
+                        <li><a href="#">← Đầu</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">Sau →</a></li>
+                    </ul>
+                </div>
+                @*Modal Create*@
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="height: 400px">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Thêm nguyên liệu</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5 img-modal">
+                                </div>
+                                <div class="col-md-7" style="width: 95%; float: right">
+                                    <div class="form-group">
+                                        <label>Tên</label>
+                                        <input id="Addname" onblur="validateName(0,'Addname')" style="width: 60%; display: inline; margin-left: 145px" class="form-control" placeholder="Tên nguyên liệu" />
+                                        <p class="alert-danger" style="margin-top: 3px; width: 180px; margin-left: 177px; visibility: hidden">Tên này đã tồn tại!</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Danh mục</label>
+                                        <select id="AddCategory" name="Category" class="form-control xsmall" style="display: inline; width: auto; margin-left: 101px">
+                                            @foreach (var category in Model.ListIngreCategory)
+                                            {                                           
+                                                <option value="@category.Id">@category.Name</option>                                  
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nhà cung cấp mặc định</label>
+                                        <select id="AddSupplier" name="Supplier" class="form-control xsmall" style="display: inline; width: 60%; margin-left: 5px;">
+                                            @foreach (var supplier in Model.Listsupplier)
+                                            {                                           
+                                                <option value="@supplier.Id">@supplier.Name</option>                                  
+                                            }
+                                        </select>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label>Hình ảnh</label>
+                                        <input style="display:inline; margin-left:88px" type="file" id="AddImageUrl" name="ImageUrl">
+                                        <p class="alert-warning" style="visibility: hidden">Hãy chọn hình!</p>
+                                    </div>*@
+                                    <input id="LogoUrl" hidden="hidden" />
+                                    <div class="form-group" style="height: 40px; margin-bottom: 5px;">
+                                        <label style="margin-right: 20px">Hình ảnh</label>
+                                        <div class="fileupload fileupload-exists" data-provides="fileupload" style="margin-left: 88px; display: inline;">
+                                            <span class="btn btn-white btn-file" onclick='browse_image(this, AddImageUrl)'>
+                                                <span class="fileupload-new"><i class="icon-camera"></i></span>
+                                                <span class="fileupload-exists"><i class="icon-camera"></i> Chọn hình</span>
+                                                <input type="hidden" id="AddImageUrl" name="AddImageUrl" value="">
+                                            </span>
+                                            <span class="fileupload-preview" style="margin-left: 5px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="margin-right: 85px;">Truy nguyên</label>
+                                        <input type="checkbox" id="AddisTracibility" name="AddisTracibility" data-on="primary" data-off="info"  checked="checked"/>
+                                    </div>
+                                    <div class="pull-right" style="width:250px">
+                                        <button class="btn btn-primary" style="margin-left:15px; float:right" type="button" onclick="Add()">Thêm</button>
+                                        <p class="alert-danger" style="visibility: hidden; width:170px">Xảy ra lỗi, xin hay thử lại</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*Modal Update*@
+                <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- page end-->
+
+
+
+@section headcss{
+    <link href="~/Content/backend/assets/bootstrap-switch-master/build/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+}
+
+
+@section scripts{
+    <script src="~/Content/backend/assets/bootstrap-switch-master/build/js/bootstrap-switch.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/custom.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function validateType(id) {
+            if ($("#" + id).val() == "") {
+                $("#" + id).css("border-color", "red");
+                document.getElementById(id).placeholder = "Không được để trống!";
+                return false;
+            }
+            $("#" + id).css("border", "1px solid #e2e2e4");
+            document.getElementById(id).placeholder = "";
+            return true;
+        }
+
+        function validateImage(id, type) {
+            if (type == 'update') {
+                var filename = $('#ImageUrlUdate').val();
+            } else {
+                var filename = $('#AddImageUrl').val();
+            }
+            var extension = filename.substr((filename.lastIndexOf('.') + 1));
+            if (extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == '') {
+                if (type == 'update') {
+                    $('.alert-warning', '#ModalUpdate').css('visibility', 'hidden');
+                } else if (type == 'add') {
+                    $('.alert-warning', '#myModal').css('visibility', 'hidden');
+                }
+                return true;
+            } else {
+                if (type == 'update') {
+                    $('.alert-warning', '#ModalUpdate').css('visibility', 'visible');
+                } else if (type == 'add') {
+                    $('.alert-warning', '#myModal').css('visibility', 'visible');
+                }
+                return false;
+            }
+        }
+
+        function browse_image(sender, image_hidden) {
+            var w = 700;
+            var h = 450;
+            var left = (screen.width / 2) - (w / 2);
+            var top = (screen.height / 2) - (h / 2);
+            var browse_window = window.open('/Admin/Admin/BrowseFile', 'GetImageFromElfinder', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            browse_window.onbeforeunload = function () {
+                var image = $('#LogoUrl').val();
+                if (image != '') {
+                    $(image_hidden).val(image);
+                    var index = image.lastIndexOf('/');
+                    var filename = image.substring(index + 1, image.length);
+                    $(sender).next('span.fileupload-preview').text(filename);
+                }
+                $('#LogoUrl').val('');
+            };
+        }
+
+        $(document).ready(function () {
+            get_ingredients(1);
+
+            $("#sort").change(function () {
+                var page = $("#paging li.active a").text();
+                get_ingredients(page);
+            });
+
+            $("#categoryID").change(function () {
+                var page = $("#paging li.active a").text();
+                get_ingredients(1);
+            });
+
+            $("#keyword").keyup(function (e) {
+                var page = $("#paging li.active a").text();
+                get_ingredients(page);
+            });
+            
+            $('#AddisTracibility').bootstrapSwitch();
+            //$("#AddisTracibility").change(function () {
+            //    if ($("#AddisTracibility").is(':checked')) {
+            //        $("#AddSupplier").prop('disabled', false);
+            //        $("#AddSupplier").prev("label").css("opacity", "1");                    
+            //        $("#AddSupplier").css("opacity", "1");
+            //    }
+            //    else {
+            //        $("#AddSupplier").prop('disabled', true);
+            //        $("#AddSupplier").prev("label").css("opacity", "0.3");
+            //        $("#AddSupplier").css("background-color", "#FFF");
+            //        $("#AddSupplier").css("opacity", "0.5");
+            //    }
+            //});
+        });
+        function get_ingredients(page) {
+            var keyword = $("#keyword").val();
+            var categoryID = $("#categoryID").val();
+            var sort = $("#sort").val();
+            var sortBy = sort.split(',')[0];
+            var sortDirection = sort.split(',')[1];
+            $.ajax({
+                url: "/Admin/IngredientManagement/GetIngredients",
+                dataType: "json",
+                data: { keyword: keyword, categoryID: categoryID, sortBy: sortBy, sortDirection: sortDirection, page: page },
+                type: 'POST',
+                async: true,
+                success: function (data) {
+                    if (data != null) {
+                        var html = '';
+                        // render paging panel
+                        $("#paging").html(html);
+                        if (page == 1) {
+                            html += '<li class="disabled"><a href="#">← First</a></li>';
+                        } else {
+                            html += '<li onclick="get_ingredients(1)"><a href="#">← Đầu</a></li>';
+                        }
+                        for (var i = 1; i <= data.MaxPage; i++) {
+                            if (i == page) {
+                                html += '<li class="active"><a href="#">' + i + '</a></li>';
+                            } else {
+                                html += '<li onclick="get_ingredients(' + i + ')"><a href="#">' + i + '</a></li>';
+                            }
+                        }
+                        if (page == data.MaxPage) {
+                            html += '<li class="disabled"><a href="#">Last →</a></li>';
+                        } else {
+                            html += '<li onclick="get_ingredients(' + data.MaxPage + ')"><a href="#">Cuối →</a></li>';
+                        }
+                        $("#paging").html(html);
+
+                        // render ingredients
+                        html = '';
+                        $.each(data.ListIngredient, function (index, ingredient) {
+                            if (ingredient.IsAvailable) {
+                                html += '<div class="image item" style="width:215px;">';
+                            } else {
+                                html += '<div class="image item" style="opacity:0.5; background-color:lavender;width:194px;">';
+                            }
+                            html += '<a href="#myModal-' + ingredient.ID + '" onclick="showModalUpdate(' + ingredient.ID + ')" data-toggle="modal">' +
+                                                '<img src="' + ingredient.Image + '" alt="" />' +
+                                            '</a>' +
+                                            '<p>' + ingredient.Name + '</p>' +
+                                        '</div>';
+                        });
+                        $("#gallery").html(html);
+                    } else {
+                        $("#gallery").html("");
+                    }
+                },
+                error: function (errMsg) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Hệ thống không thể kết nối với cơ sở dữ liệu!.');
+                }
+            });
+        }
+
+        function showModalUpdate(id) {
+            $.ajax({
+                url: "/Admin/IngredientManagement/Update",
+                type: 'GET',
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalUpdate").modal('show');
+                    $("#ModalUpdate").html(data);
+                    $('input[type="checkbox"],[type="radio"]').not('#AddisTracibility').bootstrapSwitch();
+                },
+                error: function (data) {
+                    var hm = $("body").wHumanMsg();
+                    hm.wHumanMsg('Hệ thống không thể kết nối với cơ sở dữ liệu!.');
+                },
+            });
+        }
+        function UpdateIngredient(id, oldsupId) {
+            if (validateType('UpdateName') == false || validateImage(id, 'update') == false) {
+                return;
+            }
+            if (validateName(id, 'UpdateName') == true) {
+                var DefaultSupplier = $("#UpdateSupplierDefault option[value='" + oldsupId + "']").text();
+                var newSupplierId = $("#UpdateSupplierDefault").val();
+                var Name = $("#UpdateName").val();
+                var formdata = new FormData();
+                formdata.append("Id", id);
+                formdata.append("Name", $("#UpdateName").val());
+                formdata.append("Category", $("#UpdateCategory").val());
+                formdata.append("IsTracibility", $("#UpdateIsTracibility")[0].checked);
+                //formdata.append("IsAvailable", $("#IsAvailable-" + id)[0].checked);
+                formdata.append("ImageUrl", $("#ImageUrlUdate").val());
+                formdata.append("oldsupId", oldsupId);
+                if (newSupplierId != oldsupId) {
+                    var IsAvaible = null;                    
+                    alertify.confirm("Bạn có muốn " + DefaultSupplier + " vẫn còn cung cấp " + Name + " không? ", function (e) {
+                        if (e) {
+                            $.ajax({
+                                url: "/Admin/IngredientManagement/UpdateIngredientItem",
+                                type: 'POST',
+                                async: false,
+                                data: { oldsupId: oldsupId, ingreid: id, newsupid: newSupplierId, IsAvaible: true },
+                                success: function (data) {
+                                    undateIngredient(formdata);
+                                },
+                                error: function (data) {
+                                    $('.alert-danger', '#ModalUpdate').css("visibility", "visible");
+                                    var hm = $('body').wHumanMsg();
+                                    hm.wHumanMsg('Xảy ra lỗi!Xin thử lại');
+                                }
+                            });
+                        }
+                        else {
+                            $.ajax({
+                                url: "/Admin/IngredientManagement/UpdateIngredientItem",
+                                type: 'POST',
+                                async: false,
+                                data: { oldsupId: oldsupId, ingreid: id, newsupid: newSupplierId, IsAvaible: false },
+                                success: function (data) {
+                                    undateIngredient(formdata);
+                                },
+                                error: function (data) {
+                                    $('.alert-danger', '#ModalUpdate').css("visibility", "visible");
+                                    var hm = $('body').wHumanMsg();
+                                    hm.wHumanMsg('Xảy ra lỗi!Xin thử lại');
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    undateIngredient(formdata);
+                }
+            }
+        }
+        function undateIngredient(formdata) {
+            $.ajax({
+                url: "/Admin/IngredientManagement/UpdateIngredient",
+                type: 'POST',
+                dataType: false,
+                async: false,
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (data) {
+                    if (data != 'Error') {
+                        $('.alert-danger', '#ModalUpdate').css("visibility", "hidden");
+                        $('#ModalUpdate').modal('toggle');
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Cập nhập thành công!');
+                        setTimeout(function () { get_ingredients($("#paging li.active a").text()); }, 200);
+                    } else {
+                        $('.alert-danger', '#ModalUpdate').css("visibility", "visible");
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi!Xin thử lại');
+                    }
+                },
+                error: function (data) {
+                    $('.alert-danger', '#ModalUpdate').css("visibility", "visible");
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi!Xin thử lại');
+                }
+            });
+        }
+
+        //Check Name
+        function validateName(id, name) {
+            var check = false;
+            if ($("#" + name).val() != "") {
+                $("#" + name).css("border", "1px solid #e2e2e4");
+                document.getElementById(name).placeholder = "";
+                var suppliername = $("#" + name).val();
+                $.ajax({
+                    url: "/Admin/IngredientManagement/checkName",
+                    type: 'POST',
+                    async: false,
+                    data: { id: id, name: suppliername },
+                    success: function (data) {
+                        if (data == 'Success') {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                            check = true;
+                        } else {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                            check = false;
+                        }
+                    },
+                    error: function (errMsg) {
+                        var hm = $("body").wHumanMsg();
+                        hm.wHumanMsg('Lỗi xảy ra. Xin thử lại sau.');
+                        check = false;
+                    }
+                });
+            }
+            return check;
+        }
+
+        function Add() {
+            if (validateType('Addname') == false || validateImage(0, 'add') == false) {
+                return;
+            }
+            //if ($("#AddImageUrl")[0].files[0]) {
+
+            //}
+            if (validateName(1, 'Addname') == true) {
+                var formdata = new FormData();
+                formdata.append("Name", $("#Addname").val());
+                formdata.append("Category", $("#AddCategory").val());
+                formdata.append("Supplier", $("#AddSupplier").val());
+                formdata.append("IsTracibility", $("#AddisTracibility")[0].checked);
+                formdata.append("ImageUrl", $("#AddImageUrl").val());
+                $.ajax({
+                    url: "/Admin/IngredientManagement/CreateIngredient",
+                    dataType: false,
+                    processData: false,
+                    async: false,
+                    contentType: false,
+                    data: formdata,
+                    type: 'POST',
+                    success: function (data) {
+                        $('.alert-danger', '#myModal').css("visibility", "hidden");
+                        $('#myModal').modal('toggle');
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Thêm nguyên liệu thành công!');
+                        setTimeout(function () { get_ingredients($("#paging li.active a").text()); }, 200);
+                        $("#Addname").val("");
+                    },
+                    error: function (data) {
+                        $('.alert-danger', '#myModal').css("visibility", "visible");
+                    }
+                });
+            }
+        }
+        //Delete
+        function Delete(id) {
+            alertify.confirm("Bạn có chắc chắn muốn xóa", function (e) {
+                if (e) {
+                    // user clicked "ok"
+                    $.ajax({
+                        url: "/Admin/IngredientManagement/Delete",
+                        async: false,
+                        data: { id: id },
+                        type: 'POST',
+                        success: function (data) {
+                            if (data == 1) {
+                                $('.alert-danger', '#myModal').css("visibility", "hidden");
+                                $('#ModalUpdate').modal('toggle');
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xóa nguyên liệu thành công!');
+                                setTimeout(function () { get_ingredients($("#paging li.active a").text()); }, 200);
+                            } else {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xảy ra lỗi, Xin hãy thử lại!');
+                            }
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, Xin hãy thử lại!');
+                        }
+                    });
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "GetOrderByBillPage";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+<section id="content" class="container">
+    <div id="login-option" style="margin-top: 30px">
+        <p id="login-bypass" style="margin-left: 35px">
+            Đã có tài khoản Eat With Chef?
+			<a href="javascript:void(0);" class="bold" data-toggle="modal" data-target="#loginPartial" style="color: #f15a22">Đăng nhập</a>
+        </p>
+    </div>
+    <section class="checkout-form-container">
+        <div class="span9" style="margin: 0; background-color: white;">
+            <div class="panel">
+                <p>Nhập mã hóa đơn</p>
+
+                <div class="">
+                    <p>Mã hóa đơn</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="BillCode">
+                </div>
+
+                <div style="clear: both; height: 1px; opacity: 0;"></div>
+                <hr class="double"/>
+                <button class="btn-check-out" style="width:150px;" onclick="SearchOrderByBill()">Tìm đơn hàng</button>
+                <hr class="double"/>
+                <p>Thông tin hóa đơn</p>
+                <div class="order-cart-confirm" id="list-bill-order">
+                </div>
+
+
+            </div>
+        </div>
+        <div class="span3" style="background-color: white;">
+            
+        </div>
+        <div class="span3">
+            
+        </div>
+        <div style="clear: both"></div>
+    </section>
+</section>

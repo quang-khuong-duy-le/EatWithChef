@@ -1,0 +1,1983 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="6.85" multi-file="no">
+  <meta>
+    <name>Class Diagram</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <management>
+    <persons>
+      <person id="Pf1b98572cb0d4de08e8de097401b915a">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types>
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="Class:di205441631436529460" tid="" name="Ingredient" description="" nullable="false" class-ref="di205441631436529460" />
+      <type id="IDishRepository" tid="" name="IDishRepository" description="" nullable="false" />
+      <type id="ActionResult" tid="" name="ActionResult" description="" nullable="false" />
+      <type id="EWCEntities" tid="" name="EWCEntities" description="" nullable="false" />
+      <type id="JsonResult" tid="" name="JsonResult" description="" nullable="false" />
+      <type id="List&lt;DishCategory&gt;" tid="" name="List&lt;DishCategory&gt;" description="" nullable="false" />
+      <type id="List&lt;Dish&gt;" tid="" name="List&lt;Dish&gt;" description="" nullable="false" />
+      <type id="List&lt;Tag&gt;" tid="" name="List&lt;Tag&gt;" description="" nullable="false" />
+      <type id="Class:di195223269716774828" tid="" name="Dish" description="" nullable="false" class-ref="di195223269716774828" />
+      <type id="Class:di360506961880148103" tid="" name="DishCategory" description="" nullable="false" class-ref="di360506961880148103" />
+      <type id="Class:di539582954909781707" tid="" name="Tag" description="" nullable="false" class-ref="di539582954909781707" />
+      <type id="Class:di324965047215220368" tid="" name="IProduceSessionRepository" description="" nullable="false" class-ref="di324965047215220368" />
+      <type id="List&lt;DishItem&gt;" tid="" name="List&lt;DishItem&gt;" description="" nullable="false" />
+      <type id="Class:di714671178858654092" tid="" name="Menu" description="" nullable="false" class-ref="di714671178858654092" />
+      <type id="Class:di416828862755302918" tid="" name="DishItem" description="" nullable="false" class-ref="di416828862755302918" />
+      <type id="List&lt;IngredientItem&gt;" tid="" name="List&lt;IngredientItem&gt;" description="" nullable="false" />
+      <type id="IEnumerable&lt;OrderByInfo&gt;" tid="" name="IEnumerable&lt;OrderByInfo&gt;" description="" nullable="false" />
+      <type id="IQueryable&lt;T&gt;" tid="" name="IQueryable&lt;T&gt;" description="" nullable="false" />
+      <type id="IEnumerable&lt;T&gt;" tid="" name="IEnumerable&lt;T&gt;" description="" nullable="false" />
+      <type id="enum" tid="" name="enum" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <items>
+    <item id="di294198188644974787" cid="C021" type="class" name="Class21" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:18:22">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <attributes />
+      <operations />
+      <template-parameters>
+        <source-codes />
+      </template-parameters>
+    </item>
+    <item id="di335662480731697213" cid="ELEM001" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:18:22">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di294165041462745278" cid="ELEM003" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:29:27">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di629004320182822491" cid="ELEM004" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:19:55">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di366986768430893327" cid="ELEM005" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:52:08">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di780887829877195200" cid="ELEM006" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:54:26">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di921855032444073108" cid="ELEM003" type="association-class-link" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:29:27">
+      <stereotypes />
+      <tagged-values />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+  </items>
+  <models>
+    <model id="p284543384523408460" name="Main" type="model" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>04/01/2014 09:45:41</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <tagged-values />
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p708732052272665152" name="System" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/01/2014 09:45:41</creation-date>
+          <change-date>04/01/2014 16:57:56</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <tagged-values />
+        <abstract-items>
+          <item id="di126160886245308205" cid="C001" type="class" name="webpages_Roles" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:48:53">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a900146f9f4494ca89b14a12e5c707539358" name="RoleId" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="acced3d9006024281a05e8c00d031b0e6575" name="RoleName" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di826052888153352493" cid="C002" type="class" name="UserProfile" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:49:48">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ad27fbc0558ab453b9dedb00a131e09b5749" name="UserId" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="af4b50c5303f143c28c70912e532894ad320" name="UserName" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a7865ea0f0c5c4af4a20e160cc7d15739445" name="FullName" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="acc1b47284b03417e9e6c3f8ebc8d53c1705" name="Email" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ab6651e1a42ac430d9665e3d11aeff01027" name="Telephone" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a7e146744b680496c96d0b59fa2872d5b279" name="Address" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a37e9a609459d4912bc204051b75cc534746" name="IsFemale" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a15bb1dcabe1d45ffb42b441b2501e59b221" name="DateOfBirth" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a3af6d8e008944cf5a8edf24f8edc71f3222" name="IsActive" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di563425593182348298" cid="C003" type="class" name="Bill" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:51:13">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="acab44c363a4643059b0bf56fc666a68c736" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a9fdf47f27bb74241914f01c0d5129d13922" name="Code" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ac0dc8585264c437e8af7e50fa668c51910" name="Status" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di474603822852083644" cid="C004" type="class" name="Order" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:51:40">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a649c9b41949d47d686cfba2e56c083ba599" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a418053763b36462d9be61afc0e5c8603952" name="ReceiverName" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a35266d9a1d7640a2917fee982d2105f5108" name="ReceiverPhone" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ad9b6ceeb8ab54850a79dc46c12c764cf497" name="ReceiverAddress" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a208a553d3fcc4440be35ea227fda78cd56" name="ReceiverEmail" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a8023b11e4a7b46c6a9b9bf91d74bcdc6115" name="TotalPayment" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ab07ac1de7a78472ea2754c44d9d37837221" name="OrderDate" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aeb3123772d9840b7885784ffa7217512295" name="DeliveryDate" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a79131a363b6a4b75b60270140e6c3cd5793" name="Note" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ad95fa16f3b7140899e9ec1f8a5d7bc72953" name="OrderStatus" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di419445308613525952" cid="C005" type="class" name="SupplierCategory" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:53:13">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a806303304229450b8f8c094e4a287ef1757" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a577780d092dd4ae8aefee21e7c9a21a7844" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ac0eca226028a4e24bb33f38fb503ae0e239" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di810165155692748055" cid="C006" type="class" name="Supplier" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:53:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a7ece3dccb11d4350b3c4f81297e9957c367" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ab53ed0c66d634c7aa3a9534c5b5cc475823" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="abecd1942d390433eaee0624950ff9975283" name="Address" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4fcaaaa2897a4ef8b757d698b0edcd35230" name="Phone" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a52c8f56f3d1c4091b340ead14ea7312d473" name="Latitude" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aeee9a1918fd74a7a99944a002562156764" name="Longitude" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a0370acdfa2e04c73863f88332969ad5f617" name="IsAvailalble" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di166315907822742642" cid="C007" type="class" name="Chef" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 11:01:48">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a2bad809fdb694d379fcff8fdadf45883545" name="UserID" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4912b35344fc42c3ad616607ecbd046a156" name="ImageURL" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aea11886d9c0a4f1d9656cbcf7cfdb332144" name="Description" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di214862312336542971" cid="C008" type="class" name="ChefSkill" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 11:21:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a7529d17ce9a44be7a964f6d7a7ba3119554" name="Score" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di195223269716774828" cid="C009" type="class" name="Dish" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 11:26:26">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a6dc11e68f3234dc0bef1400a2b638f08275" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="afc4d09f71e6f4eb89cb50fd0ca5fc200493" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a5c64091f89744b10adde952d5a6d699d160" name="Url" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4591474a7a7840cf934439e7f1207976757" name="Image" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="afbe4d107cf5b4d62ab0f83b614ddd88d550" name="Price" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a434d37a415be4e14b74a23c97fdb0e8d285" name="Description" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a2e02e6774dce4c6aac28a5d63475f59f757" name="CookingGuide" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aa020ef1c655f44bb821872e071470a2789" name="Rate" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a89e21c2fd9e34e279fc4f899bc113257293" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a35d2bef68734415490fbdf31f858700d212" name="NumberOfRate" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di360506961880148103" cid="C010" type="class" name="DishCategory" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:40:50">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a8e19a3eeac5d4813b09345c25dd5624e768" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ae4bbac4533e54a3e992a601b66ac1269450" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ace3489e70a8b4edfaeef05e36bc4bdad442" name="Description" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a64306efd5f574eaba236cee8d024220e569" name="Image" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a0dc0721424814d388ef01f8213bca27c865" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di416828862755302918" cid="C011" type="class" name="DishItem" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:44:19">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a74f2c6cc2e844121a3f60fbbea6cddd4907" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a58193e081c2145799e65cba7f03b0ea8413" name="QRCode" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ae9ca738c3df1450f94c230cf2bfe9519719" name="Quantity" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aca6ce3a00cd4420c90b6a348332ba9d6259" name="CookingTime" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a2adfeaa6462a404098057ea8e9d1cbee316" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di680731553672856925" cid="C012" type="class" name="DishMenu" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:47:31">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a7bad618c67054d93aa82a30849d4b039489" name="DishPrice" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a8946c7e80fff44aaaa838b5f39007ffd8" name="Quota" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di666514898124428226" cid="C013" type="class" name="DishOrderSummary" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:48:22">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="af9c810490d0d46c994dfd56afc43c03e427" name="Year" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4bc40ac2d1354c41af9d6abcb43e9a91147" name="NumOfOrderQua1" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a1a3e488cc9b34b3bb9af4faed3f5dd06878" name="NumOfOrderQua2" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a14f5242787a145f699bde2f2b5fdb49a586" name="NumOfOrderQua3" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="af3b77fece2364f2e9f1587b681e76def499" name="NumOfOrderQua4" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di205441631436529460" cid="C014" type="class" name="Ingredient" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:50:45">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a29e113a9b03347e1a81959c9e73e80c5530" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ae3326708fef144899ec9d9f723c9532d243" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a968553030cc84674bea380ea9c3aeb9a795" name="ImageUrl" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a756c7f85694844b3bc0c8c97f5a31342379" name="IsTracibility" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a7984772b683b46858348778e3c766808408" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di484651235934155125" cid="C015" type="class" name="IngredientCategory" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:52:21">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="acd5df0cdf230440bb19de7577fa2d6c7640" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="add592925a18446c582473e02fa31e9b8611" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a714279642d1e422f8d3d3f783eb3edde372" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di606270021844389157" cid="C016" type="class" name="IngredientItem" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:52:55">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="aa79e8f3573274adb8cd36b8ffe3dabe0753" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a6cb589613d9045f8b5b973a63a7740a4702" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="acfbce03b6fed46af9a1f61b087ca045e831" name="IsDefaultSupplier" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di714671178858654092" cid="C017" type="class" name="Menu" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:53:47">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ad3c1c2ea075142629193004e46ea0916338" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="afd5b18c229774a5c9a1365e54fa016e0196" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aeaed36a4e0284ea28419fa9f521e595e861" name="Description" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4fc42eabc99e47eca98c76658c885333701" name="ApplyDate" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a546c8f666ff64e2eabce9956b1112060379" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a2e5f2581f3da4807aa09e681d34becb2238" name="ClosedTimeSession" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di851562523362518555" cid="C018" type="class" name="OrderDetail" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:57:25">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a35ff8598dde94fbd9703171eeee5fd8d562" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="af2ec301c713d4e68931639758c23ea1e758" name="Quantity" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ab97c5425ede044d382421c8430f2a2df901" name="UnitPrice" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di833482549244973462" cid="C019" type="class" name="Skill" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:59:56">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="acf7d946cc5a446169a0230a430b2a3a9264" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a1afdd4cfa20d4877a7c69c0405dd1c27125" name="Skill" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di539582954909781707" cid="C020" type="class" name="Tag" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:02:27">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a17cc300a9fad45a1821062c07f8507a7120" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a6cdf63ad5c4f42fa889ea55cd78b80ef524" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di960710608116985353" cid="REL001" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:11:03">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di419445308613525952" to="di810165155692748055">
+              <start-role id="" name="category" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="suppliers" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di358243949915336657" cid="REL005" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:29:22">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di810165155692748055" to="di205441631436529460">
+              <start-role id="" name="suppliers" multiplicity="1..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="ingredients" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di284449943528027725" cid="REL006" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:33:54">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di416828862755302918" to="di606270021844389157">
+              <start-role id="" name="realDishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="assignedSupplierIngredients" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di981783850281389360" cid="REL007" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:37:55">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di205441631436529460" to="di484651235934155125">
+              <start-role id="" name="ingredients" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="category" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di727847864914636328" cid="REL008" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:40:07">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di205441631436529460" to="di195223269716774828">
+              <start-role id="" name="ingredients" multiplicity="1..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="dishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di699517511690617022" cid="REL009" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:44:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di851562523362518555" to="di416828862755302918">
+              <start-role id="" name="orderDetails" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="realDishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di616720441751031323" cid="REL010" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:07:51">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di166315907822742642" to="di416828862755302918">
+              <start-role id="" name="cookingChef" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="realDishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di728090595630322706" cid="C024" type="class" name="OrderDetailDishItem" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:19:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ada934a70e8a440bd99044c5746569b4423" name="Quantity" type="" type-id="" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di947553962786373323" cid="REL011" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:20:45">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di416828862755302918" to="di195223269716774828">
+              <start-role id="" name="realDishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="dish" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di519592960777532669" cid="REL012" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:23:12">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di474603822852083644" to="di851562523362518555">
+              <start-role id="" name="order" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="orderDetails" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di310987842333347241" cid="REL013" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:25:44">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di851562523362518555" to="di195223269716774828">
+              <start-role id="" name="orderDetails" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="dish" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di700230801852415054" cid="REL014" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:31:26">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di474603822852083644" to="di563425593182348298">
+              <start-role id="" name="orders" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="bill" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di785408744614911393" cid="REL015" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:33:20">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di563425593182348298" to="di826052888153352493">
+              <start-role id="" name="bills" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="owner" multiplicity="0..1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di100126301577895999" cid="REL016" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:34:53">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di826052888153352493" to="di126160886245308205">
+              <start-role id="" name="users" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="assignedRoles" multiplicity="1..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di869450350565668807" cid="REL017" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:37:54">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di826052888153352493" to="di166315907822742642">
+              <start-role id="" name="user" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="chef" multiplicity="0..1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di942242551657492403" cid="REL018" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:44:47">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di166315907822742642" to="di195223269716774828">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di407103436106751796" cid="REL019" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:45:02">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di166315907822742642" to="di195223269716774828">
+              <start-role id="" name="chef" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="creatingDish" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di420684140757437155" cid="REL020" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:51:14">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di166315907822742642" to="di833482549244973462">
+              <start-role id="" name="chefs" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="skills" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di891081888404304693" cid="REL021" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:53:26">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di195223269716774828" to="di714671178858654092">
+              <start-role id="" name="dishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="menus" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di510225789903045472" cid="REL022" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:55:52">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di195223269716774828" to="di539582954909781707">
+              <start-role id="" name="dishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="tags" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di917798041108890390" cid="C028" type="class" name="Class28" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:56:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di573596458275873297" cid="GNR001" type="generalization" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:56:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di420404992920321215" cid="REL023" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:56:54">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di195223269716774828" to="di666514898124428226">
+              <start-role id="" name="dish" multiplicity="1" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="dishStatistics" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di430737551968864187" cid="REL024" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 16:57:56">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di195223269716774828" to="di360506961880148103">
+              <start-role id="" name="dishes" multiplicity="0..*" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="category" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di851562523362518555" iid="0375e0abfcf740dfa5a62f25b008ed7c" creation-date="04/01/2014 14:57:25" order-index="17" type="entity">
+            <layout ax="500" ay="121" awidth="133" aheight="108" x="500" y="121" width="133" height="108" angle="0" />
+            <class />
+          </item>
+          <item id="di833482549244973462" iid="01c80c5ffbed43aa8f3a895bf84907be" creation-date="04/01/2014 14:59:56" order-index="18" type="entity">
+            <layout ax="489" ay="662" awidth="105" aheight="82" x="489" y="662" width="105" height="82" angle="0" />
+            <class />
+          </item>
+          <item id="di563425593182348298" iid="d2e6decfc9254f0b94f980742c32639f" creation-date="04/01/2014 10:51:13" order-index="2" type="entity">
+            <layout ax="-124.6486" ay="118.5005" awidth="112" aheight="108" x="-124.6486" y="118.5005" width="112" height="108" angle="0" />
+            <class />
+          </item>
+          <item id="di539582954909781707" iid="7049431e5f5948f98bea6a7ed88cc6fe" creation-date="04/01/2014 15:02:27" order-index="19" type="entity">
+            <layout ax="1093" ay="246" awidth="107" aheight="74" x="1093" y="246" width="107" height="74" angle="0" />
+            <class />
+          </item>
+          <item id="di960710608116985353" iid="3e2612353a98456797605cd6d7375930" creation-date="04/01/2014 15:11:03" order-index="20" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="4,-10" auto-path="" x1="1301" y1="-40" x2="1499" y2="-38" start-border-pos="0.377487951709378" end-border-pos="0.875813833872477">
+              <points>
+                <point x="1301" y="-40" />
+                <point x="1499" y="-38" />
+              </points>
+            </layout>
+            <relation from="di419445308613525952" from-iid="f7e3bc493f6849bb92de34baee903257" to="di810165155692748055" to-iid="b3e0890cf416413eafd6aee61a8ba2b3" />
+            <role-positions start-role="40.17406,19.72536" end-role="42.04966,-20.85754" start-multiplicity="21.00013,-14.96536" end-multiplicity="24.99999,15" />
+          </item>
+          <item id="di126160886245308205" iid="b250cf5d54af41c2a7e9767dbc2e1e46" creation-date="04/01/2014 10:48:53" order-index="0" type="entity">
+            <layout ax="-129.1618" ay="397.1339" awidth="140" aheight="78" x="-129.1618" y="397.1339" width="140" height="78" angle="0" />
+            <class />
+          </item>
+          <item id="di419445308613525952" iid="f7e3bc493f6849bb92de34baee903257" creation-date="04/01/2014 10:53:13" order-index="4" type="entity">
+            <layout ax="1148.485" ay="-86.96906" awidth="153" aheight="93" x="1148.485" y="-86.96906" width="153" height="93" angle="0" />
+            <class />
+          </item>
+          <item id="di810165155692748055" iid="b3e0890cf416413eafd6aee61a8ba2b3" creation-date="04/01/2014 10:53:34" order-index="5" type="entity">
+            <layout ax="1498.626" ay="-127.7744" awidth="119" aheight="180" x="1498.626" y="-127.7744" width="119" height="180" angle="0" />
+            <class />
+          </item>
+          <item id="di166315907822742642" iid="1bed6e8d05f940db968eb3e9eff3677a" creation-date="04/01/2014 11:01:48" order-index="6" type="entity">
+            <layout ax="468.8833" ay="394.8476" awidth="140" aheight="97" x="468.8833" y="394.8476" width="140" height="97" angle="0" />
+            <class />
+          </item>
+          <item id="di214862312336542971" iid="0ecdd3068b2948aa8b3459f32c6cc809" creation-date="04/01/2014 11:21:23" order-index="7" type="entity">
+            <layout ax="356.1169" ay="549.7819" awidth="115" aheight="60" x="356.1169" y="549.7819" width="115" height="60" angle="0" />
+            <class />
+          </item>
+          <item id="di195223269716774828" iid="af7f53cba96d4743948c755864f29a41" creation-date="04/01/2014 11:26:26" order-index="8" type="entity">
+            <layout ax="838.853" ay="360.7796" awidth="165" aheight="231" x="838.853" y="360.7796" width="165" height="231" angle="0" />
+            <class />
+          </item>
+          <item id="di360506961880148103" iid="86012e40f80c44e8b911f0ca90149b2b" creation-date="04/01/2014 14:40:50" order-index="9" type="entity">
+            <layout ax="1148.416" ay="797.8471" awidth="145" aheight="150" x="1148.416" y="797.8471" width="145" height="150" angle="0" />
+            <class />
+          </item>
+          <item id="di416828862755302918" iid="02b5aa046b3a4bb7bb5eb94f22468b75" creation-date="04/01/2014 14:44:19" order-index="10" type="entity">
+            <layout ax="834.3062" ay="107.5061" awidth="171" aheight="140" x="834.3062" y="107.5061" width="171" height="140" angle="0" />
+            <class />
+          </item>
+          <item id="di680731553672856925" iid="68d52d9125da4c1d8f4f6854bfe72fa3" creation-date="04/01/2014 14:47:31" order-index="11" type="entity">
+            <layout ax="660.2017" ay="648.4845" awidth="140" aheight="88" x="660.2017" y="648.4845" width="140" height="88" angle="0" />
+            <class />
+          </item>
+          <item id="di666514898124428226" iid="b6747611b86c421a8067ae8a6369900f" creation-date="04/01/2014 14:48:22" order-index="12" type="entity">
+            <layout ax="1195.492" ay="544.5449" awidth="185" aheight="160" x="1195.492" y="544.5449" width="185" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di205441631436529460" iid="2606e09a611640ab8b6c62e6465ddb57" creation-date="04/01/2014 14:50:45" order-index="13" type="entity">
+            <layout ax="1484.855" ay="302.2416" awidth="153" aheight="130" x="1484.855" y="302.2416" width="153" height="130" angle="0" />
+            <class />
+          </item>
+          <item id="di484651235934155125" iid="7eef3680c4ff4256b4469518b0c37354" creation-date="04/01/2014 14:52:21" order-index="14" type="entity">
+            <layout ax="1480.369" ay="525.8595" awidth="161" aheight="96" x="1480.369" y="525.8595" width="161" height="96" angle="0" />
+            <class />
+          </item>
+          <item id="di358243949915336657" iid="7aa93aa248434162b7ab9b0ce52fd0be" creation-date="04/01/2014 15:29:22" order-index="21" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1559" y1="52" x2="1561" y2="302" start-border-pos="0.62386418190323" end-border-pos="0.123633291207108">
+              <points>
+                <point x="1559" y="52" />
+                <point x="1561" y="302" />
+              </points>
+            </layout>
+            <relation from="di810165155692748055" from-iid="b3e0890cf416413eafd6aee61a8ba2b3" to="di205441631436529460" to-iid="2606e09a611640ab8b6c62e6465ddb57" />
+            <role-positions start-role="18.90792,37.97589" end-role="22.09594,-39.01179" start-multiplicity="21.06002,-30.01587" end-multiplicity="21.9481,27.98789" />
+          </item>
+          <item id="di826052888153352493" iid="4ad70d6dc2e14f99b61f7853f2b68389" creation-date="04/01/2014 10:49:48" order-index="1" type="entity">
+            <layout ax="174.1306" ay="333.3013" awidth="163" aheight="212" x="174.1306" y="333.3013" width="163" height="212" angle="0" />
+            <class />
+          </item>
+          <item id="di606270021844389157" iid="308e3bac21294dd18ab7b14e3ac65773" creation-date="04/01/2014 14:52:55" order-index="15" type="entity">
+            <layout ax="1256.282" ay="130.2754" awidth="186" aheight="93" x="1256.282" y="130.2754" width="186" height="93" angle="0" />
+            <class />
+          </item>
+          <item id="di714671178858654092" iid="9a986dfb81094b5b8d2cb802aeeeb50c" creation-date="04/01/2014 14:53:47" order-index="16" type="entity">
+            <layout ax="820.3372" ay="792.8628" awidth="210" aheight="152" x="820.3372" y="792.8628" width="210" height="152" angle="0" />
+            <class />
+          </item>
+          <item id="di294165041462745278" iid="db9e8f260ea344a1a7ea19287c9d6ee1" creation-date="04/01/2014 15:29:27" order-index="23" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="2,-14" auto-path="" x1="1560" y1="177" x2="1442" y2="177" start-border-pos="0.5" end-border-pos="0.376788600798576">
+              <points>
+                <point x="1560" y="177" />
+                <point x="1442" y="177" />
+              </points>
+            </layout>
+            <relation from="di358243949915336657" from-iid="7aa93aa248434162b7ab9b0ce52fd0be" to="di606270021844389157" to-iid="308e3bac21294dd18ab7b14e3ac65773" />
+          </item>
+          <item id="di474603822852083644" iid="0c5730203c484c78a9c654c6fd1ba6f6" creation-date="04/01/2014 10:51:40" order-index="3" type="entity">
+            <layout ax="172.5005" ay="63.01239" awidth="170" aheight="218" x="172.5005" y="63.01239" width="170" height="218" angle="0" />
+            <class />
+          </item>
+          <item id="di284449943528027725" iid="2fc38ee80e6644b78f353f67baf31677" creation-date="04/01/2014 15:33:54" order-index="24" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1005" y1="178" x2="1256" y2="177" start-border-pos="0.375528144836426" end-border-pos="0.87381350609564">
+              <points>
+                <point x="1005" y="178" />
+                <point x="1256" y="177" />
+              </points>
+            </layout>
+            <relation from="di416828862755302918" from-iid="02b5aa046b3a4bb7bb5eb94f22468b75" to="di606270021844389157" to-iid="308e3bac21294dd18ab7b14e3ac65773" />
+            <role-positions start-role="51.13955,-19.93341" end-role="93.93443,-18.61826" start-multiplicity="29.86757,21.01815" end-multiplicity="25,15" />
+          </item>
+          <item id="di981783850281389360" iid="1425a4447ded4b9abe27d8840f98c741" creation-date="04/01/2014 15:37:55" order-index="25" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1561" y1="432" x2="1561" y2="526" start-border-pos="0.62558003344567" end-border-pos="0.125203387337442">
+              <points>
+                <point x="1561" y="432" />
+                <point x="1561" y="526" />
+              </points>
+            </layout>
+            <relation from="di205441631436529460" from-iid="2606e09a611640ab8b6c62e6465ddb57" to="di484651235934155125" to-iid="7eef3680c4ff4256b4469518b0c37354" />
+            <role-positions start-role="18.44715,43.88008" end-role="16.46012,-39.16767" start-multiplicity="20.23014,-27.09344" end-multiplicity="13.77261,26.78773" />
+          </item>
+          <item id="di727847864914636328" iid="bdab751a22394db99b53c30c5aabb04f" creation-date="04/01/2014 15:40:07" order-index="26" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1485" y1="380" x2="1004" y2="462" start-border-pos="0.850245255690355" end-border-pos="0.359583074396307">
+              <points>
+                <point x="1485" y="380" />
+                <point x="1004" y="462" />
+              </points>
+            </layout>
+            <relation from="di205441631436529460" from-iid="2606e09a611640ab8b6c62e6465ddb57" to="di195223269716774828" to-iid="af7f53cba96d4743948c755864f29a41" />
+            <role-positions start-role="43.63951,18.8168" end-role="25,-15" start-multiplicity="25.00006,-14.99999" end-multiplicity="25,15" />
+          </item>
+          <item id="di699517511690617022" iid="04c6217e7b92415b9f514784534afaf2" creation-date="04/01/2014 15:44:23" order-index="27" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="633" y1="176" x2="834" y2="177" start-border-pos="0.376314339814363" end-border-pos="0.875419507707868">
+              <points>
+                <point x="633" y="176" />
+                <point x="834" y="177" />
+              </points>
+            </layout>
+            <relation from="di851562523362518555" from-iid="0375e0abfcf740dfa5a62f25b008ed7c" to="di416828862755302918" to-iid="02b5aa046b3a4bb7bb5eb94f22468b75" />
+            <role-positions start-role="45.20086,-15.86949" end-role="38.09903,-18.82079" start-multiplicity="25.78567,18.0058" end-multiplicity="25,15" />
+          </item>
+          <item id="di616720441751031323" iid="db88fcaa90c6401abec89172a738f320" creation-date="04/01/2014 16:07:51" order-index="28" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="608" y1="395" x2="834" y2="238" start-border-pos="0.248442840576172" end-border-pos="0.767303276062012">
+              <points>
+                <point x="608" y="395" />
+                <point x="834" y="238" />
+              </points>
+            </layout>
+            <relation from="di166315907822742642" from-iid="1bed6e8d05f940db968eb3e9eff3677a" to="di416828862755302918" to-iid="02b5aa046b3a4bb7bb5eb94f22468b75" />
+            <role-positions start-role="51.51438,30.61413" end-role="53.73875,25.24195" start-multiplicity="16.56363,-25.66896" end-multiplicity="42.44008,-19.12979" />
+          </item>
+          <item id="di728090595630322706" iid="31641d4847bc403ea598ab29ecbbd34b" creation-date="04/01/2014 16:19:34" order-index="29" type="entity">
+            <layout ax="644" ay="-2" awidth="178" aheight="67" x="644" y="-2" width="178" height="67" angle="0" />
+            <class />
+          </item>
+          <item id="di629004320182822491" iid="638e75807fe14ee595d4900bfa0c20c4" creation-date="04/01/2014 16:19:55" order-index="31" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="734" y1="176" x2="733" y2="65" start-border-pos="0.5" end-border-pos="0.624680336941494">
+              <points>
+                <point x="734" y="176" />
+                <point x="733" y="65" />
+              </points>
+            </layout>
+            <relation from="di699517511690617022" from-iid="04c6217e7b92415b9f514784534afaf2" to="di728090595630322706" to-iid="31641d4847bc403ea598ab29ecbbd34b" />
+          </item>
+          <item id="di947553962786373323" iid="ef23f797e01b4fa09bbbd845f9b766cd" creation-date="04/01/2014 16:20:45" order-index="32" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="920" y1="248" x2="921" y2="361" start-border-pos="0.62437813742119" end-border-pos="0.12388037479285">
+              <points>
+                <point x="920" y="248" />
+                <point x="921" y="361" />
+              </points>
+            </layout>
+            <relation from="di416828862755302918" from-iid="02b5aa046b3a4bb7bb5eb94f22468b75" to="di195223269716774828" to-iid="af7f53cba96d4743948c755864f29a41" />
+            <role-positions start-role="34.76955,41.08743" end-role="19.15952,-33.05238" start-multiplicity="25,-15" end-multiplicity="19.92945,22.95537" />
+          </item>
+          <item id="di519592960777532669" iid="2bce4e0be603435e939935c844478c1d" creation-date="04/01/2014 16:23:12" order-index="33" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="343" y1="173" x2="500" y2="174" start-border-pos="0.375924066666069" end-border-pos="0.876488085146304">
+              <points>
+                <point x="343" y="173" />
+                <point x="500" y="174" />
+              </points>
+            </layout>
+            <relation from="di474603822852083644" from-iid="0c5730203c484c78a9c654c6fd1ba6f6" to="di851562523362518555" to-iid="0375e0abfcf740dfa5a62f25b008ed7c" />
+            <role-positions start-role="25.80885,-15.00577" end-role="46.98045,-18.14006" start-multiplicity="26.2102,17.99295" end-multiplicity="24.99997,15" />
+          </item>
+          <item id="di310987842333347241" iid="2815616d59c74b6bbed91f71462e7d54" creation-date="04/01/2014 16:25:44" order-index="34" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="630" y1="229" x2="839" y2="406" start-border-pos="0.506226159576187" end-border-pos="0.951465623203294">
+              <points>
+                <point x="630" y="229" />
+                <point x="839" y="406" />
+              </points>
+            </layout>
+            <relation from="di851562523362518555" from-iid="0375e0abfcf740dfa5a62f25b008ed7c" to="di195223269716774828" to-iid="af7f53cba96d4743948c755864f29a41" />
+            <role-positions start-role="3.515799,34.50494" end-role="25,-15" start-multiplicity="30.80913,-25.16141" end-multiplicity="25,15" />
+          </item>
+          <item id="di700230801852415054" iid="8660951f09a245aa9b68ba7b32a6c7e5" creation-date="04/01/2014 16:31:26" order-index="35" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="173" y1="172" x2="-13" y2="173" start-border-pos="0.874712602807841" end-border-pos="0.375752731605812">
+              <points>
+                <point x="173" y="172" />
+                <point x="-13" y="173" />
+              </points>
+            </layout>
+            <relation from="di474603822852083644" from-iid="0c5730203c484c78a9c654c6fd1ba6f6" to="di563425593182348298" to-iid="d2e6decfc9254f0b94f980742c32639f" />
+            <role-positions start-role="24.99357,15.99999" end-role="25,-15" start-multiplicity="24.99462,-14" end-multiplicity="25,15" />
+          </item>
+          <item id="di785408744614911393" iid="6fd2f11b36da429e8e14513a74aa1410" creation-date="04/01/2014 16:33:20" order-index="36" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="-13" y1="220" x2="174" y2="372" start-border-pos="0.484147707621256" end-border-pos="0.954498974782116">
+              <points>
+                <point x="-13" y="220" />
+                <point x="174" y="372" />
+              </points>
+            </layout>
+            <relation from="di563425593182348298" from-iid="d2e6decfc9254f0b94f980742c32639f" to="di826052888153352493" to-iid="4ad70d6dc2e14f99b61f7853f2b68389" />
+            <role-positions start-role="9.57569,19.80531" end-role="24.12439,-27.17514" start-multiplicity="25,-15" end-multiplicity="39.35784,13.63887" />
+          </item>
+          <item id="di100126301577895999" iid="add75a5f4f874a2398b67d14b018c817" creation-date="04/01/2014 16:34:53" order-index="37" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="174" y1="438" x2="11" y2="437" start-border-pos="0.876276196173902" end-border-pos="0.376676999605619">
+              <points>
+                <point x="174" y="438" />
+                <point x="11" y="437" />
+              </points>
+            </layout>
+            <relation from="di826052888153352493" from-iid="4ad70d6dc2e14f99b61f7853f2b68389" to="di126160886245308205" to-iid="b250cf5d54af41c2a7e9767dbc2e1e46" />
+            <role-positions start-role="31.00488,15.97029" end-role="49.99474,-16.12376" start-multiplicity="25,-15" end-multiplicity="24.99999,15" />
+          </item>
+          <item id="di869450350565668807" iid="33b48c6befe3470d93b32a27545cfecd" creation-date="04/01/2014 16:37:54" order-index="38" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="337" y1="440" x2="469" y2="442" start-border-pos="0.375994772281287" end-border-pos="0.878482307355428">
+              <points>
+                <point x="337" y="440" />
+                <point x="469" y="442" />
+              </points>
+            </layout>
+            <relation from="di826052888153352493" from-iid="4ad70d6dc2e14f99b61f7853f2b68389" to="di166315907822742642" to-iid="1bed6e8d05f940db968eb3e9eff3677a" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="22,-16" end-multiplicity="20,15" />
+          </item>
+          <item id="di942242551657492403" iid="5f05b03239e741b297ebe6ccc275bd00" creation-date="04/01/2014 16:44:47" order-index="39" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="609" y1="449" x2="839" y2="469" start-border-pos="0.389466826448736" end-border-pos="0.883062519552388">
+              <points>
+                <point x="609" y="449" />
+                <point x="839" y="469" />
+              </points>
+            </layout>
+            <relation from="di166315907822742642" from-iid="1bed6e8d05f940db968eb3e9eff3677a" to="di195223269716774828" to-iid="af7f53cba96d4743948c755864f29a41" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di407103436106751796" iid="e33aada40ee44dcd87ceaaa800e6fc54" creation-date="04/01/2014 16:45:02" order-index="40" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="609" y1="449" x2="839" y2="469" start-border-pos="0.389466826448736" end-border-pos="0.883062519552388">
+              <points>
+                <point x="609" y="449" />
+                <point x="839" y="469" />
+              </points>
+            </layout>
+            <relation from="di166315907822742642" from-iid="1bed6e8d05f940db968eb3e9eff3677a" to="di195223269716774828" to-iid="af7f53cba96d4743948c755864f29a41" />
+            <role-positions start-role="25,15" end-role="50.46909,-22.23358" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di420684140757437155" iid="bc00ffea1b92424fbb5980093f587df1" creation-date="04/01/2014 16:51:14" order-index="41" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="540" y1="492" x2="542" y2="662" start-border-pos="0.623802621023996" end-border-pos="0.125064086914063">
+              <points>
+                <point x="540" y="492" />
+                <point x="542" y="662" />
+              </points>
+            </layout>
+            <relation from="di166315907822742642" from-iid="1bed6e8d05f940db968eb3e9eff3677a" to="di833482549244973462" to-iid="01c80c5ffbed43aa8f3a895bf84907be" />
+            <role-positions start-role="15.81238,30.89307" end-role="11.22443,-34.16338" start-multiplicity="18.20047,-32.08114" end-multiplicity="11.83627,28.84611" />
+          </item>
+          <item id="di366986768430893327" iid="be4d5181508147bcb6791f550b98de7e" creation-date="04/01/2014 16:52:08" order-index="43" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="541" y1="577" x2="471" y2="579" start-border-pos="0.5" end-border-pos="0.372197723388672">
+              <points>
+                <point x="541" y="577" />
+                <point x="471" y="579" />
+              </points>
+            </layout>
+            <relation from="di420684140757437155" from-iid="bc00ffea1b92424fbb5980093f587df1" to="di214862312336542971" to-iid="0ecdd3068b2948aa8b3459f32c6cc809" />
+          </item>
+          <item id="di891081888404304693" iid="a0e167b055ca4fe58ead885032ea9a0e" creation-date="04/01/2014 16:53:26" order-index="44" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="922" y1="592" x2="924" y2="793" start-border-pos="0.623761448715672" end-border-pos="0.123677644275484">
+              <points>
+                <point x="922" y="592" />
+                <point x="924" y="793" />
+              </points>
+            </layout>
+            <relation from="di195223269716774828" from-iid="af7f53cba96d4743948c755864f29a41" to="di714671178858654092" to-iid="9a986dfb81094b5b8d2cb802aeeeb50c" />
+            <role-positions start-role="14.38108,29.56838" end-role="20.86319,-34.19096" start-multiplicity="16.5518,-28.36524" end-multiplicity="17.3784,29.69392" />
+          </item>
+          <item id="di780887829877195200" iid="99565bb2ef2f4e368c8db4927b0dfbfd" creation-date="04/01/2014 16:54:26" order-index="46" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="923" y1="692" x2="800" y2="692" start-border-pos="0.5" end-border-pos="0.374648701060902">
+              <points>
+                <point x="923" y="692" />
+                <point x="800" y="692" />
+              </points>
+            </layout>
+            <relation from="di891081888404304693" from-iid="a0e167b055ca4fe58ead885032ea9a0e" to="di680731553672856925" to-iid="68d52d9125da4c1d8f4f6854bfe72fa3" />
+          </item>
+          <item id="di510225789903045472" iid="cd3ae9831a484300a1649bbdd95672a4" creation-date="04/01/2014 16:55:52" order-index="47" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1004" y1="406" x2="1103" y2="320" start-border-pos="0.298574274236506" end-border-pos="0.726950386974299">
+              <points>
+                <point x="1004" y="406" />
+                <point x="1103" y="320" />
+              </points>
+            </layout>
+            <relation from="di195223269716774828" from-iid="af7f53cba96d4743948c755864f29a41" to="di539582954909781707" to-iid="7049431e5f5948f98bea6a7ed88cc6fe" />
+            <role-positions start-role="51.11938,-18.42466" end-role="24.99995,-15.00003" start-multiplicity="40.85754,16.45152" end-multiplicity="25,15" />
+          </item>
+          <item id="di420404992920321215" iid="2b1ce0afc2c64f53ab7b2e2eac98a720" creation-date="04/01/2014 16:56:54" order-index="48" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1004" y1="509" x2="1195" y2="587" start-border-pos="0.410727232565612" end-border-pos="0.933285045623779">
+              <points>
+                <point x="1004" y="509" />
+                <point x="1195" y="587" />
+              </points>
+            </layout>
+            <relation from="di195223269716774828" from-iid="af7f53cba96d4743948c755864f29a41" to="di666514898124428226" to-iid="b6747611b86c421a8067ae8a6369900f" />
+            <role-positions start-role="25,15" end-role="38.09175,-27.90752" start-multiplicity="19.66363,-14.97957" end-multiplicity="25,15" />
+          </item>
+          <item id="di430737551968864187" iid="98c6b8ed8c874aefa241c9d01af465cd" creation-date="04/01/2014 16:57:56" order-index="49" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="1004" y1="585" x2="1164" y2="798" start-border-pos="0.492136042871516" end-border-pos="0.02742919921875">
+              <points>
+                <point x="1004" y="585" />
+                <point x="1164" y="798" />
+              </points>
+            </layout>
+            <relation from="di195223269716774828" from-iid="af7f53cba96d4743948c755864f29a41" to="di360506961880148103" to-iid="86012e40f80c44e8b911f0ca90149b2b" />
+            <role-positions start-role="25.19521,21.40013" end-role="37.21844,-39.59093" start-multiplicity="25,-15.00005" end-multiplicity="11.59151,26.19" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+    <model id="p103248103911652948" name="Detail" type="model" namespace="" order-index="2">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>04/13/2014 21:49:47</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <tagged-values />
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p267172980875168290" name="Dish Management" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/13/2014 21:49:59</creation-date>
+          <change-date>04/13/2014 23:18:56</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <tagged-values />
+        <abstract-items>
+          <item id="di806998898670256333" cid="C001" type="class" name="DishManagementController" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 21:50:02">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a8204b02207154dbdb11d162fecd006c6941" name="dishRepository" type="IDishRepository" type-id="IDishRepository" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="o1449ffe6f25e4dc8a26ea61cf3b8dbde647" name="Index" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="odb4bb97fe10e42baa18823dbb83d045e656" name="GetDishes" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o7edc5b0aeefe4ce182a6ec6497b57e11895" name="CheckDishName" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="of9263a97f2c247b1ba7ebfaaab6c25be240" name="CreateDish" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="oce057525ea2e45d997afb866c20e02a0808" name="CreateDish" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="of84d2d475e95492d8e3027f8e0a377a9940" name="UpdateDish" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="int" type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oc93bcdd6e9df4583b7467041b2b96a23516" name="UpdateDish" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="FormCollection" type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o89d274e9bccf4e5299fb3148e3186fa1448" name="DeleteDish" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o556c276b67b743f297ae214d361ba8f3810" name="LoadTags" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di434664191803059293" cid="C002" type="class" name="DishRepository" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:09:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ac6e67aa0428249f88f4a605454f9eb7d508" name="_dbContext" type="EWCEntities" type-id="EWCEntities" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="od4adf7e996d64f8dac4337997f576d41159" name="GetDish" type="List&lt;Dish&gt;" type-id="List&lt;Dish&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o1ff783e5cc6746ec8001e3bae096ed27137" name="InsertDish" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o85d8a27cbe4d490f9222d8231c889d03156" name="UpdateDish" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o247c66fda6c84efcbc02ef64089fed68894" name="DeleteDish" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oa6031899e1334eabb1dbddd8543c09a624" name="GetTagsByName" type="List&lt;Tag&gt;" type-id="List&lt;Tag&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="obd41945ef6404204b13c3d4543a52e3d138" name="GetOrInsertTag" type="Tag" type-id="Class:di539582954909781707" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oc2c94f8c96384d30bf1e2e6687299a00461" name="CheckDishName" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di430805398952500197" cid="C003" type="class" name="Dish" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:09:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di960080363986179470" cid="C005" type="class" name="IDishRepository" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:22:59">
+            <stereotypes>
+              <stereotype name="abstract" />
+            </stereotypes>
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di354393640574740752" cid="REA001" type="realization" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:23:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di606633245379991414" cid="REL001" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:26:00">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di806998898670256333" to="di434664191803059293">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di600079046315470345" cid="REL006" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:31:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di146951909667152446" to="di434664191803059293">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di146951909667152446" cid="C009" type="class" name="Dish" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 11:26:26">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a6dc11e68f3234dc0bef1400a2b638f08275" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="afc4d09f71e6f4eb89cb50fd0ca5fc200493" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a5c64091f89744b10adde952d5a6d699d160" name="Url" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4591474a7a7840cf934439e7f1207976757" name="Image" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="afbe4d107cf5b4d62ab0f83b614ddd88d550" name="Price" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a434d37a415be4e14b74a23c97fdb0e8d285" name="Description" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a2e02e6774dce4c6aac28a5d63475f59f757" name="CookingGuide" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aa020ef1c655f44bb821872e071470a2789" name="Rate" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a89e21c2fd9e34e279fc4f899bc113257293" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a35d2bef68734415490fbdf31f858700d212" name="NumberOfRate" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di806998898670256333" iid="4a3b1b324ec74f84a4fa8e92ff6dabd4" creation-date="04/13/2014 21:50:02" order-index="0" type="entity">
+            <layout ax="181" ay="402" awidth="297" aheight="209" x="181" y="402" width="297" height="209" angle="0" />
+            <class />
+          </item>
+          <item id="di146951909667152446" iid="ff15bebfdf6d4ea089f7429298442445" creation-date="04/01/2014 11:26:26" order-index="8" type="entity">
+            <layout ax="281.853" ay="26.7796" awidth="165" aheight="231" x="281.853" y="26.7796" width="165" height="231" angle="0" />
+            <class />
+          </item>
+          <item id="di600079046315470345" iid="1761018a442a46afb73f670c119339eb" creation-date="04/13/2014 22:31:23" order-index="13" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="447" y1="184" x2="695" y2="312" start-border-pos="0.420380268262062" end-border-pos="0.982520802925113">
+              <points>
+                <point x="447" y="184" />
+                <point x="695" y="312" />
+              </points>
+            </layout>
+            <relation from="di146951909667152446" from-iid="ff15bebfdf6d4ea089f7429298442445" to="di434664191803059293" to-iid="c1549647eafa4ee0bd5d4d6a1da3320b" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di434664191803059293" iid="c1549647eafa4ee0bd5d4d6a1da3320b" creation-date="04/13/2014 22:09:23" order-index="1" type="entity">
+            <layout ax="695.1959" ay="300.358" awidth="285.8041" aheight="172.0645" x="695.1959" y="300.358" width="285.8041" height="172.0645" angle="0" />
+            <class />
+          </item>
+          <item id="di960080363986179470" iid="c904675f49734071ae6733441ace34b6" creation-date="04/13/2014 22:22:59" order-index="3" type="entity">
+            <layout ax="768.4796" ay="101" awidth="146.1487" aheight="73.89919" x="768.4796" y="101" width="146.1487" height="73.89919" angle="0" />
+            <class />
+          </item>
+          <item id="di354393640574740752" iid="6e6c7b24dd17439f91b82457849de4e8" creation-date="04/13/2014 22:23:34" order-index="4" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="29,-4" auto-path="" x1="839" y1="300" x2="841" y2="175" start-border-pos="0.126127615245714" end-border-pos="0.625230202001441">
+              <points>
+                <point x="839" y="300" />
+                <point x="841" y="175" />
+              </points>
+            </layout>
+            <relation from="di434664191803059293" from-iid="c1549647eafa4ee0bd5d4d6a1da3320b" to="di960080363986179470" to-iid="c904675f49734071ae6733441ace34b6" />
+          </item>
+          <item id="di606633245379991414" iid="5acc007bab174197a35e80e2d7792a16" creation-date="04/13/2014 22:26:00" order-index="8" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="478" y1="471" x2="695" y2="420" start-border-pos="0.332582975688734" end-border-pos="0.826487225244113">
+              <points>
+                <point x="478" y="471" />
+                <point x="695" y="420" />
+              </points>
+            </layout>
+            <relation from="di806998898670256333" from-iid="4a3b1b324ec74f84a4fa8e92ff6dabd4" to="di434664191803059293" to-iid="c1549647eafa4ee0bd5d4d6a1da3320b" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="p582967509847313989" name="Produce Session Management" order-index="2" overview-order-index="0" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/14/2014 00:14:27</creation-date>
+          <change-date>04/14/2014 09:32:58</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <tagged-values />
+        <abstract-items>
+          <item id="di430039315373213249" cid="C001" type="class" name="ProduceSessionManagementController" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 21:50:02">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a8204b02207154dbdb11d162fecd006c6941" name="produceSessionRespository" type="IProduceSessionRepository" type-id="Class:di324965047215220368" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="o1449ffe6f25e4dc8a26ea61cf3b8dbde647" name="TodayMenuProduce" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="odb4bb97fe10e42baa18823dbb83d045e656" name="ProduceSessionGenerate" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="o7edc5b0aeefe4ce182a6ec6497b57e11895" name="ProduceSessionGenerate" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="of9263a97f2c247b1ba7ebfaaab6c25be240" name="CreateProduceSession" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oce057525ea2e45d997afb866c20e02a0808" name="CreateProduceSessionWithQRCode" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="of84d2d475e95492d8e3027f8e0a377a9940" name="ProduceSessionHistory" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oc93bcdd6e9df4583b7467041b2b96a23516" name="DeleteProduceSession" type="JsonResult" type-id="JsonResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di563295884646423993" cid="REL012" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/14/2014 00:51:51">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di324916131428974631" to="di260316697350489464">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di324916131428974631" cid="C011" type="class" name="DishItem" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:44:19">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a74f2c6cc2e844121a3f60fbbea6cddd4907" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a58193e081c2145799e65cba7f03b0ea8413" name="QRCode" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ae9ca738c3df1450f94c230cf2bfe9519719" name="Quantity" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aca6ce3a00cd4420c90b6a348332ba9d6259" name="CookingTime" type="DateTime" type-id="Uml.DateTime" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a2adfeaa6462a404098057ea8e9d1cbee316" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di260316697350489464" cid="C002" type="class" name="ProduceSessionRepository" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:09:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ac6e67aa0428249f88f4a605454f9eb7d508" name="_dbContext" type="EWCEntities" type-id="EWCEntities" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="od4adf7e996d64f8dac4337997f576d41159" name="GetDishItemByDate" type="List&lt;DishItem&gt;" type-id="List&lt;DishItem&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o1ff783e5cc6746ec8001e3bae096ed27137" name="GetMenuByDate" type="Menu" type-id="Class:di714671178858654092" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o85d8a27cbe4d490f9222d8231c889d03156" name="LoadDishFromMenu" type="List&lt;Dish&gt;" type-id="List&lt;Dish&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o247c66fda6c84efcbc02ef64089fed68894" name="GetDishItemById" type="DishItem" type-id="Class:di416828862755302918" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oa6031899e1334eabb1dbddd8543c09a624" name="CalculateNumberProducedDishItemOfMenu" type="Integer" type-id="Uml.Integer" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="obd41945ef6404204b13c3d4543a52e3d138" name="CalculateNumberOrderedDishItem" type="Integer" type-id="Uml.Integer" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="oc2c94f8c96384d30bf1e2e6687299a00461" name="GetAvailableIngredientItemForDish" type="List&lt;IngredientItem&gt;" type-id="List&lt;IngredientItem&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o8a76adc547934f86b21cccd628321b6b457" name="ProduceDishItem" type="DishItem" type-id="Class:di416828862755302918" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o859fe5bc0bd24cf48587c8b787f17f71420" name="ProduceSessionGenerate" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="of86495556fea4e87aa7aedce0c4101c1990" name="CreateQRCodeForDishItem" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o4d12a1b2b6fb44d9bfd1a5e99eb55745382" name="DeleteDishItem" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name=".." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di324965047215220368" cid="C005" type="class" name="IProduceSessionRepository" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:22:59">
+            <stereotypes>
+              <stereotype name="abstract" />
+            </stereotypes>
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di418658227450380430" cid="REA001" type="realization" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:23:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di666180826343753364" cid="REL001" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/13/2014 22:26:00">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di430039315373213249" to="di260316697350489464">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di641755267460261744" cid="REL013" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/14/2014 00:53:32">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di230732114785557916" to="di324916131428974631">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di105973928217688933" cid="C014" type="class" name="Ingredient" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:50:45">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a29e113a9b03347e1a81959c9e73e80c5530" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ae3326708fef144899ec9d9f723c9532d243" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a968553030cc84674bea380ea9c3aeb9a795" name="ImageUrl" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a756c7f85694844b3bc0c8c97f5a31342379" name="IsTracibility" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a7984772b683b46858348778e3c766808408" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di692152821898310961" cid="C006" type="class" name="Supplier" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 10:53:34">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a7ece3dccb11d4350b3c4f81297e9957c367" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ab53ed0c66d634c7aa3a9534c5b5cc475823" name="Name" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="abecd1942d390433eaee0624950ff9975283" name="Address" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a4fcaaaa2897a4ef8b757d698b0edcd35230" name="Phone" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a52c8f56f3d1c4091b340ead14ea7312d473" name="Latitude" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aeee9a1918fd74a7a99944a002562156764" name="Longitude" type="Real" type-id="Uml.Real" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a0370acdfa2e04c73863f88332969ad5f617" name="IsAvailalble" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di711669517188390488" cid="REL005" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 15:29:22">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di692152821898310961" to="di105973928217688933">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di230732114785557916" cid="C016" type="class" name="IngredientItem" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="Pf1b98572cb0d4de08e8de097401b915a" creation-date="04/01/2014 14:52:55">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="aa79e8f3573274adb8cd36b8ffe3dabe0753" name="Id" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a6cb589613d9045f8b5b973a63a7740a4702" name="IsAvailable" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+              <attribute id="acfbce03b6fed46af9a1f61b087ca045e831" name="IsDefaultSupplier" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di705758776758732329" cid="C001" type="class" name="TrackDishController" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/14/2014 09:31:02">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a95cd62067b414ba78daa45ce1eb5baa7450" name="_produceSessionRepository" type="IProduceSessionRepository" type-id="Class:di324965047215220368" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="o22f5f738e17446ed9ea19ce3eb5f0fe7797" name="QRCodeScan" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="oc9162f9dbbc942d3a01697967747a5b4920" name="TrackDishItem" type="ActionResult" type-id="ActionResult" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di574776628184531001" cid="REL001" type="relationship" name="" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/14/2014 09:32:03">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <relation from="di260316697350489464" to="di705758776758732329">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di430039315373213249" iid="b18a01819903482cb076c2c734451d83" creation-date="04/13/2014 21:50:02" order-index="0" type="entity">
+            <layout ax="-224" ay="473" awidth="371" aheight="184" x="-224" y="473" width="371" height="184" angle="0" />
+            <class />
+          </item>
+          <item id="di260316697350489464" iid="cd1c986e155943c0999b861ade2fbdee" creation-date="04/13/2014 22:09:23" order-index="1" type="entity">
+            <layout ax="293.1959" ay="373.358" awidth="419.8041" aheight="242.0645" x="293.1959" y="373.358" width="419.8041" height="242.0645" angle="0" />
+            <class />
+          </item>
+          <item id="di324965047215220368" iid="d22941435441482787cda0b751275d32" creation-date="04/13/2014 22:22:59" order-index="3" type="entity">
+            <layout ax="427.4796" ay="182" awidth="146.1487" aheight="73.89919" x="427.4796" y="182" width="146.1487" height="73.89919" angle="0" />
+            <class />
+          </item>
+          <item id="di418658227450380430" iid="dbc43f2e22e1420aace3ca6090d69cf9" creation-date="04/13/2014 22:23:34" order-index="4" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="29,-4" auto-path="" x1="502" y1="373" x2="501" y2="256" start-border-pos="0.124417614649341" end-border-pos="0.623789139299526">
+              <points>
+                <point x="502" y="373" />
+                <point x="501" y="256" />
+              </points>
+            </layout>
+            <relation from="di260316697350489464" from-iid="cd1c986e155943c0999b861ade2fbdee" to="di324965047215220368" to-iid="d22941435441482787cda0b751275d32" />
+          </item>
+          <item id="di666180826343753364" iid="83ccc53e573d43f5a9c896e7bdc72422" creation-date="04/13/2014 22:26:00" order-index="8" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="147" y1="541" x2="293" y2="522" start-border-pos="0.342012073682702" end-border-pos="0.846939480163155">
+              <points>
+                <point x="147" y="541" />
+                <point x="293" y="522" />
+              </points>
+            </layout>
+            <relation from="di430039315373213249" from-iid="b18a01819903482cb076c2c734451d83" to="di260316697350489464" to-iid="cd1c986e155943c0999b861ade2fbdee" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di324916131428974631" iid="ed4f9a3f310a4a1686d918aa613fde38" creation-date="04/01/2014 14:44:19" order-index="10" type="entity">
+            <layout ax="-103.6938" ay="190.5061" awidth="171" aheight="140" x="-103.6938" y="190.5061" width="171" height="140" angle="0" />
+            <class />
+          </item>
+          <item id="di705758776758732329" iid="ad7756ce666843b9b9f3489f2c30914a" creation-date="04/14/2014 09:31:02" order-index="25" type="entity">
+            <layout ax="392" ay="722" awidth="241" aheight="124" x="392" y="722" width="241" height="124" angle="0" />
+            <class />
+          </item>
+          <item id="di641755267460261744" iid="978ff405798a460fbfec6a425cd7aa70" creation-date="04/14/2014 00:53:32" order-index="24" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="-241" y1="258" x2="-104" y2="260" start-border-pos="0.378802350772324" end-border-pos="0.876039396013532">
+              <points>
+                <point x="-241" y="258" />
+                <point x="-104" y="260" />
+              </points>
+            </layout>
+            <relation from="di230732114785557916" from-iid="f739c16c595446d4b5e05dd456f7222c" to="di324916131428974631" to-iid="ed4f9a3f310a4a1686d918aa613fde38" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di574776628184531001" iid="ca85df3202e444be8514c2e64f6469c6" creation-date="04/14/2014 09:32:03" order-index="26" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="507" y1="615" x2="510" y2="722" start-border-pos="0.62282207270193" end-border-pos="0.122485338899605">
+              <points>
+                <point x="507" y="615" />
+                <point x="510" y="722" />
+              </points>
+            </layout>
+            <relation from="di260316697350489464" from-iid="cd1c986e155943c0999b861ade2fbdee" to="di705758776758732329" to-iid="ad7756ce666843b9b9f3489f2c30914a" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di563295884646423993" iid="1c5db182787c423696353fdbcdf93b72" creation-date="04/14/2014 00:51:51" order-index="11" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="67" y1="299" x2="293" y2="400" start-border-pos="0.443763078962054" end-border-pos="0.97239738188605">
+              <points>
+                <point x="67" y="299" />
+                <point x="293" y="400" />
+              </points>
+            </layout>
+            <relation from="di324916131428974631" from-iid="ed4f9a3f310a4a1686d918aa613fde38" to="di260316697350489464" to-iid="cd1c986e155943c0999b861ade2fbdee" />
+            <role-positions start-role="25,15" end-role="25,-15" start-multiplicity="25,-15" end-multiplicity="25,15" />
+          </item>
+          <item id="di105973928217688933" iid="7bc9089a53a54cd7bc9e7e9283b43a5c" creation-date="04/01/2014 14:50:45" order-index="13" type="entity">
+            <layout ax="-618.145" ay="382.2416" awidth="153" aheight="130" x="-618.145" y="382.2416" width="153" height="130" angle="0" />
+            <class />
+          </item>
+          <item id="di230732114785557916" iid="f739c16c595446d4b5e05dd456f7222c" creation-date="04/01/2014 14:52:55" order-index="15" type="entity">
+            <layout ax="-426.718" ay="210.2754" awidth="186" aheight="93" x="-426.718" y="210.2754" width="186" height="93" angle="0" />
+            <class />
+          </item>
+          <item id="di692152821898310961" iid="3a4bed5829b64740834e2fecd352a421" creation-date="04/01/2014 10:53:34" order-index="5" type="entity">
+            <layout ax="-618.374" ay="-49.7744" awidth="154" aheight="187" x="-618.374" y="-49.7744" width="154" height="187" angle="0" />
+            <class />
+          </item>
+          <item id="di711669517188390488" iid="f873d2a153074e8dbbcf3f394aff8ac0" creation-date="04/01/2014 15:29:22" order-index="21" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="10,-10" auto-path="" x1="-541" y1="137" x2="-542" y2="382" start-border-pos="0.624767452091366" end-border-pos="0.124683554655586">
+              <points>
+                <point x="-541" y="137" />
+                <point x="-542" y="382" />
+              </points>
+            </layout>
+            <relation from="di692152821898310961" from-iid="3a4bed5829b64740834e2fecd352a421" to="di105973928217688933" to-iid="7bc9089a53a54cd7bc9e7e9283b43a5c" />
+            <role-positions start-role="18.90792,37.97589" end-role="22.09594,-39.01179" start-multiplicity="21.05186,-32.01586" end-multiplicity="21.9481,27.98789" />
+          </item>
+          <item id="di921855032444073108" iid="21521b1699f74892bb5e4ea31df49f55" creation-date="04/01/2014 15:29:27" order-index="23" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="2,-14" auto-path="" x1="-542" y1="260" x2="-427" y2="258" start-border-pos="0.5" end-border-pos="0.870811954621346">
+              <points>
+                <point x="-542" y="260" />
+                <point x="-427" y="258" />
+              </points>
+            </layout>
+            <relation from="di711669517188390488" from-iid="f873d2a153074e8dbbcf3f394aff8ac0" to="di230732114785557916" to-iid="f739c16c595446d4b5e05dd456f7222c" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="p455336486278204004" name="Utility package" order-index="3" overview-order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="true" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>04/18/2014 12:33:10</creation-date>
+          <change-date>04/18/2014 13:08:04</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <tagged-values />
+        <abstract-items>
+          <item id="di854498323592445261" cid="C001" type="class" name="ConvertStringHelper" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 12:36:23">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a77a7d7ea135748cc83268beb93c88776658" name="ValidChars" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aabbef597985b4669a50c7cf8ce9793c9864" name="hashkey" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="aed1e80fdc6cd40318789c079d6f27eb0693" name="codelength" type="Integer" type-id="Uml.Integer" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations>
+              <operation id="o40978bdf0a8147398a24c91f06e3b58556" name="GetCodeForEmail" type="String" type-id="Uml.String" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o254218c09e4546218018b88351c44940168" name="ConvertShortName" type="String" type-id="Uml.String" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di962426143517572809" cid="C002" type="class" name="FileHelper" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 12:40:31">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations>
+              <operation id="o0924708edef14d0e8bccc5a6f5a1800d892" name="UploadFileToServer" type="String" type-id="Uml.String" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o9877a670e4b54df38300fd6765204732262" name="DeleteFileFromSystem" type="Boolean" type-id="Uml.Boolean" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di763287344710192772" cid="C003" type="class" name="JsonHelper" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 12:44:03">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations>
+              <operation id="od116a12c2bab452f86f094f26b18b65f609" name="JsonSerialize" type="String" type-id="Uml.String" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o9a0bcbc27bc843f1b1b044cd32f28047357" name="JsonDeserialize" type="Object" type-id="Uml.Object" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di799553743169184184" cid="C004" type="class" name="OrderByHelper" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 13:00:20">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations>
+              <operation id="o60d28d5d8ac8429abd66275d12a5716f428" name="OrderBy" type="IEnumerable&lt;T&gt;" type-id="IEnumerable&lt;T&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+              <operation id="o03638f9376e54c3cb0a7704a7e7aa8cc355" name="ApplyOrderBy" type="IQueryable&lt;T&gt;" type-id="IQueryable&lt;T&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <source-codes />
+              </operation>
+              <operation id="o49ce5490a727443abb31346e7902a674488" name="ParseOrderBy" type="IEnumerable&lt;OrderByInfo&gt;" type-id="IEnumerable&lt;OrderByInfo&gt;" visibility="public" abstract="false" virtual="false" static="false">
+                <parameters>
+                  <parameter id="" name="..." type="" type-id="" default-value="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di371537611943132967" cid="C005" type="class" name="OrderByInfo" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 13:07:40">
+            <stereotypes />
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a5f56c18949c847d2b98787d9b006ba5517" name="PropertyName" type="String" type-id="Uml.String" visibility="private" abstract="false" virtual="false" />
+              <attribute id="a35411d48ee294d13929bbd51d98b9bb6903" name="Direction" type="enum" type-id="enum" visibility="private" abstract="false" virtual="false" />
+              <attribute id="ad667e2ba7a5d4e99a3aadabd891d75c1487" name="Initial" type="Boolean" type-id="Uml.Boolean" visibility="private" abstract="false" virtual="false" />
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di914149518544317056" cid="DEP001" type="dependency" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="04/18/2014 13:08:04">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <tagged-values />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di854498323592445261" iid="524f8cbd2ce045ea901287753e2f4da1" creation-date="04/18/2014 12:36:23" order-index="0" type="entity">
+            <layout ax="145" ay="74" awidth="230" aheight="133" x="145" y="74" width="230" height="133" angle="0" />
+            <class />
+          </item>
+          <item id="di763287344710192772" iid="e49e32b93d934f998d202baa0de358db" creation-date="04/18/2014 12:44:03" order-index="2" type="entity">
+            <layout ax="207" ay="290" awidth="206" aheight="84" x="207" y="290" width="206" height="84" angle="0" />
+            <class />
+          </item>
+          <item id="di962426143517572809" iid="76b4e642b8cf4d2499d8bc10378d23c3" creation-date="04/18/2014 12:40:31" order-index="1" type="entity">
+            <layout ax="488" ay="133" awidth="252" aheight="88" x="488" y="133" width="252" height="88" angle="0" />
+            <class />
+          </item>
+          <item id="di799553743169184184" iid="a01b3111fe5245819a166535586f651f" creation-date="04/18/2014 13:00:20" order-index="3" type="entity">
+            <layout ax="615" ay="657" awidth="332" aheight="95" x="615" y="657" width="332" height="95" angle="0" />
+            <class />
+          </item>
+          <item id="di371537611943132967" iid="da348ff246024414adc97d6d3d7f6ed6" creation-date="04/18/2014 13:07:40" order-index="4" type="entity">
+            <layout ax="688" ay="825" awidth="189" aheight="101" x="688" y="825" width="189" height="101" angle="0" />
+            <class />
+          </item>
+          <item id="di914149518544317056" iid="1d1cfa11bcc442edb4668d5c72028d5e" creation-date="04/18/2014 13:08:04" order-index="5" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" name-position="20,-7" auto-path="" x1="781" y1="752" x2="782" y2="825" start-border-pos="0.624789869928934" end-border-pos="0.123946416945685">
+              <points>
+                <point x="781" y="752" />
+                <point x="782" y="825" />
+              </points>
+            </layout>
+            <relation from="di799553743169184184" from-iid="a01b3111fe5245819a166535586f651f" to="di371537611943132967" to-iid="da348ff246024414adc97d6d3d7f6ed6" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>

@@ -1,0 +1,801 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section headcss {
+    <link href="~/Content/backend/assets/stylesheets/plugins/fullcalendar/fullcalendar.css" media="all" rel="stylesheet" type="text/css" />
+     <link href="~/Content/backend/assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/javascripts/plugins/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+    <link href="~/Content/backend/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    
+    
+    @*Style for calendar*@
+    <style>
+    s .connected, .sortable, .exclude, .handles {
+        margin: auto;
+        padding: 0;
+        width: 310px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+        .sortable.grid {
+            overflow: hidden;
+        }
+
+        .connected li, .sortable li, .exclude li, .handles li {
+            list-style: none;
+            /*border: 1px solid #CCC;*/
+            /*background: #F6F6F6;*/
+            font-family: "Tahoma";
+            color: #1C94C4;
+            margin: 5px;
+            padding: inherit;
+            /*max-height:80px;
+            max-width:80px;*/
+            /*height: 22px;*/
+        }
+
+        .dishintop li {
+            list-style: none;
+            margin-right:-10px;
+           height: 50px;
+        width:100px;
+        }
+    .connected li {
+        list-style: none;
+        /*border: 1px solid #CCC;*/
+        /*background: #F6F6F6;*/
+        font-family: "Tahoma";
+        color: #1C94C4;
+        margin: 5px;
+        padding: inherit;
+        max-height: 140px;
+        min-height:130px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+        /*max-width:80px;*/
+        /*height: 22px;*/
+    }
+
+    .handles span {
+        cursor: move;
+    }
+
+    li.disabled {
+        opacity: 0.5;
+    }
+
+    .sortable.grid li {
+        margin-left: 10px;
+        margin-bottom:17px;
+        line-height: inherit;
+        float: left;
+        /*margin:auto;*/
+        width: 100px;
+        height: 110px;
+        text-align: center;
+    }
+     .sortableInfo.grid li {
+        margin-left: 10px;
+        margin-bottom:17px;
+        line-height: inherit;
+        float: left;
+        /*margin:auto;*/
+        border:solid;
+        width: 150px;
+        height: 155px;
+        text-align: center;
+    }
+        sortablesuggest grid li {
+        width: 130px;
+        text-align: center;
+        float: left;
+        }
+
+
+    li.highlight {
+        background: #FEE25F;
+    }
+
+    #connected {
+        width: 440px;
+        overflow: hidden;
+        margin: auto;
+    }
+
+    .connected {
+        float: none;
+        width: 220px;
+    }
+
+        .connected.no2 {
+            float: none;
+        }
+
+    li.sortable-placeholder {
+        border: 1px dashed #CCC;
+        background: none;
+    }
+
+    .fc-button-inner {
+        /*display:none;*/
+    }
+    .datepicker.dropdown-menu {
+    z-index: 2000;
+}
+        .greyclass .fc-event-inner {
+            color:black;
+       background-color:#ddd !important;
+        }
+        .bootstrap-timepicker .fa  {
+           
+        }
+        .fc-header-left {
+            width:200px !important;
+        }
+</style>
+
+}
+<!-- Calendar page-->
+<div class='col-xs-12'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class='page-header'>
+                <h1 class='pull-left'>
+                    <i class='icon-calendar'></i>
+                    <span>Quản Lý Thực Đơn</span>
+                </h1>
+             
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+       
+    <div id='external-events' style="margin-left:10px">
+                <label style="color: black;margin-left:5px;"> Thực Đơn Mẫu: </label>
+         @if (Session["MenuId"] == null)
+         {
+             <div style="display:inline">Chưa có</div>
+         }
+         else
+         {
+         <div class='external-event label label-info' style="cursor:pointer" menu-id="@Session["MenuId"]"> @Session["MenuTitle"]</div>
+         }
+                
+
+ @*       <div class="box-quick-link green-background "  onclick="Suggest()" style="max-height:30px;max-width:60px" >
+                    <a href="#">
+                      <div class="header">
+                        <div class="icon-star"></div>
+                      </div>
+                      <div class="content">Thống Kê</div>
+                    </a>
+                  </div>*@
+                
+              <label style="margin-left:40px"> Thống Kê: </label> <button class="btn btn-success" onclick="Suggest()"><i class="icon-bar-chart icon-large" ></i></button>
+      
+
+            </div>
+        
+            <div class='box'>
+                <div class='box-header'>
+                    <div class='title'></div>
+                </div>
+                <div class='box-content' >
+                    <div class='full-calendar-demo' id="calendar"></div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+
+ <!-- Modal Create myModal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ </div>
+
+  <!-- Modal Edit myModal1 -->
+<div class="modal fade" id="myModal1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ </div>
+
+<!--Model Suggest Menu-->
+<div class="modal fade" id="SuggestMenu1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ </div>
+
+<!--Model View Menu info-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ </div>
+<!--Model Menu manipulation -->
+<div class="modal fade" id="choice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content" style="height: 200px;margin-top: 200px;border: solid 5px rgba(0,0,0,.7);border-radius:8px; box-shadow:0 3px 3px rgba(0,0,0,.3)" >
+    <input id="inputgetdate1" hidden="hidden" />
+    <input id="eventId" hidden="hidden" />
+    <input id="eventTitle" hidden="hidden" />
+            
+                       <input type="hidden" id="choose_move" value="" />
+            <ul  style="width:160px; height:160px; margin:20px;padding-left: 60px;font-family: sans-serif; list-style:none">
+               
+                <li style="margin-top:10px"><button class="btn btn-primary btn-xl btn-animate-demo" style="width:100px" onclick="moveMenu()">Di Chuyển</button></li>
+                <li style="margin-top:20px"> <button class="btn btn-success btn-xl btn-animate-demo" style="width:100px" onclick="copyMenu()">Sao Chép</button> </li>
+                <li style="margin-top:20px">   <button class="btn btn-danger btn-xl btn-animate-demo" style="width:100px"  data-dismiss="modal" onclick="Set_Choose()">Đóng</button> </li>    
+            </ul>
+                         
+    
+            
+ </div>
+        </div> 
+
+</div>
+@*Choice info modal*@
+<div class="modal fade" id="choiceInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content" style="height: 150px;margin-top: 200px;border: solid 5px rgba(0,0,0,.7);border-radius:8px; box-shadow:0 3px 3px rgba(0,0,0,.3)" >
+    <input id="inputgetdateInfo" hidden="hidden" />
+    <input id="eventIdInfo" hidden="hidden" />
+    <input id="eventTitleInfo" hidden="hidden" />
+            
+                       <input type="hidden" id="choose_moveInfo" value="" />
+            <ul  style="width:160px; height:160px; margin:20px;padding-left: 60px;font-family: sans-serif; list-style:none">
+               
+                
+                <li style="margin-top:20px"> <button class="btn btn-success btn-xl btn-animate-demo" style="width:100px" onclick="copyMenuInfo()">Sao Chép</button> </li>
+                <li style="margin-top:20px">   <button class="btn btn-danger btn-xl btn-animate-demo" style="width:100px"  data-dismiss="modal" onclick="Set_ChooseInfo()">Đóng</button> </li>    
+            </ul>
+                         
+    
+            
+ </div>
+        </div> 
+
+</div>
+
+
+
+@section scripts {
+
+    <script src="~/Content/backend/assets/javascripts/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+ 
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/alertify/awesomechart.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap_datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/backend/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    
+
+    
+    @*Calendar Scrip*@
+    <script>
+        var Script = function () {
+
+
+            /* initialize the external events
+             -----------------------------------------------------------------*/
+
+            $('#external-events div.external-event').each(function () {
+
+
+                // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                // it doesn't need to have a start or end
+                var eventObject = {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    menuId: $(this).attr("menu-id")
+                };
+
+                // store the Event Object in the DOM element so we can get to it later
+                $(this).data('eventObject', eventObject);
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+
+            });
+
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek'
+                },
+
+                //Day Click:
+                dayClick: function (date, allDay, jsEvent, view) {
+                    var show = true;
+                    var check = true;
+
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+
+                    if (dd < 10) {
+                        dd = '0' + dd
+                    }
+
+                    if (mm < 10) {
+                        mm = '0' + mm
+                    }
+
+                    today = mm + '/' + dd + '/' + yyyy;
+
+
+
+                    if (date.getFullYear() < yyyy) {
+
+                        check = false;
+
+                    }
+                    else if (date.getFullYear() == yyyy & date.getMonth() + 1 < mm) {
+
+                        check = false;
+
+                    }
+                    else if (date.getFullYear() == yyyy & date.getMonth() + 1 == mm & date.getDate() < dd) {
+
+                        check = false;
+                    }
+
+                    date.getDate();
+
+                    $('#calendar').fullCalendar('clientEvents', function (event) {
+                        if (+event.start === +date || check == false) {
+                            show = false;
+                        }
+                    });
+                    if (show == true) {
+                        $.ajax({
+                            url: "/Admin/MenuManagement/MenuCreate",
+                            type: 'GET',
+                            data: { dt: DateToStr(date) },
+                            
+                            success: function (data) {
+                                
+                                $("#myModal").html(data);
+                                $("#myModal").modal('show');
+                               
+                            },
+                            error: function (data) {
+                                alert("Failed");
+                            },
+                        });
+           
+                    }
+
+                },
+                //$('#myModal').modal('show');
+                eventClick: function (calEvent, jsEvent, view) {
+                    //Check old menu:
+                    var check = true;
+                    var date = calEvent.start;
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+                    if (date.getFullYear() < yyyy) {
+
+                        check = false;
+
+                    }
+                    else if (date.getFullYear() == yyyy & date.getMonth() + 1 < mm) {
+
+                        check = false;
+
+                    }
+                    else if (date.getFullYear() == yyyy & date.getMonth() + 1 == mm & date.getDate() < dd) {
+
+                        check = false;
+                    }
+
+
+
+
+                    if (check == true) {
+                        $.ajax({
+                            url: "/Admin/MenuManagement/MenuDetails",
+                            type: 'GET',
+                            data: { Id: calEvent.id },
+                            success: function (data) {
+                                $("#myModal1").html(data);
+                                $("#myModal1").modal('show');
+
+
+                            },
+                            error: function (data) {
+                                alert("Failed");
+                            },
+                        });
+                    } else {
+
+                        $.ajax({
+                            url: "/Admin/MenuManagement/MenuInfo",
+                            type: 'GET',
+                            data: { Id: calEvent.id },
+                            success: function (data) {
+                                $("#myModal1").html(data);
+                                $("#myModal1").modal('show');
+
+
+                            },
+                            error: function (data) {
+                                alert("Failed");
+                            },
+                        });
+                    }
+                    //$("#inputgetMenu").val(calEvent.id);
+
+                },
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                dropAccept: '.external-event',
+                drop: function (date, allDay) { // this function is called when something is dropped
+
+                    function DateToStr(date) {
+                        var dateStr = padStr(1 + date.getMonth()) + "-"
+                                     + padStr(date.getDate()) + "-"
+                                     + padStr(date.getFullYear()) + " "
+                                    + padStr(date.getHours()) + ":"
+                                    + padStr(date.getMinutes()) + ":"
+                                    + padStr(date.getSeconds());
+                        return dateStr;
+                    }
+                   
+                    //check ngay trong qua khu
+                    var check = true;
+                    var oldTime = new Date(date.getTime());
+                    //alert(date);
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+                    if (oldTime.getFullYear() < yyyy) {
+
+                        check = false;
+
+                    }
+                    else if (oldTime.getFullYear() == yyyy & oldTime.getMonth() + 1 < mm) {
+
+                        check = false;
+
+                    }
+                    else if (oldTime.getFullYear() == yyyy & oldTime.getMonth() + 1 == mm & oldTime.getDate() < dd) {
+
+                        check = false;
+                    }
+                    /////////
+                    var originalEventObject = $(this).data('eventObject');
+
+                    $.ajax({
+                        url: "/Admin/MenuManagement/CheckDate",
+                        type: "POST",
+                        data: { dt: DateToStr(date) },
+                        success: function (result) {
+
+                            if (result == "True") {
+                                if (check == true) {
+                                    alertify.confirm("Bạn có muốn sao chép menu ngày " + +date.getDate() + "/" + (date.getMonth() + 1) + " từ menu mẫu?", function (e) {
+                                        if (e) {
+
+                                            // we need to copy it, so that multiple events don't have a reference to the same object
+                                            var copiedEventObject = $.extend({}, originalEventObject);
+
+                                            // assign it the date that was reported
+                                            copiedEventObject.start = date;
+                                            copiedEventObject.allDay = allDay;
+                                            //alert(copiedEventObject.menuId);
+
+                                            // render the event on the calendar
+                                            // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                                            $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+
+                                            console.log("loi");
+                                            // create menu when drop
+                                            var Id = copiedEventObject.menuId;
+                                            var starttime = copiedEventObject.start;
+                                            $.ajax({
+                                                url: "/Admin/MenuManagement/CopyMenuInCallendar",
+                                                type: "POST",
+                                                data: { Id: Id, dt: DateToStr(starttime) },
+                                                success: function (result) {
+                                                    window.location.reload();
+                                                }
+                                            });
+
+
+                                        } else { }
+                                    });
+                                } else {
+                                    alertify.error("Bạn không thể thay đổi thông tin trong quá khứ, hãy chọn ngày khác sau ngày " + dd + "/" + mm);
+                                }
+                              }
+
+                            else {
+                                alertify.error("Menu ngày " + date.getDate() + "/" + (date.getMonth() + 1) + " đã có sẵn");
+                                revertFunc();
+                                console.log("re1");
+                                console.log("end:" + event.start);
+                            }
+                        }
+                    });
+
+
+
+                },
+                eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {
+
+                    var Id = event.id;
+                    var starttime = event.start;
+                   
+                    
+                   
+                    var title = event.title;
+                    //check day was had event or not
+                    //console.log("begin:" + event.start);
+                    //console.log(oldTime);
+
+                    var check = true;
+                    var oldTime = new Date(starttime.getTime());
+                    oldTime.setDate(oldTime.getDate() - dayDelta);
+                    //alert(date);
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+                    if (oldTime.getFullYear() < yyyy) {
+
+                        check = false;
+
+                    }
+                    else if (oldTime.getFullYear() == yyyy & oldTime.getMonth() + 1 < mm) {
+
+                        check = false;
+
+                    }
+                    else if (oldTime.getFullYear() == yyyy & oldTime.getMonth() + 1 == mm & oldTime.getDate() < dd) {
+
+                        check = false;
+                    }
+
+
+                    var checkpast = true;
+                    var droptime = new Date(starttime.getTime());
+                   
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
+                    if (droptime.getFullYear() < yyyy) {
+
+                        checkpast = false;
+
+                    }
+                    else if (droptime.getFullYear() == yyyy & droptime.getMonth() + 1 < mm) {
+
+                        checkpast = false;
+
+                    }
+                    else if (droptime.getFullYear() == yyyy & droptime.getMonth() + 1 == mm & droptime.getDate() < dd) {
+
+                        checkpast = false;
+                    }
+
+
+
+
+
+                    $.ajax({
+                        url: "/Admin/MenuManagement/CheckDate",
+                        type: "POST",
+                        data: { dt: DateToStr(starttime) },
+                        success: function (result) {
+
+                            if (result == "True") {
+                                if (checkpast == true) {
+
+
+                                    if (check == true) {
+                                        $('#choice').modal('show');
+                                        $("#inputgetdate1").val(starttime);
+                                        $("#eventId").val(Id);
+                                        $("#eventTitle").val(title);
+                                        var myVar = setInterval(function () {
+                                            if ($('#choose_move').val() == 'cancel') {
+                                                $('#choose_move').val("");
+                                                revertFunc();
+                                                clearInterval(myVar);
+                                            }
+                                        }, 100);
+                                    }
+
+                                    else {
+                                        $('#choiceInfo').modal('show');
+                                        $("#inputgetdateInfo").val(starttime);
+                                        $("#eventIdInfo").val(Id);
+                                        $("#eventTitleInfo").val(title);
+                                        var myVarInfo = setInterval(function () {
+                                            if ($('#choose_moveInfo').val() == 'cancel') {
+                                                $('#choose_moveInfo').val("");
+                                                revertFunc();
+                                                clearInterval(myVarInfo);
+                                            }
+                                        }, 100);
+
+                                    }
+
+
+                                }
+                                else {
+                                    alertify.error("Bạn không thể thay đổi thông tin trong quá khứ, hãy chọn ngày khác sau ngày " + dd + "/" + mm);
+                                    revertFunc();
+                                }
+
+                            }
+
+                            else {
+                                alertify.error("Menu ngày " + starttime.getDate() + "/" + (starttime.getMonth() + 1) + " đã có sẵn");
+                                revertFunc();
+                                console.log("re1");
+                                console.log("end:" + event.start);
+                                
+                            }
+                        }
+                    });
+                
+                    
+
+                },
+                
+               
+
+
+                eventRender: function (calev, elt, view) {
+                    var d = $('#calendar').fullCalendar('getDate');
+                    if (calev.start.getTime() < d.subTime(1))
+                        elt.addClass("greyclass");
+                },
+                eventSources: [
+
+                     {
+                         url: '/Admin/menumanagement/ListAllMenuInCallendar',
+                         //error: function () {
+                         //    alert('there was an error while fetching events!');
+                         //},
+                         //complete: function (data) {
+                         //    alert('Cp:' + JSON.stringify(data));
+                         //},           
+                         color: 'yellow',    // an option!
+                         textColor: 'black'  // an option!
+                     }
+
+                ]
+            });
+
+
+        }();
+
+        function DateToStr(date) {
+            var dateStr = padStr(1 + date.getMonth()) + "-"
+                         + padStr(date.getDate()) + "-"
+                         + padStr(date.getFullYear()) + " "
+                        + padStr(date.getHours()) + ":"
+                        + padStr(date.getMinutes()) + ":"
+                        + padStr(date.getSeconds());
+            return dateStr;
+        }
+        function padStr(i) {
+            return (i < 10) ? "0" + i : "" + i;
+        }
+        function Set_Choose() {
+            $('#choose_move').val('cancel');
+        }
+        function Set_ChooseInfo() {
+            $('#choose_moveInfo').val('cancel');
+        }
+        //choice model
+
+        function copyMenuInfo() {
+            
+            var selectDate = new Date($("#inputgetdateInfo").val());
+            var MenuId = $("#eventIdInfo").val();
+            var MenuTitle = $("#eventTitleInfo").val();
+
+            alertify.confirm("Bạn có muốn sao chép " + MenuTitle + " sang ngày " + selectDate.getDate() + "/" + (selectDate.getMonth() + 1) + " ?", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/MenuManagement/CopyMenuInCallendar",
+                        type: "POST",
+                        data: { Id: MenuId, dt: DateToStr(selectDate) },
+                        success: function (result) {
+                            window.location.reload();
+                        }
+                    });
+                } else { }
+            });
+        }
+
+        function copyMenu() {
+            var selectDate = new Date($("#inputgetdate1").val());
+            var MenuId = $("#eventId").val();
+            var MenuTitle = $("#eventTitle").val();
+
+            alertify.confirm("Bạn có muốn sao chép " + MenuTitle + " sang ngày " + selectDate.getDate() + "/" + (selectDate.getMonth() + 1) + " ?", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/MenuManagement/CopyMenuInCallendar",
+                        type: "POST",
+                        data: { Id: MenuId, dt: DateToStr(selectDate) },
+                        success: function (result) {
+                            window.location.reload();
+                        }
+                    });
+                } else { }
+            });
+        }
+        function moveMenu() {
+
+            var selectDate = new Date($("#inputgetdate1").val());
+            var eventId = $("#eventId").val();
+            var MenuTitle = $("#eventTitle").val();
+            alertify.confirm("Bạn có muốn di chuyển " + MenuTitle + " sang ngày " + selectDate.getDate() + "/" + (selectDate.getMonth() + 1) + " ?", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/MenuManagement/MoveMenuInCallendar",
+                        type: "POST",
+                        data: { Id: eventId, dt: DateToStr(selectDate) },
+                        success: function (result) {
+                            window.location.reload();
+
+                        }
+                    });
+                } else { }
+            });
+        }
+
+
+        ///Suggest menu:
+        function Suggest() {
+            $.ajax({
+                url: "/Admin/MenuManagement/SuggestMenu",
+                type: "POST",
+                data: {},
+                success: function (result) {
+                    $("#SuggestMenu1").html(result);
+                    $("#SuggestMenu1").modal('show');
+                    //$("#SuggestMenu").html();
+                },
+                error: function () {
+                    alert("Failed");
+                },
+            });
+        }
+
+
+       
+        Date.prototype.subTime = function (d) {
+            this.setDate(this.getDate() - d);
+            return this;
+        }
+    </script>
+
+
+
+}

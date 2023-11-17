@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta content='text/html;charset=utf-8' http-equiv='content-type'>
+    <meta content='Trang quản lý hệ thống cung cấp thức ăn ngon, tươi sạch, đảm bảo vệ sinh an toàn thực phẩm.' name='description'>
+    
+    <link href='~/Content/backend/assets/images/meta_icons/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href='~/Content/backend/assets/images/meta_icons/apple-touch-icon.png' rel='apple-touch-icon-precomposed'>
+    <link href='~/Content/backend/assets/images/meta_icons/apple-touch-icon-57x57.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+    <link href='~/Content/backend/assets/images/meta_icons/apple-touch-icon-72x72.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+    <link href='~/Content/backend/assets/images/meta_icons/apple-touch-icon-114x114.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+    <link href='~/Content/backend/assets/images/meta_icons/apple-touch-icon-144x144.png' rel='apple-touch-icon-precomposed' sizes='144x144'>
+
+    <link href="~/Content/backend/assets/stylesheets/bootstrap/bootstrap.css" media="all" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/backend/assets/stylesheets/css")
+    @RenderSection("headcss", required: false)
+    <!--[if lt IE 9]>
+      <script src="assets/javascripts/ie/html5shiv.js" type="text/javascript"></script>
+      <script src="assets/javascripts/ie/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body class='contrast-red without-footer'>
+    <header>
+        <nav class='navbar navbar-default'>
+            <a class='navbar-brand' href='index.html'>
+                <img width="120" height="30" class="logo" alt="Flatty" src="~/Content/backend/assets/images/logo.png" />
+                <img width="30" height="30" class="logo-xs" alt="Flatty" src="~/Content/backend/assets/images/logo_xs.png" />
+            </a>
+            <a class='toggle-nav btn pull-left' href='#'>
+                <i class='icon-reorder'></i>
+            </a>
+            <ul class='nav'>
+                <li class='dropdown dark user-menu'>
+                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                        <img width="23" height="23" alt="Mila Kunis" src="~/Content/backend/assets/images/avatar.jpg" />
+                        <span class='user-name'>Nhan Nguyen</span>
+                        <b class='caret'></b>
+                    </a>
+                    <ul class='dropdown-menu'>
+                        <li>
+                            <a href='user_profile.html'>
+                                <i class='icon-user'></i>
+                                Profile
+                </a>
+                        </li>
+                        <li>
+                            <a href='user_profile.html'>
+                                <i class='icon-cog'></i>
+                                Settings
+                </a>
+                        </li>
+                        <li class='divider'></li>
+                        <li>
+                            <a href='sign_in.html'>
+                                <i class='icon-signout'></i>
+                                Sign out
+                </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id='wrapper'>
+        <div id='main-nav-bg'>
+            
+        </div>
+        <nav id='main-nav'>
+            <div class='navigation'>
+                <div class='search'>
+                    <form action='http://www.bublinastudio.com/flattybs3/search_results.html' method='get'>
+                        <div class='search-wrapper'>
+                            <input value="" class="search-query form-control" placeholder="Search..." autocomplete="off" name="q" type="text" />
+                            <button class='btn btn-link icon-search' name='button' type='submit'></button>
+                        </div>
+                    </form>
+                </div>
+                <ul class='nav nav-stacked'>
+                    <li class=''>
+                        <a href='/Admin/Dashboard/Index'>
+                            <i class='icon-dashboard'></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/admin/don-hang'>
+                            <i class='icon-bookmark'></i>
+                            <span>Đơn Hàng</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/Admin/MenuManagement/Calendar'>
+                            <i class='icon-book'></i>
+                            <span>Thực Đơn</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/Admin/ProduceSessionManagement/TodayMenuProduce'>
+                            <i class='icon-barcode'></i>
+                            <span>Phiên Chế Biến</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/Admin/DishManagement/Index'>
+                            <i class='icon-food'></i>
+                            <span>Món Ăn</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/Admin/Supplier/Index'>
+                            <i class='icon-truck'></i>
+                            <span>Nhà Cung Cấp</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a href='/Admin/IngredientManagement/Index'>
+                            <i class='icon-leaf'></i>
+                            <span>Thành Phần</span>
+                        </a>
+                    </li>
+                    <li class=''>
+                        <a class="dropdown-collapse" href="#"><i class='icon-group'></i>
+                            <span>Người dùng</span>
+                            <i class='icon-angle-down angle-down'></i>
+                        </a>
+                        <ul class='nav nav-stacked'>
+                            <li class=''>
+                                <a href='/Admin/UserManagerment/Index?RoleId=2'>
+                                    <i class='icon-smile'></i>
+                                    <span>Đầu Bếp</span>
+                                </a>
+                            </li>
+                            <li class=''>
+                                <a href='/Admin/UserManagerment/Index?RoleId=3'>
+                                    <i class='icon-smile'></i>
+                                    <span>Nhân Viên</span>
+                                </a>
+                            </li>
+                            <li class=''>
+                                <a href='/Admin/UserManagerment/Index?RoleId=4'>
+                                    <i class='icon-smile'></i>
+                                    <span>Khách Hàng</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section id='content'>
+            <div class='container'>
+                <div class='row' id='content-wrapper'>
+                    <div class='col-xs-12'>
+                        @RenderBody()
+                    </div>
+                </div>
+                <footer id='footer' style="display:block">
+                    <div class='footer-wrapper'>
+                        <div class='row'>
+                            <div class='col-sm-6 text'>
+                                Copyright © 2014 Eat With Chef
+                            </div>
+                            <div class='col-sm-6 buttons'>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+    </div>
+    <script src="~/Content/backend/assets/javascripts/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/jquery/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/jquery/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/bootstrap/bootstrap.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/theme.js" type="text/javascript"></script>
+    <script src="~/Content/backend/assets/javascripts/demo.js" type="text/javascript"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

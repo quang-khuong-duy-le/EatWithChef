@@ -1,0 +1,156 @@
+﻿@model EatWithChef.Areas.Admin.Models.ListProduceSessionGenerateModel
+@{
+    int counter = 0;
+    string even_odd = "";
+}
+
+@if (Model == null)
+{ 
+    <div class="alert alert-block alert-danger fade in">
+        Lỗi hệ thống! Xin thử lại sau.
+    </div>
+}
+else if (Model.ListCreateProduceSession.Count == 0)
+{ 
+    <div class="alert alert-info fade in">
+        Chưa có đơn đặt hàng mới nào!
+    </div>
+}
+else
+{
+    <div class="adv-table">
+        <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <table class="display table table-bordered table-striped dataTable" id="produce_generate_table" aria-describedby="dynamic-table_info">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 70px; vertical-align: middle">
+                            <input type="checkbox" class="check-all" checked /></th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 204px; vertical-align: middle">Món ăn</th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px; vertical-align: middle">
+                            <center>Danh mục</center>
+                        </th>
+                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 130px; vertical-align: middle">
+                            <center>Hình ảnh</center>
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px; vertical-align: middle">
+                            <center>Số lượng nấu theo đơn hàng</center>
+                        </th>
+                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 80px; vertical-align: middle">
+                            <center>Nguồn gốc</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th rowspan="1" colspan="1">&nbsp;</th>
+                        <th rowspan="1" colspan="1">Món ăn</th>
+                        <th rowspan="1" colspan="1">
+                            <center>Danh mục</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Hình ảnh</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Số lượng nấu theo đơn hàng</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Nguồn gốc</center>
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    @foreach (var produceSession in Model.ListCreateProduceSession)
+                    {
+                        counter++;
+                        if (counter % 2 == 1)
+                        {
+                            even_odd = "odd";
+                        }
+                        else
+                        {
+                            even_odd = "even";
+                        }
+                        <tr class="@even_odd">
+                            @if (produceSession.ListIngredientWithSupplier.Count != 0)
+                            {
+                                <td class=" ">
+                                    <input type="checkbox" name="selected_produce_session" checked />
+                                </td>
+                            }
+                            else
+                            {
+                                <td class=" "><span style="color:#b94a48;">Chưa có nguyên liệu</span></td>
+                            }
+                            <td class=" ">@produceSession.Dish.Name</td>
+                            <td class=" ">
+                                <center>@produceSession.Dish.DishCategory.Name</center>
+                            </td>
+                            <td class=" ">
+                                <center><img class="small-thumb-generate" src="@produceSession.Dish.Image" width="40px" height="40px" /></center>
+                            </td>
+                            @if (produceSession.ListIngredientWithSupplier.Count != 0)
+                            {
+                                <td class=" ">
+                                    <center><input type="text" style="width:45px" value="@produceSession.ProduceQuantity" class="quantity"/></center>
+                                </td>
+                                <td class=" ">
+                                    <center><div class="btn btn-primary btn-success" data-id="@produceSession.Dish.Id"><i class="icon-truck"></i></div></center>
+                                </td>
+                            }
+                            else
+                            {
+                                <td class=" ">
+                                    <center><input type="text" style="width:45px" readonly value="@produceSession.ProduceQuantity" /></center>
+                                </td>
+                                <td class=" ">
+                                    <center><div class="btn btn-primary btn-success" style="opacity:0.5" data-id="@produceSession.Dish.Id"><i class="icon-truck"></i></div></center>
+                                </td>
+                            }
+                        </tr>
+                        
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="pull-right">
+        <button class="btn btn-primary" type="button" onclick="GenerateProduceSession()" style="margin: 10px 0px 5px 90px"><i class="icon-food"></i>&nbsp;Chế biến</button>
+        <p class="alert-danger" style="visibility: hidden">Lỗi hệ thống! Xin hãy thử lại sau.</p>
+    </div>
+    
+    foreach (var produceSession in Model.ListCreateProduceSession)
+    {
+        if (produceSession.ListIngredientWithSupplier.Count != 0)
+        {
+            <div id="ingredients_produce_generate_@produceSession.Dish.Id" style="display:none;">
+                <table>
+                    @foreach (var ingredientWithSupplier in produceSession.ListIngredientWithSupplier)
+                    { 
+                        <tr>
+                            <td></td>
+                            <td>Chọn Nhà cung cấp cho <strong>@ingredientWithSupplier.Name</strong></td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-success">@ingredientWithSupplier.Name</span></td>
+                            <td>
+                                <select multiple="" name="ingredient_item_generate_@produceSession.Dish.Id" style="width: 300px" class="populate select2-offscreen" tabindex="-1" default-ingredient-item="@ingredientWithSupplier.DefaultIngredientItem">
+                                    @foreach (var supplier in ingredientWithSupplier.ListSupplier)
+                                    {
+                                        <option value="@supplier.IngredientItemID">@supplier.Name</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div id="ingredients_produce_generate_@produceSession.Dish.Id" style="display:none;">
+                <p><span style="color:#b94a48;">Chưa có nguyên liệu</span></p>
+            </div>
+        }
+    }
+}

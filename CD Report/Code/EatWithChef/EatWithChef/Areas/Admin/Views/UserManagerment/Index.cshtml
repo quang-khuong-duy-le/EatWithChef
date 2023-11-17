@@ -1,0 +1,1163 @@
+﻿@model EatWithChef.Areas.Admin.Models.UserProfileModel
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section headcss {
+    <link href="~/Content/backend/jquery-tabs/css/normalize.css" rel="stylesheet" />
+    <link href="~/Content/backend/jquery-tabs/css/jquery.steps.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/ionRangeSlider-1.9.0/css/jquery-ui.css" rel="stylesheet" />
+    <style>
+        .content.clearfix { height: 680px; }
+    </style>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-edit"></i>
+                @if (Model.RolebyId.RoleId == 2)
+                {
+                    <span>Quản Lý Đầu bếp</span>
+                }
+                else if (Model.RolebyId.RoleId == 3)
+                { 
+                    <span>Quản Lý Nhân viên</span>
+                }
+                else
+                {
+                    <span>Quản Lý Khách hàng</span>
+                }
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <input type="hidden" id="roleid" value="@Model.RolebyId.RoleId" />
+    <input type="hidden" id="rolename" value="@Model.RolebyId.RoleName" />
+
+    @*Modal Create*@
+    <div class="modal fade" id="ModalAddnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    @*Modal Create Cheft*@
+    <div class="modal fade" id="ModalAddChef" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="height: 700px;">
+            <div class="modal-content" style="min-height: 500px; max-height: 750px;">
+                <div class="modal-header">
+                    <button id="buttonAddChef" onclick="closepopup()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Thêm đầu bếp</h4>
+                </div>
+                <div class="modal-body row" style="max-width: 800px; height: 630px">
+                    <div id="wizard">
+                        <h2>Thông tin</h2>
+                        <section>
+                            <div id="modalCheftInfo">
+                            </div>
+                        </section>
+                        <h2>Kĩ năng</h2>
+                        <section style="padding-top: 0px;">
+                            <div id="ModalIngreSup" style="width: 560px;">
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Kĩ năng</label>
+                                    <select id="skill1" class="form-control xsmall" style="display: inline; width: auto; margin-right: 4px; margin-top: 18px; margin-bottom: 10px">
+                                        <option value="0" data-id="0" data-value="Chưa có" selected>Chưa có</option>
+                                        @foreach (var skill in Model.ListSkill)
+                                        {
+                                            <option data-id="@skill.Id" data-value="@skill.SkillName" value="@skill.Id">@skill.SkillName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Điểm</label>
+                                    <input id="scoreskill1" type="text" name="" value="" class="form-control" style="width: 50px; display: inline; margin-left: 15px" />
+                                    <div id="scoreskill11" style="width: 430px; display: inline-flex; margin-left: 10px"></div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Kĩ năng</label>
+                                    <select id="skill2" class="form-control xsmall" style="display: inline; width: auto; margin-right: 4px; margin-top: 18px; margin-bottom: 10px">
+                                        <option value="0" selected>Chưa có</option>
+                                        @foreach (var skill in Model.ListSkill)
+                                        {
+                                            <option value="@skill.Id">@skill.SkillName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Điểm</label>
+                                    <input id="scoreskill2" type="text" name="" value="" class="form-control" style="width: 50px; display: inline; margin-left: 15px" />
+                                    <div id="scoreskill22" style="width: 430px; display: inline-flex; margin-left: 10px"></div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Kĩ năng</label>
+                                    <select id="skill3" class="form-control xsmall" style="display: inline; width: auto; margin-right: 4px; margin-top: 18px; margin-bottom: 10px">
+                                        <option value="0" selected>Chưa có</option>
+                                        @foreach (var skill in Model.ListSkill)
+                                        {
+                                            <option value="@skill.Id">@skill.SkillName</option>
+                                        }
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Điểm</label>
+                                    <input id="scoreskill3" type="text" name="" value="" class="form-control" style="width: 50px; display: inline; margin-left: 15px" />
+                                    <div id="scoreskill33" style="width: 430px; display: inline-flex; margin-left: 10px"></div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <label>Kĩ năng</label>
+                                    <select id="skill4" class="form-control xsmall" style="display: inline; width: auto; margin-right: 4px; margin-top: 18px; margin-bottom: 10px">
+                                        <option value="0" selected>Chưa có</option>
+                                        @foreach (var skill in Model.ListSkill)
+                                        {
+                                            <option value="@skill.Id">@skill.SkillName</option>
+                                        }
+                                    </select>
+
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label>Điểm</label>
+                                    <input id="scoreskill4" type="text" name="" value="" class="form-control" style="width: 50px; display: inline; margin-left: 15px" />
+                                    <div id="scoreskill44" style="width: 430px; display: inline-flex; margin-left: 10px"></div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0px; height: 88px">
+                                    <p id="ErrorMessage" class="alert-danger" style="margin-top: 3px; width: 200px; visibility: hidden; font-size: large">Cần có ít nhất 1 kĩ năng!</p>
+                                </div>
+                                <button class="btn btn-primary" type="button" onclick="$('#wizard').steps('previous');"><i class=" icon-long-arrow-left"></i>Trở lại</button>
+                                <div class="pull-right" style="margin-right: 20px">
+                                    <button class="btn btn-primary" type="button" onclick="AddNewChef()">Thêm <i class=" icon-plus-sign"></i></button>
+                                    <button id="closeadd" type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Modal Update User *@
+    <div class="modal fade" id="ModalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    @*Modal Edit Chef*@
+    <div class="modal fade" id="ModalEditChef" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    @*Modal Edit Customer*@
+    <div class="modal fade" id="ModalEditCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+
+    @*Modal Role*@
+    <div class="modal fade" id="ModalRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+
+    @*Table User*@
+    <div class="col-md-12">
+        <div class="panel" style="">
+            <div class="clearfix">
+                <div style="padding-left: 15px; float: left; margin-right: 15px; margin-bottom: 5px; margin-top: 15px">
+                    @if (Model.RolebyId.RoleId == 4)
+                    {
+
+                    }
+                    else if (Model.RolebyId.RoleId == 2)
+                    {
+                        <button id="" class="btn btn-primary" onclick="showmodalAddChef()">
+                            Thêm mới <i class="icon-plus-sign"></i>
+                        </button>
+                    }
+                    else
+                    { 
+                        <button id="" class="btn btn-primary" onclick="showmodalAdd(@Model.RolebyId.RoleId)">
+                            Thêm mới <i class="icon-plus-sign"></i>
+                        </button>
+                    }
+
+                </div>
+                <i class="fa fa-user"></i>
+                <span class="" style="display: -webkit-box; float: right; margin-top: 15px; margin-right: 15px">
+                    <input type="text" id="keyword" class="form-control medium" value="" style="width: 200px; margin-right: 4px" />
+                    @if (Model.RolebyId.RoleId == 4)
+                    { 
+                        <select id="CustomerType" class="form-control xsmall" style="width: auto; margin-right:4px">
+                            <option value="0" selected>Loại khách hàng</option>                            
+                            <option value="1">Thường</option>  
+                            <option value="2">VIP</option>                          
+                        </select>
+                    }
+                    <select id="sort" class="form-control xsmall" style="width: auto">
+                        <option value="Name,ascending" selected>Tên: A -> Z</option>
+                        <option value="Name,descending">Tên: Z -> A</option>
+                    </select>
+                </span>
+
+            </div>
+            <div class="panel-body">
+                <table class="table users-table table-condensed table-hover" style="table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th class="" style="width: 30px">&nbsp;</th>
+                            <th class="" style="width: 160px">Tên đăng nhập</th>
+                            <th class="" style="width: 190px">Tên đầy đủ</th>
+                            @if (Model.RolebyId.RoleId == 4)
+                            {                            
+                                <th class="" style="width: 120px">Số đt</th>
+                                <th class="" style="">Loại khách hàng</th>
+                            }
+                            else
+                            {
+                                <th class="" style="width: 190px">Email</th>
+                                <th class="" style="">Số đt</th>
+                            }
+                            <th style="width: 50px;">&nbsp;</th>
+                            <th style="width: 50px;">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users">
+                    </tbody>
+                </table>
+                <div class="col-md-12 text-center clearfix">
+                    <ul class="pagination" id="paging">
+                        <li><a href="#">← Đầu</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">Sau →</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @*<script src="~/Content/backend/assets/select2-master/select2.js"></script>
+    <link href="~/Content/backend/assets/select2-master/select2.css" rel="stylesheet" />*@
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/jquery.cookie-1.3.1.js"></script>
+    <script src="~/Content/backend/jquery-tabs/js/jquery.steps.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+    <script type="text/javascript">
+        var listskill = new Array();
+        function validateType(id) {
+            if ($("#" + id).val() == "") {
+                $("#" + id).css("border-color", "red");
+                document.getElementById(id).placeholder = "Không được bỏ trống!";
+                return false;
+            }
+            return true;
+        }
+
+        function changeStatusTextBox(id) {
+            $("#" + id).css("border-color", "#dddcdc");
+        }
+        $(document).ready(function () {
+            $("#wizard").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                enableFinishButton: false,
+                enablePagination: false,
+                enableAllSteps: true,
+                titleTemplate: "#title#",
+                cssClass: "tabcontrol"
+            });
+
+            $(function () {
+                $("#scoreskill11").slider({
+                    range: "min",
+                    value: 0,
+                    min: 1,
+                    max: 100,
+                    slide: function (event, ui) {
+                        $("#scoreskill1").val(ui.value);
+                    }
+                });
+                $("#scoreskill1").val($("#scoreskill11").slider("value"));
+            });
+            $(function () {
+                $("#scoreskill22").slider({
+                    range: "min",
+                    value: 0,
+                    min: 1,
+                    max: 100,
+                    slide: function (event, ui) {
+                        $("#scoreskill2").val(ui.value);
+                    }
+                });
+                $("#scoreskill2").val($("#scoreskill22").slider("value"));
+            });
+            $(function () {
+                $("#scoreskill33").slider({
+                    range: "min",
+                    value: 0,
+                    min: 1,
+                    max: 100,
+                    slide: function (event, ui) {
+                        $("#scoreskill3").val(ui.value);
+                    }
+                });
+                $("#scoreskill3").val($("#scoreskill33").slider("value"));
+            });
+            $(function () {
+                $("#scoreskill44").slider({
+                    range: "min",
+                    value: 0,
+                    min: 1,
+                    max: 100,
+                    slide: function (event, ui) {
+                        $("#scoreskill4").val(ui.value);
+                    }
+                });
+                $("#scoreskill4").val($("#scoreskill44").slider("value"));
+            });
+
+            get_User(1);
+
+            $("#sort").change(function () {
+                var page = $("#paging li.active a").text();
+                get_User(page);
+            });
+            
+            $("#CustomerType").change(function () {
+                var page = $("#paging li.active a").text();
+                get_User(1);
+            });
+
+            $("#skill1").find("option").each(function () {
+                var current = $(this);
+                var id = current.attr("data-id");
+                var name = current.attr("data-value");
+                var item = new Object();
+                item.id = id;
+                item.name = name;
+                listskill.push(item);
+            });
+
+            $("#skill1").change(function () {
+                change_skill_option('add');
+            });
+            $("#skill2").change(function () {
+                change_skill_option('add');
+            });
+            $("#skill3").change(function () {
+                change_skill_option('add');
+            });
+            $("#skill4").change(function () {
+                change_skill_option('add');
+            });
+
+
+            $("#keyword").keyup(function (e) {
+                var page = $("#paging li.active a").text();
+                get_User(page);
+            });
+
+        });
+
+        function change_skill_option(type) {
+            if (type == 'add') {
+                var id = 'skill';
+            } else {
+                var id = 'skillEdit-';
+            }
+            var value1 = $("#" + id + "1").val();
+            var value2 = $("#" + id + "2").val();
+            var value3 = $("#" + id + "3").val();
+            var value4 = $("#" + id + "4").val();
+
+            var list_remain_skill = new Array();
+            for (var i = 0; i < listskill.length; i++) {
+                list_remain_skill[i] = listskill[i];
+            }
+            for (var count = 0; count < 4; count++) {
+                for (var i = 1; i < list_remain_skill.length; i++) {
+                    if (value1 == list_remain_skill[i].id) {
+                        list_remain_skill.splice(i, 1);
+                        continue;
+                    }
+                    if (value2 == list_remain_skill[i].id) {
+                        list_remain_skill.splice(i, 1);
+                        continue;
+                    }
+                    if (value3 == list_remain_skill[i].id) {
+                        list_remain_skill.splice(i, 1);
+                        continue;
+                    }
+                    if (value4 == list_remain_skill[i].id) {
+                        list_remain_skill.splice(i, 1);
+                        continue;
+                    }
+                }
+            }
+            var skill1_select = $("select#" + id + "1 option").filter(":selected");
+            if (skill1_select[0].value != 0) {
+                $('#' + id + '1').html("<option value='0'>Chưa có</option><option selected value=" + skill1_select[0].value + ">" + skill1_select[0].text + "</option>");
+            } else {
+                $('#' + id + '1').html("<option value='0'>Chưa có</option>");
+            }
+            var skill2_select = $("select#" + id + "2 option").filter(":selected");
+            if (skill2_select[0].value != 0) {
+                $('#' + id + '2').html("<option value='0'>Chưa có</option><option selected value=" + skill2_select[0].value + ">" + skill2_select[0].text + "</option>");
+            } else {
+                $('#' + id + '2').html("<option value='0'>Chưa có</option>");
+            }
+            var skill3_select = $("select#" + id + "3 option").filter(":selected");
+            if (skill3_select[0].value != 0) {
+                $('#' + id + '3').html("<option value='0'>Chưa có</option><option selected value=" + skill3_select[0].value + ">" + skill3_select[0].text + "</option>");
+            } else {
+                $('#' + id + '3').html("<option value='0'>Chưa có</option>");
+            }
+            var skill4_select = $("select#" + id + "4 option").filter(":selected");
+            if (skill4_select[0].value != 0) {
+                $('#' + id + '4').html("<option value='0'>Chưa có</option><option selected value=" + skill4_select[0].value + ">" + skill4_select[0].text + "</option>");
+            } else {
+                $('#' + id + '4').html("<option value='0'>Chưa có</option>");
+            }
+            for (var i = 1; i < list_remain_skill.length; i++) {
+                $('#' + id + '1').append("<option value=" + list_remain_skill[i].id + ">" + list_remain_skill[i].name + "</option>");
+                $('#' + id + '2').append("<option value=" + list_remain_skill[i].id + ">" + list_remain_skill[i].name + "</option>");
+                $('#' + id + '3').append("<option value=" + list_remain_skill[i].id + ">" + list_remain_skill[i].name + "</option>");
+                $('#' + id + '4').append("<option value=" + list_remain_skill[i].id + ">" + list_remain_skill[i].name + "</option>");
+            }
+        }
+
+        function get_User(page) {
+            var keyword = $("#keyword").val();
+            var RoleID = $("#roleid").val();
+            var sort = $("#sort").val();
+            var sortBy = sort.split(',')[0];
+            var sortDirection = sort.split(',')[1];
+            var customer;
+            if (RoleID != 4) {
+                customer = 0;
+            } else {
+                customer = $("#CustomerType").val();
+            }
+            $.ajax({
+                url: "/Admin/UserManagerment/GetUser",
+                dataType: "json",
+                data: { keyword: keyword, customerType: customer, RoleId: RoleID, sortBy: sortBy, sortDirection: sortDirection, page: page },
+                type: 'POST',
+                async: false,
+                success: function (data) {
+                    if (data != null) {
+                        var html = '';
+                        // render paging panel
+                        $("#paging").html(html);
+                        if (page == 1) {
+                            html += '<li class="disabled"><a href="#">«</a></li>';
+                        } else {
+                            html += '<li onclick="get_User(1)"><a href="#">«</a></li>';
+                        }
+                        for (var i = 1; i <= data.MaxPage; i++) {
+                            if (i == page) {
+                                html += '<li class="active"><a href="#">' + i + '</a></li>';
+                            } else {
+                                html += '<li onclick="get_User(' + i + ')"><a href="#">' + i + '</a></li>';
+                            }
+                        }
+                        if (page == data.MaxPage) {
+                            html += '<li class="disabled"><a href="#">»</a></li>';
+                        } else {
+                            html += '<li onclick="get_User(' + data.MaxPage + ')"><a href="#">»</a></li>';
+                        }
+                        $("#paging").html(html);
+                        // render user
+                        html = '';
+                        var pageindex;
+                        if (page == 1) {
+                            pageindex = 0;
+                        } else {
+                            pageindex = (page - 1) * 7;
+                        }
+                        $.each(data.Listuser, function (index, user) {
+                            if (!user.IsActive) {
+                                html +=
+                                 '<tr id="type-' + user.ID + '">' +
+                                        '<td class="" style="opacity:0.3;">' + (pageindex + 1) + '</td>' +
+                                        '<td class="" style="opacity:0.3;">' + user.UserName + '</td>' +
+                                        '<td class="" style="opacity:0.3;word-wrap:break-word;">' + user.FullName + '</td>';
+                                if (RoleID == 4) {
+                                    html +=
+                                        '<td class="" style="opacity:0.3;width:120px">' + user.Phone + '</td>';
+                                    if (user.CustomerType == 1) {
+                                        html += '<td class="" style="opacity:0.3;">Thường</td>';
+                                    } else {
+                                        html += '<td class="" style="opacity:0.3;">VIP</td>';
+                                    }
+                                } else {
+                                    html +=
+                                        '<td class="" style="opacity:0.3;">' + user.Email + '</td>' +
+                                        '<td class="" style="opacity:0.3;">' + user.Phone + '</td>';
+                                }
+                                html += '<td class="">';
+                                   if (RoleID == 2) {
+                                       html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEditChef(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit"></i></button>';
+                                   } else if (RoleID == 4) {
+                                       html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEditCustomer(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit"></i></button>';
+                                   } else {
+                                    html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEdit(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit icon-white"></i></button>';
+                            }
+                                   html += '</td>'+
+                                       '<td class="">' +
+                                        '<button type="button" class="btn has-popover" data-content="Khôi phục" onclick="Active(' + user.ID + ')" class="btn btn-success" style="width:36px;"><i class="icon-refresh"></i></button></td>';
+                            }
+                            if (user.IsActive) {
+                                html +=
+                                '<tr id="type-' + user.ID + '">' +
+                                        '<td class="" style="">' + (pageindex + 1) + '</td>' +
+                                        '<td class="" style="">' + user.UserName + '</td>' +
+                                        '<td class="" style="word-wrap:break-word;">' + user.FullName + '</td>';
+                                if (RoleID == 4) {
+                                    html +=
+                                        '<td class="" style="width:120px">' + user.Phone + '</td>';
+                                    if (user.CustomerType == 1) {
+                                        html += '<td class="" >Thường</td>';
+                                    } else {
+                                        html += '<td class="" >VIP</td>';
+                                    }
+                                } else {
+                                    html +=
+                                        '<td class="" >' + user.Email + '</td>' +
+                                        '<td class="" >' + user.Phone + '</td>';
+                                }
+                                html += '<td class="">';
+                                if (RoleID == 2) {
+                                    html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEditChef(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit"></i></button>';
+                                } else if (RoleID == 4) {
+                                    html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEditCustomer(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit"></i></button>';
+                                } else {
+                                    html += '<button type="button" class="btn has-popover" data-content="Thông tin" onclick="ShowmodalEdit(' + user.ID + ')" class="btn btn-primary" style="width:36px;background-color: #00acec;"><i class="icon-edit"></i></button>';
+                                }
+                                html += '</td>' +
+                              '<td class="">' +
+                                  '<button class="btn has-popover" data-content="Khóa" type="button" onclick="DeActive(' + user.ID + ')" class="btn btn-danger" style="width:36px;"><i class="icon-lock"></i></button></td>';
+                            }
+                            pageindex++;
+                        });
+                        $("#users").html(html);
+                    } else {
+                        $("#users").html("");
+                    }
+                },
+                error: function (errMsg) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Hê thống không thể kế nối với cơ sở dữ liệu!');
+                }
+            });
+        }
+        //Validate Username
+        function validateName(name) {
+            var check = true;
+            if ($("#" + name).val() != "") {
+                $("#" + name).css("border", "1px solid #e2e2e4");
+                document.getElementById(name).placeholder = "";
+                var username = $("#" + name).val();
+                $.ajax({
+                    url: "/Admin/UserManagerment/CheckUserName",
+                    type: 'POST',
+                    async: false,
+                    data: { username: username },
+                    success: function (data) {
+                        if (data == 'Success') {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                            check = true;
+                        } else {
+                            $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                            check = false;
+                        }
+                    },
+                    error: function (errMsg) {
+                        var hm = $("body").wHumanMsg();
+                        hm.wHumanMsg('Lỗi xảy ra. Xin thử lại sau.');
+                        check = false;
+                    }
+                });
+            }
+            return check;
+        }
+        //validate email
+        function validateEmail(name) {
+
+            var addemail = $("#AddEmail").val();
+            var re = /\S+@@\S+\.\S+/;
+            if (addemail != "") {
+                if (re.test(addemail)) {
+                    // Yay! valid
+                    $($("#AddEmail")[0]).next('p.alert-danger').css('visibility', 'hidden');
+                    return true;
+                }
+                else {
+                    $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                    return false;
+                }
+            }
+        }
+        //compare password
+        function comparepwd(name) {
+            if ($("#" + name).val() != "") {
+                if (validateType('Password') == true) {
+                    var Password = $("#Password").val();
+                    var RePassword = $("#RePassword").val();
+                    if (Password != RePassword) {
+                        $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'visible');
+                        return false;
+                    }
+                    if (Password == RePassword) {
+                        $($("#" + name)[0]).next('p.alert-danger').css('visibility', 'hidden');
+                        return true;
+                    }
+                }
+            }
+        }
+        //Validate phone 
+        function validatePhone() {
+            var phone = $("#AddPhone").val();
+            var number = /^[0-9]{10,11}$/;
+            if (phone != "") {
+                if (!phone.match(number)) {
+                    $($("#AddPhone")[0]).next('p.alert-danger').css('visibility', 'visible');
+                    return false;
+                }
+                else {
+                    $($("#AddPhone")[0]).next('p.alert-danger').css('visibility', 'hidden');
+                    return true;
+                }
+            }
+        }
+        //Validate Birthday
+        function validatebirthday() {
+            var Birthday = $("#AddBirthday").val();
+            var pattern = /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/;
+            if (Birthday != "") {
+                if (pattern.test(Birthday)) {
+                    $($("#AddBirthday")[0]).next('p.alert-danger').css('visibility', 'hidden');
+                    return true;
+                } else {
+                    $($("#AddBirthday")[0]).next('p.alert-danger').css('visibility', 'visible');
+                    return false;
+                }
+            }
+        }
+        //Validate role
+        function validaterole() {
+            if ($("#role-region-add").select2("val").length == 0) {
+                $($("#role-region-add")[0]).next('p.alert-danger').css('visibility', 'visible');
+                return false;
+            } else {
+                $($("#role-region-add")[0]).next('p.alert-danger').css('visibility', 'hidden');
+                return true;
+            }
+        }
+
+        //Show modal
+        function ShowmodalEdit(id) {
+            $.ajax({
+                url: "/Admin/UserManagerment/EditUser",
+                type: 'GET',
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalEditUser").modal('show');
+                    $("#ModalEditUser").html(data);
+                    //$(".populate.select2-offscreen").select2();
+                    //SetDefaultRole();
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+
+        function SetDefaultRole() {
+            $('select[name="role_item_add"]').each(function () {
+                var numberOfRole = $("#NumOfUserRole").val();
+                var text = "";
+                var array = [];
+                for (var i = 0; i < numberOfRole; i++) {
+                    var defaultRole = $("#userRole-" + i).val();
+                    array.push(defaultRole);
+                }
+                $("#role-region").select2("val", array);
+            });
+        }
+
+        function ShowmodalEditChef(id) {
+            $.ajax({
+                url: "/Admin/UserManagerment/EditChef",
+                type: 'GET',
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalEditChef").modal('show');
+                    $("#ModalEditChef").html(data);
+                    $("#wizardUpdate").steps({
+                        headerTag: "h2",
+                        bodyTag: "section",
+                        transitionEffect: "slideLeft",
+                        enableFinishButton: false,
+                        enablePagination: false,
+                        enableAllSteps: true,
+                        titleTemplate: "#title#",
+                        cssClass: "tabcontrol"
+                    });
+
+                    $(function () {
+                        $("#scoreskillEdit1-1").slider({
+                            range: "min",
+                            value: $("#scoreskillEdit-1").val(),
+                            min: 1,
+                            max: 100,
+                            slide: function (event, ui) {
+                                $("#scoreskillEdit-1").val(ui.value);
+                            }
+                        });
+                        $("#scoreskillEdit-1").val($("#scoreskillEdit1-1").slider("value"));
+                    });
+                    $(function () {
+                        $("#scoreskillEdit1-2").slider({
+                            range: "min",
+                            value: $("#scoreskillEdit-2").val(),
+                            min: 1,
+                            max: 100,
+                            slide: function (event, ui) {
+                                $("#scoreskillEdit-2").val(ui.value);
+                            }
+                        });
+                        $("#scoreskillEdit-2").val($("#scoreskillEdit1-2").slider("value"));
+                    });
+                    $(function () {
+                        $("#scoreskillEdit1-3").slider({
+                            range: "min",
+                            value: $("#scoreskillEdit-3").val(),
+                            min: 1,
+                            max: 100,
+                            slide: function (event, ui) {
+                                $("#scoreskillEdit-3").val(ui.value);
+                            }
+                        });
+                        $("#scoreskillEdit-3").val($("#scoreskillEdit1-3").slider("value"));
+                    });
+                    $(function () {
+                        $("#scoreskillEdit1-4").slider({
+                            range: "min",
+                            value: $("#scoreskillEdit-4").val(),
+                            min: 1,
+                            max: 100,
+                            slide: function (event, ui) {
+                                $("#scoreskillEdit-4").val(ui.value);
+                            }
+                        });
+                        $("#scoreskillEdit-4").val($("#scoreskillEdit1-4").slider("value"));
+
+                        change_skill_option('skillEdit-');
+                        $("#skillEdit-1").change(function () {
+                            change_skill_option('skillEdit-');
+                        });
+                        $("#skillEdit-2").change(function () {
+                            change_skill_option('skillEdit-');
+                        });
+                        $("#skillEdit-3").change(function () {
+                            change_skill_option('skillEdit-');
+                        });
+                        $("#skillEdit-4").change(function () {
+                            change_skill_option('skillEdit-');
+                        });
+                    });
+
+                    //$(".populate.select2-offscreen").select2();
+                    //SetDefaultRole();
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+        function ShowmodalEditCustomer(id) {
+            $.ajax({
+                url: "/Admin/UserManagerment/EditCutomer",
+                type: 'GET',
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalEditCustomer").modal('show');
+                    $("#ModalEditCustomer").html(data);
+                    //$(".populate.select2-offscreen").select2();
+                    //SetDefaultRole();
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+        function SaveEdit(userid, username) {
+            if ($("#role-region").select2("val").length == 0) {
+                var div = $('.select2-search-field');
+                $('.select2-choices').css("border-color", "red");
+                $($('input', div)[0]).css('width', '300px');
+                $('input', div)[0].placeholder = "Không được bỏ trống!";
+            } else {
+                var roles_str = '';
+                var select_roles = $("#role-region");
+                for (var i = 0; i < select_roles.length; i++) {
+                    var value = $(select_roles[i]).select2("val");
+                    if (value == '') {
+                        $(select_roles[i]).closest('tr').prev('tr').css('color', 'red');
+                        return;
+                    }
+                    $(select_roles[i]).closest('tr').prev('tr').css('color', '#767676');
+                    roles_str += value + ',';
+                }
+                roles_str = roles_str.substr(0, roles_str.length - 1);
+                if (roles_str == '') {
+
+                    return;
+                }
+                $.ajax({
+                    url: "/Admin/UserManagerment/SaveEdit",
+                    type: 'POST',
+                    async: false,
+                    data: { userid: userid, username: username, roles_str: roles_str },
+                    success: function (data) {
+                        if (data != 0) {
+                            document.getElementById("button").click();
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Cập nhập thành công!');
+                            get_User($("#paging li.active a").text());
+                            $("#Addname").val(""); $("#AddPhone").val(""); $("#pac-input").val("");
+                        }
+                        else {
+                            alert("Xảy ra lỗi trong quá trình thực hiện");
+                        }
+                    },
+                    error: function (data) {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                    },
+                });
+            }
+        }
+
+        function SaveEditChef(id) {
+            var valid = true;
+            if ($("#skillEdit-1").val() == 0 && $("#skillEdit-2").val() == 0 && $("#skillEdit-3").val() == 0 && $("#skillEdit-4").val() == 0) {
+                $("#ErrorMessageEdit").css('visibility', 'visible');
+                valid = false;
+                //return;
+            } else {
+                $("#ErrorMessageEdit").css('visibility', 'hidden');
+                valid = true;
+            }
+            if (!valid) {
+                return;
+            }
+            var listskill = new Array();
+            for (i = 1; i < 5; i++) {
+                if ($("#skillEdit-" + i).val() != 0) {
+                    var skill = new Object();
+                    skill.skillId = $("#skillEdit-" + i).val();
+                    skill.scoreskill = $("#scoreskillEdit-" + i).val();
+                    listskill.push(skill);
+                }
+            }
+            var dataInfo = JSON.stringify(listskill);
+            $.ajax({
+                url: "/Admin/UserManagerment/SaveEditChef",
+                type: 'POST',
+                async: false,
+                data: { id: id, listskill: dataInfo },
+                success: function (data) {
+                    if (data != 0) {
+                        document.getElementById("buttonEditChef").click();
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Cập nhập thành công!');
+                        get_User($("#paging li.active a").text());
+
+                    }
+                    else {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                    }
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+
+        function showmodalAddChef() {
+            $.ajax({
+                url: "/Admin/UserManagerment/AddnewChef",
+                type: 'GET',
+                data: {},
+                success: function (data) {
+                    $("#ModalAddChef").modal('show');
+                    $("#modalCheftInfo").html(data);
+                    //$(".populate.select2-offscreen").select2();
+                    $('#AddUsername').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+                    $('#Password').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+                    $('#RePassword').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+
+        function showmodalAdd(id) {
+            $.ajax({
+                url: "/Admin/UserManagerment/AddnewUser",
+                type: 'GET',
+                data: { id: id },
+                success: function (data) {
+                    $("#ModalAddnew").modal('show');
+                    $("#ModalAddnew").html(data);
+                    //$(".populate.select2-offscreen").select2();
+                    $('#AddUsername').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+                    $('#Password').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+                    $('#RePassword').on('keypress', function (e) {
+                        if (e.which == 32)
+                            return false;
+                    });
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+        }
+        function validateskill() {
+            if ($("#skill1").val() == 0 && $("#skill2").val() == 0 && $("#skill3").val() == 0 && $("#skill4").val() == 0) {
+                $("#ErrorMessage").css('visibility', 'visible');
+                return false;
+                //return;
+            } else {
+                $("#ErrorMessage").css('visibility', 'hidden');
+                return true;
+            }
+        }
+        //Add new Chef
+        function AddNewChef() {
+            var valid = true;
+            if (validateType('AddUsername') == true && validateType('Password') == true && validateType('RePassword') == true && comparepwd('RePassword') == true && validateType('AddName') == true && validateType('AddEmail')
+               && validateEmail() == true && validateType('AddPhone') == true && validatePhone() == true && validateType('AddBirthday') == true &&
+                 validatebirthday() == true && validateType('AddAddress') == true) {
+            } else {
+                valid = false;
+            }
+            if (validateName('AddUsername') == false) {
+                valid = false;
+            }
+            if (validateskill() == false) {
+                valid = false;
+            }
+            if (!valid) {
+                $('#wizard').steps('previous');
+                return;
+            }
+            var name = $("#AddName").val();
+            var username = $("#AddUsername").val();
+            var email = $("#AddEmail").val();
+            var Phone = $("#AddPhone").val();
+            var Birthday = $("#AddBirthday").val();
+            var Address = $("#AddAddress").val();
+            var Gender = $("#Gender").val();
+            var Password = $("#Password").val();
+            var RoleName = $("#rolename").val();
+            var IsFemale;
+            if (Gender == 1) {
+                IsFemale = false;
+            } else {
+                IsFemale = true;
+            }
+            var listskill = new Array();
+            for (i = 1; i < 5; i++) {
+                if ($("#skill" + i).val() != 0) {
+                    var skill = new Object();
+                    skill.skillId = $("#skill" + i).val();
+                    skill.scoreskill = $("#scoreskill" + i).val();
+                    listskill.push(skill);
+                }
+            }
+            var dataInfo = JSON.stringify(listskill);
+            $.ajax({
+                url: "/Admin/UserManagerment/CreateChef",
+                type: 'POST',
+                async: false,
+                data: {
+                    UserName: username, Password: Password, FullName: name, Email: email, Phone: Phone, Address: Address, IsFemale: IsFemale, Birthday: Birthday, RoleName: RoleName, listskill: dataInfo
+                },
+                success: function (data) {
+                    if (data != 0) {
+                        document.getElementById("buttonAddChef").click();
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Thêm thành công!');
+                        get_User($("#paging li.active a").text());
+
+                    }
+                    else {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                    }
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                },
+            });
+
+        }
+        //Add new user
+        function AddNew() {
+            if (validateType('AddUsername') == true && validateName('AddUsername') == true && validateType('Password') == true && validateType('RePassword') == true && comparepwd('RePassword') == true && validateType('AddName') == true && validateType('AddEmail')
+               && validateEmail() == true && validateType('AddPhone') == true && validatePhone() == true && validateType('AddBirthday') == true
+                && validatebirthday() == true && validateType('AddAddress') == true) {
+                var name = $("#AddName").val();
+                var username = $("#AddUsername").val();
+                var email = $("#AddEmail").val();
+                var Phone = $("#AddPhone").val();
+                var Birthday = $("#AddBirthday").val();
+                var Address = $("#AddAddress").val();
+                var Gender = $("#Gender").val();
+                var Password = $("#Password").val();
+                var RoleName = $("#rolename").val();
+                var IsFemale;
+                if (Gender == 1) {
+                    IsFemale = false;
+                } else {
+                    IsFemale = true;
+                }
+                //var roles_str = '';
+                //var select_roles = $("#role-region-add");
+                //for (var i = 0; i < select_roles.length; i++) {
+                //    var value = $(select_roles[i]).select2("val");
+                //    if (value == '') {
+                //        $(select_roles[i]).closest('tr').prev('tr').css('color', 'red');
+                //        return;
+                //    }
+                //    $(select_roles[i]).closest('tr').prev('tr').css('color', '#767676');
+                //    roles_str += value + ',';
+                //}
+                //roles_str = roles_str.substr(0, roles_str.length - 1);
+                //if (roles_str == '') {
+
+                //    return;
+                //}               
+                $.ajax({
+                    url: "/Admin/UserManagerment/CreateUser",
+                    type: 'POST',
+                    async: false,
+                    data: {
+                        UserName: username, Password: Password, FullName: name, Email: email, Phone: Phone, Address: Address, IsFemale: IsFemale, Birthday: Birthday, RoleName: RoleName
+                    },
+                    success: function (data) {
+                        if (data != 0) {
+                            document.getElementById("button").click();
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Thêm thành công!');
+                            get_User($("#paging li.active a").text());
+
+                        }
+                        else {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                        }
+                    },
+                    error: function (data) {
+                        var hm = $('body').wHumanMsg();
+                        hm.wHumanMsg('Xảy ra lỗi, Xin hay thử lại!');
+                    },
+                });
+
+            }
+        }
+
+        //Active User
+        function Active(id) {
+            alertify.confirm("Bạn có chắc chắn muốn khôi phục!.", function (e) {
+                if (e) {
+                    // user clicked "ok"
+                    $.ajax({
+                        url: "/Admin/UserManagerment/ActiveUser",
+                        type: 'POST',
+                        async: false,
+                        data: { userid: id },
+                        success: function (data) {
+                            if (data != 0) {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Khôi phục thành công!');
+                                get_User($("#paging li.active a").text());
+                            }
+                            else {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!!');
+                                get_User($("#paging li.active a").text());
+                            }
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, Xin thử lại!!');
+                        },
+                    });
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        }
+        function DeActive(id) {
+            alertify.confirm("Bạn có chắc chắn muốn Khoá!", function (e) {
+                if (e) {
+                    // user clicked "ok"
+                    $.ajax({
+                        url: "/Admin/UserManagerment/DeActiveUser",
+                        type: 'POST',
+                        async: false,
+                        data: { userid: id },
+                        success: function (data) {
+                            if (data != 0) {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Khóa thành công!');
+                                get_User($("#paging li.active a").text());
+                            }
+                            else {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Xảy ra lỗi, Xi hảy thử lại!');
+                            }
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Xảy ra lỗi, Xi hảy thử lại!');
+                        },
+                    });
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        }
+        
+    </script>
+
+
+}
+

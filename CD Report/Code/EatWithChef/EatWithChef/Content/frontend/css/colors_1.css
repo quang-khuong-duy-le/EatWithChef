@@ -1,0 +1,51 @@
+/*Backgrounds*/
+.accordion-heading.active a, .caption-right strong.title, #carousel .flex-direction-nav, .caption-right strong.title, .accordion-list li .frame strong.price, .featured-slider .caption strong.price, .left-box .head strong.date, .food-critic-header, .review-box a.btn-review, .food-detail ul li strong.date, .calendar-left, .bottom-sec, .chef-box .text .head, .post-date, .post-box a.btn-read, .widget-area .header, .btn-send, .featured-slider-area a.btn-follow, .btn-book-now, #calendar_wrap, .submit-btn, .btn-submit2, .btn-continue, .logo, .accordion-heading .accordion-toggle:hover, .mCSB_scrollTools .mCSB_draggerRail, .navbar-inverse .btn-navbar, .top-nav .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle, .caption-center, .faq-tabs .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus, .faq-tabs .nav > li > a:hover, .nav > li > a:focus, .accordion-heading.active, .accordion-heading .accordion-toggle:hover, .accordion-heading .accordion-toggle.active, .top-nav ul li a:hover, .top-nav .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a, .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle, .map-head, .location-map-head, a.back-top,  .bx-wrapper .bx-pager a:hover, .bx-wrapper .bx-pager a.active{
+	background-color: #f06489 !important;
+}
+.caption-left:after{
+	border-top-color:#f06489;
+}
+.caption-left{
+	background-color:#f06489 !important;
+}
+/*Backgrounds*/
+
+/*text colors*/
+.accordion-heading.active a, .caption-right strong.title, .accordion-list li .frame strong.price, .featured-slider .caption strong.price, .left-box .head strong.date, .food-critic-header h3, .review-box a.btn-review, .food-detail ul li strong.date, .calendar-left strong.day, .calendar-left strong.date,.calendar-left strong.title, .bottom-sec a.week, .chef-box .text .head h5, .post-date strong.date, .post-box a.btn-read, .widget-area .header h2, .btn-send, .featured-slider-area a.btn-follow, .btn-book-now, #wp-calendar caption, #wp-calendar thead, #wp-calendar tbody td, .submit-btn, .btn-submit2, .btn-continue, .accordion-heading .accordion-toggle:hover, .btn-review, .accordion-heading.active, .accordion-heading .accordion-toggle:hover, .accordion-heading .accordion-toggle.active, .top-nav ul li a:hover, .top-nav .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a, .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle, .caption-center strong.title, .icon-arrow-right, .btn-submit-3{
+	color:#fff !important;
+	/*color:#fff !important;*/
+}
+/*text colors*/
+
+/*Border Colors*/
+.events-box-head,.left-box .head, .food-detail, .unique-box, .post-detail, #header, .btn-review, #banner{
+	/*border-color:#A80000 !important;*/
+	border-color:#f06489 !important;
+}
+/*Border Colors*/
+
+/*Button*/
+.btn-review, .btn-ok, .post-guests .btn-submit, .btn-send, .btn-submit-3{
+	/*background:#A80000 !important;*/
+	background:#f06489 !important;
+}
+/*Button*/
+
+
+/*Banner Button*/
+#banner .bx-wrapper .bx-next:hover, #banner .bx-wrapper .bx-prev:hover{
+	background-color:#f2b101;
+}
+/*Banner Button*/
+
+/*Opacity Background*/
+.footer-section-2, .twitter-feed-section, .footer-section-2, #footer, .events-box-head{
+	background-color:#222;
+}
+/*Opacity Background*/
+
+/*font awesome*/
+.icon-arrow-right{
+	color:#f06489 !important;
+}
+/*font awesome*/

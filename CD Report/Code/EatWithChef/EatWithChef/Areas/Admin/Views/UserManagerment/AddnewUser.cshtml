@@ -1,0 +1,73 @@
+﻿@model EatWithChef.Areas.Admin.Models.UserProfileModel 
+<style>
+    .select2-container.select2-container-multi populate.select2-drop-above{
+    width: 70%;
+    margin-left: 75px;
+    }
+</style>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Thêm tài khoản</h4>
+        </div>
+        <div class="modal-body row">
+            <div class="col-md-5 img-modal">
+            </div>
+            <div class="col-md-7" style="width: 95%; float: right">
+                <div class="form-group" style="margin-bottom: 0px;">
+        <label>Tên đăng nhập</label>
+        <input id="AddUsername" maxlength="50" style="width: 69%; margin-left: 35px; display: inline;" onblur="validateName('AddUsername')" class="form-control" placeholder="Tên đăng nhập" onfocus="changeStatusTextBox('AddUsername')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Tên này đã tồn tại!</p>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+        <label>Mật khẩu</label>
+        <input id="Password" type="password" onblur="comparepwd('RePassword')" style="width: 69%; margin-left: 77px; display: inline;" class="form-control" placeholder="Mật khẩu" onfocus="changeStatusTextBox('Password')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Mật khẩu không trùng!</p>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+        <label>Xác nhận mật khẩu</label>
+        <input id="RePassword" type="password" onblur="comparepwd('RePassword')" style="width: 69%; margin-left: 5px; display: inline;" class="form-control" placeholder="Mật khẩu" onfocus="changeStatusTextBox('RePassword')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Mật khẩu không trùng!</p>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+        <label>Tên đầy đủ</label>
+        <input id="AddName" maxlength="100" style="width: 69%; margin-left: 63px; display: inline;" class="form-control" placeholder="Tên đầy đủ" onfocus="changeStatusTextBox('Addname')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 200px; margin-left: 146px; visibility: hidden">Kí tự quá dài (hơn 100 kí tự)!</p>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+        <label>Email</label>
+        <input id="AddEmail" onblur="validateEmail('AddEmail')" style="width: 69%; margin-left: 102px; display: inline;" class="form-control" placeholder="Email" onfocus="changeStatusTextBox('AddEmail')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Email không hợp lệ!</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" style="margin-bottom: 0px; width:65%">
+            <label>Số điện thoại</label>
+            <input id="AddPhone" onblur="validatePhone()" style="width: 50%; margin-left: 47px; display: inline;" class="form-control" placeholder="Số điện thoại" onfocus="changeStatusTextBox('AddPhone')" />
+            <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Điện thoại không hợp lệ!</p>
+        </div>
+        <div class="col-sm-6" style="width:35%">
+            <label>Giới tính</label>
+            <select id="Gender" name="Category" style="display: inline;width: auto" class="form-control xsmall">
+                <option value="1" selected>Nam</option>
+                <option value="2">Nữ</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+        <label>Ngày sinh</label>
+        <input id="AddBirthday" onblur="validatebirthday()" style="width: 69%; margin-left: 74px; display: inline;" type="date" class="form-control" onfocus="changeStatusTextBox('AddBirthday')" />
+        <p class="alert-danger" style="margin-bottom: 3px;margin-top: 3px; width: 180px; margin-left: 146px; visibility: hidden">Ngày sinh không hợp lệ!</p>
+    </div>
+    <div class="form-group">
+        <label>Địa chỉ</label>
+        <input id="AddAddress" style="width: 69%; margin-left: 94px; display: inline;" class="form-control" placeholder="Địa chỉ" onfocus="changeStatusTextBox('AddAddress')" />
+    </div>
+
+    <div class="pull-right">
+        <button class="btn btn-primary" style="margin-right:10px" type="button" onclick="AddNew()"><i class="icon-plus-sign"></i> Thêm</button>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>

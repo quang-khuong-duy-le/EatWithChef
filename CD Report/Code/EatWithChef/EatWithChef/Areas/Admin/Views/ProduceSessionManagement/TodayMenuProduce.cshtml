@@ -1,0 +1,633 @@
+﻿@model EatWithChef.Areas.Admin.Models.ListDishProduceModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Quản lý Phiên Chế Biến";
+    int counter = 0;
+}
+
+@section headcss {
+    <link href="~/Content/backend/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+    <link href="~/Content/backend/data-tables/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/plugins/select2/select2.css" rel="stylesheet" />
+    <link href="~/Content/backend/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/custom.css" rel="stylesheet" />
+    <link href="~/Content/backend/jquery-qtip/jquery.qtip.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+    <style type="text/css">
+        .dataTables_wrapper .sorting:after {
+            content:none !important;
+        }
+        .dataTables_wrapper .sorting_asc:after {
+            content:none !important;
+        }
+        .dataTables_wrapper .sorting_desc:after {
+            content:none !important;
+        }
+        table.table thead tr {
+            background-color:#00acec;
+            color:white;
+        }
+        tfoot th {
+            vertical-align: middle !important;
+            padding:5px 5px 5px 5px !important;
+            background-color:#00acec;
+            color:white;
+        }
+        td {
+            vertical-align: middle !important;
+        }
+        input[type="checkbox"].form-control {
+            width:20px;
+            box-shadow:none;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-edit"></i>
+                <span>@ViewBag.Title</span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body">
+                @if (Model.ListDishProduceSession != null && Model.ListDishProduceSession.Count > 0)
+                {
+                    <div class="alert alert-info fade in">
+                        Bảng bên dưới gồm những món ăn cần nấu cho <strong>menu ngày hôm nay</strong>!
+                    </div>
+                    <div class="clearfix">
+                        <span class="pull-left">
+                            <div class="btn btn-primary has-popover" onclick="ShowGenerateProduceSessionModal()" data-content="Tạo Phiên Chế Biến dựa theo số lượng đặt hàng. Những nhà cung cấp mặc định cho nguyên liệu sẽ được sử dụng." data-placement="top" data-title="" data-original-title="" title="">Chế biến theo đơn hàng</div>
+                        </span>
+                        <span class="pull-right">
+                            <div class="btn btn-primary has-popover" onclick="ShowProduceHistoryModal()" data-content="Xem lịch sử Phiên Sản Xuất. Cũng có thể xóa Phiên Chế Biến tại đây." data-placement="top" data-title="" data-original-title="" title="">Lịch sử Phiên Chế Biến</div>
+                        </span>
+                    </div>
+                    <div class="adv-table">
+                        <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 204px; vertical-align:middle">Món ăn</th>
+                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                                            <center>Danh mục</center>
+                                        </th>
+                                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 130px;vertical-align:middle">
+                                            <center>Hình ảnh</center>
+                                        </th>
+                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                                            <center>Số lượng đã được nấu</center>
+                                        </th>
+                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                                            <center>Số lượng đã được đặt hàng</center>
+                                        </th>
+                                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                                            <center>Chế biến</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">Món ăn</th>
+                                        <th rowspan="1" colspan="1">
+                                            <center>Danh mục</center>
+                                        </th>
+                                        <th rowspan="1" colspan="1">
+                                            <center>Hình ảnh</center>
+                                        </th>
+                                        <th rowspan="1" colspan="1">
+                                            <center>Số lượng đã được nấu</center>
+                                        </th>
+                                        <th rowspan="1" colspan="1">
+                                            <center>Số lượng đã được đặt hàng</center>
+                                        </th>
+                                        <th rowspan="1" colspan="1">
+                                            <center>Chế biến</center>
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    @foreach (var dishProduce in Model.ListDishProduceSession)
+                                    {
+                                        counter++;
+                                        if (counter % 2 == 1)
+                                        {
+                                        <tr class="odd">
+                                            <td class=" ">@dishProduce.Name</td>
+                                            <td class=" ">
+                                                <center>@dishProduce.CategoryName</center>
+                                            </td>
+                                            <td class=" ">
+                                                <center><img class="small-thumb" src="@dishProduce.Image" width="40px" height="40px" /></center>
+                                            </td>
+                                            <td class=" ">
+                                                <center>@dishProduce.NumberProducedDishItem</center>
+                                            </td>
+                                            <td class="">
+                                                <center>@dishProduce.NumberOrderedDishItem</center>
+                                            </td>
+                                            <td class="">
+                                                <center><button type="button" class="btn btn-primary" onclick="ShowProduceModal(@dishProduce.ID)"><i class="icon-food"></i></button></center>
+                                            </td>
+                                        </tr>
+                                        }
+                                        else
+                                        {
+                                        <tr class="even">
+                                            <td class=" ">@dishProduce.Name</td>
+                                            <td class=" ">
+                                                <center>@dishProduce.CategoryName</center>
+                                            </td>
+                                            <td class=" ">
+                                                <center><img class="small-thumb" src="@dishProduce.Image" width="40px" height="40px" /></center>
+                                            </td>
+                                            <td class=" ">
+                                                <center>@dishProduce.NumberProducedDishItem</center>
+                                            </td>
+                                            <td class="">
+                                                <center>@dishProduce.NumberOrderedDishItem</center>
+                                            </td>
+                                            <td class="">
+                                                <center><button type="button" class="btn btn-primary" onclick="ShowProduceModal(@dishProduce.ID)"><i class="icon-food"></i></button></center>
+                                            </td>
+                                        </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="produceSession-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Tạo Phiên Chế Biến</h4>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-md-5 img-modal">
+                                    </div>
+                                    <div class="col-md-7" id="produceSession-add-body" style="width: 95%; float: right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="produceSession-qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Phát Sinh QRCode</h4>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-md-5 img-modal">
+                                    </div>
+                                    <div class="col-md-7" id="produceSession-qrcode-body" style="width: 95%; float: right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="produceSession-history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="width: 70%">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Lịch Sử Phiên Chế Biến</h4>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="pull-left" style="margin-left: 50px">
+                                        <span class="help-block">Chọn ngày</span>
+                                        <input class="form-control form-control-inline input-medium default-date-picker" id="produce_session_datepicker" size="16" type="text" value="">
+                                        <br />
+                                    </div>
+                                    <div class="col-md-7" id="produceSession-history-body" style="width: 95%; float: right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="produceSession-generate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="width: 80%">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Chế Biến Theo Đơn Hàng</h4>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-md-7" id="produceSession-generate-body" style="width: 95%; float: right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                }
+                else
+                {
+                    <div class="alert alert-info fade in">
+                        Rất tiếc! <strong>Menu của ngày hôm nay</strong> chưa được chuẩn bị. Xin chuẩn bị menu và quay lại sau!
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap_switch/bootstrapSwitch.min.js"></script>
+    <script src="~/Content/backend/jquery-multi-select/js/jquery.quicksearch.js"></script>
+    <script src="~/Content/backend/jquery-multi-select/js/jquery.multi-select.js"></script>
+    <script src="~/Content/backend/data-tables/jquery.dataTables.js"></script>
+    <script src="~/Content/backend/data-tables/DT_bootstrap.js"></script>
+
+    <script src="~/Content/backend/assets/javascripts/plugins/select2/select2.js"></script>
+    <script src="~/Content/backend/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/backend/dynamic_table/dynamic_table_init_produce_session.js"></script>
+    <script src="~/Content/backend/jquery-thumbhover/jquery.thumbhover.js"></script>
+    <script src="~/Content/backend/jquery-qtip/jquery.qtip.js"></script>
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+
+    <script type="text/javascript">
+        var initialized_produce_session = false;
+
+        $(document).ready(function () {
+            document.title = "@ViewBag.Title";
+
+            $("img.small-thumb").thumbPopup({
+                imgSmallFlag: "",
+                imgLargeFlag: "",
+                cursorTopOffset: 10,
+                cursorLeftOffset: 10
+            });
+
+            $('#produceSession-qrcode').on('shown.bs.modal', function (e) {
+                if ($('#qrcode_print').val() == 'false') {
+                    $('.alert.alert-info.fade.in', '#produceSession-qrcode-body').css('display', 'none');
+                    $('.alert.alert-block.alert-danger.fade.in', '#produceSession-qrcode-body').css('display', 'block');
+                } else {
+                    $('.alert.alert-info.fade.in', '#produceSession-qrcode-body').css('display', 'block');
+                    $('.alert.alert-block.alert-danger.fade.in', '#produceSession-qrcode-body').css('display', 'none');
+                }
+            })
+
+            $('#produceSession-qrcode').on('hidden.bs.modal', function (e) {
+                if ($('#qrcode_print').val() == 'false') {
+                    $('#produceSession-qrcode').modal('show');
+                } else if (typeof $('#inserted_dishitem_name').val() != 'undefined') {
+                    window.location = "/Admin/ProduceSessionManagement/TodayMenuProduce";
+                }
+            })
+        });
+
+        function validateInteger(id) {
+            var value = $("#" + id).val();
+            if (Math.floor(value) != value || !$.isNumeric(value) && value <= 0) {
+                $("#" + id).css("border-color", "red");
+                $("#" + id).val('');
+                document.getElementById(id).placeholder = "Số dương!";
+                return false;
+            }
+            $("#" + id).css("border", "1px solid #e2e2e4");
+            document.getElementById(id).placeholder = "";
+            return true;
+        }
+
+        function ShowProduceGenerateModal() {
+
+        }
+
+        function ShowProduceHistoryModal() {
+            var today = new Date();
+            var day = today.getDate() < 10 ? ("0" + today.getDate()) : today.getDate();
+            var month = today.getMonth() < 10 ? ("0" + Number(today.getMonth() + 1)) : Number(today.getMonth() + 1);
+            var today_str = month + '/' + day + '/' + today.getFullYear();
+
+            if (initialized_produce_session == false) {
+                $('#produce_session_datepicker').datepicker().on('changeDate', function (ev) {
+                    ShowProduceHistoryModal();
+                  });
+                initialized_produce_session = true;
+                $('#produce_session_datepicker').val(today_str);
+            }
+
+            $.ajax({
+                url: "/Admin/ProduceSessionManagement/ProduceSessionHistory?date=" + $('#produce_session_datepicker').val(),
+                type: 'GET',
+                async: false,
+                success: function (data) {
+                    $('#produceSession-history').modal('show');
+                    $('#produceSession-history-body').html(data);
+                    $('#produce_history_table').dataTable({
+                        "iDisplayLength": 5,
+                        "aLengthMenu": [5, 10, 20, 50]
+                    });
+                    $('select[aria-controls="produce_history_table"]').addClass('form-control');
+                    $('input[aria-controls="produce_history_table"]').addClass('form-control');
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Lỗi kết nối! Xin hãy kiểm tra kết nối Internet.', { theme: 'red' });
+                }
+            });
+
+            $("img.small-thumb-history").thumbPopup({
+                imgSmallFlag: "",
+                imgLargeFlag: "",
+                cursorTopOffset: 10,
+                cursorLeftOffset: 10
+            });
+        }
+
+        function DeleteProduceSession(id, produce_deletable) {
+            if (produce_deletable == 'False') {
+                var hm = $('body').wHumanMsg();
+                hm.wHumanMsg('Do sản phẩm này đã được giao hàng nên không thể xóa!');
+                return;
+            }
+
+            alertify.confirm("Bạn có thực sự muốn xóa Phiên Chế Biến này không?", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/Admin/ProduceSessionManagement/DeleteProduceSession?ID=" + id,
+                        type: 'GET',
+                        async: false,
+                        success: function (data) {
+                            if (data == true) {
+                                ShowProduceHistoryModal();
+                            } else {
+                                var hm = $('body').wHumanMsg();
+                                hm.wHumanMsg('Lỗi hệ thống! Xin thử lại sau.', { theme: 'red' });
+                            }
+                        },
+                        error: function (data) {
+                            var hm = $('body').wHumanMsg();
+                            hm.wHumanMsg('Lỗi hệ thống! Xin thử lại sau.', { theme: 'red' });
+                        }
+                    });
+                } else {
+                    return;
+                }
+            });
+        }
+
+        function ShowProduceModal(id) {
+            $.ajax({
+                url: "/Admin/ProduceSessionManagement/CreateProduceSession?DishID=" + id,
+                type: 'GET',
+                async: false,
+                success: function (data) {
+                    $('#produceSession-add').modal('show');
+                    $('#produceSession-add-body').html(data);
+                    $(".populate.select2-offscreen").select2();
+                    SetDefaultSupplier();
+                    $("img.small-thumb-produce").thumbPopup({
+                        imgSmallFlag: "",
+                        imgLargeFlag: "",
+                        cursorTopOffset: 10,
+                        cursorLeftOffset: 10
+                    });
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Lỗi hệ thống! Xin thử lại sau.', { theme: 'red' });
+                }
+            });
+        }
+
+        function SetDefaultSupplier() {
+            $('select[name="ingredient_item_add"]').each(function () {
+                var defaultIngredientItem = $(this).attr('default-ingredient-item');
+                $(this).select2("val", [defaultIngredientItem]);
+                $('#quantity_add').val('5');
+            });
+        }
+
+        function SetDefaultSupplierForGenerate() {
+            $('select[default-ingredient-item]').each(function () {
+                var defaultIngredientItem = $(this).attr('default-ingredient-item');
+                $(this).select2("val", [defaultIngredientItem]);
+            });
+        }
+
+        function ProduceSession() {
+            $('.alert-danger', '#produceSession-add-body').css('visibility', 'hidden');
+            if (validateInteger('quantity_add') == false) {
+                return;
+            }
+
+            var ingredients_str = '';
+            var select_ingredients = $(".populate.select2-offscreen");
+            for (var i = 0; i < select_ingredients.length; i++) {
+                var value = $(select_ingredients[i]).select2("val");
+                if (value == '') {
+                    $(select_ingredients[i]).closest('tr').prev('tr').css('color', 'red');
+                    return;
+                }
+                $(select_ingredients[i]).closest('tr').prev('tr').css('color', '#767676');
+                ingredients_str += value + ',';
+            }
+            ingredients_str = ingredients_str.substr(0, ingredients_str.length - 1);
+            if (ingredients_str == '') {
+                $('.alert-danger', '#produceSession-add-body').css('visibility', 'visible');
+                return;
+            }
+
+            $.ajax({
+                url: "/Admin/ProduceSessionManagement/CreateProduceSessionWithQRCode",
+                type: 'POST',
+                data: { id: $('#id_add').val(), quantity: $('#quantity_add').val(), ingredients_str: ingredients_str },
+                async: false,
+                success: function (data) {
+                    $('#produceSession-add').modal('hide');
+                    $('#produceSession-qrcode').modal('show');
+                    $('#produceSession-qrcode-body').html(data);
+
+                    // download qrcode image
+                    var filename = $('#inserted_dishitem_name').val() + '_' + $('#inserted_dishitem_cookingtime').val() + '.gif';
+                    if (filename != "undefined_undefined.gif") {
+                        downloadURI($('#qrcode_image').attr('src'), filename);
+                    }
+                },
+                error: function (data) {
+                    $('.alert-danger', '#produceSession-add-body').css('visibility', 'visible');
+                }
+            });
+        }
+
+        function ShowGenerateProduceSessionModal() {
+            $.ajax({
+                url: "/Admin/ProduceSessionManagement/ProduceSessionGenerate",
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    $('#produceSession-generate').modal('show');
+                    $('#produceSession-generate-body').html(data);
+
+                    // generate select2
+                    $(".populate.select2-offscreen").select2();
+
+                    // add class for input
+                    $('select', '#produce_generate_table').addClass('form-control');
+                    $('input', '#produce_generate_table').addClass('form-control');
+
+                    // thumbhover
+                    $("img.small-thumb-generate").thumbPopup({
+                        imgSmallFlag: "",
+                        imgLargeFlag: "",
+                        cursorTopOffset: 10,
+                        cursorLeftOffset: 10
+                    });
+
+                    // number only for quantiy field
+                    $("input.quantity.form-control").keypress(function (e) {
+                        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                            return false;
+                        }
+                    });
+                    $('#produce_generate_table tbody tr div[class="btn btn-primary btn-success"]').each(function () {
+                        var dishID = $(this).attr('data-id');
+                        var marginX = 0;
+                        if ($('#ingredients_produce_generate_' + dishID).text().trim() == 'Chưa có nguyên liệu') marginX = -180;
+                        else marginX = -420;
+                        $(this).qtip({
+                            content: {
+                                text: $('#ingredients_produce_generate_' + dishID),
+                                title: 'Nguồn gốc nguyên liệu'
+                            },
+                            style: {
+                                classes: 'qtip-bootstrap',
+                            },
+                            position: {
+                                my: 'left center',
+                                at: 'bottom left',
+                                adjust: {
+                                    x: marginX
+                                }
+                            },
+                            show: {
+                                event: 'click',
+                                effect: function() {
+                                    $(this).show('slide', 500);
+                                }
+                            },
+                            hide: {
+                                event: 'click unfocus',
+                                effect: function() {
+                                    $(this).hide('puff', 200);
+                                },
+                            }
+                        });
+                    });
+                    $('#produce_generate_table').dataTable({
+		                "iDisplayLength": 5,
+		                "aLengthMenu": [5, 10, 20, 50]
+		            });
+                    $('select[aria-controls="produce_generate_table"]').addClass('form-control');
+                    $('input[aria-controls="produce_generate_table"]').addClass('form-control');
+                    SetDefaultSupplierForGenerate();
+                },
+                error: function (data) {
+                    var hm = $('body').wHumanMsg();
+                    hm.wHumanMsg('Lỗi hệ thống! Xin thử lại sau.', { theme: 'red' });
+                }
+            });
+        }
+
+        function GenerateProduceSession() {
+            $('.alert-danger', '#produceSession-generate-body').css('visibility', 'hidden');
+            
+            var requestData = {};
+            requestData['ListProduceSession'] = [];
+            var validate_ingredient = true;
+            $('input[name="selected_produce_session"]:checked').each(function(i, obj) {
+                var row = obj.parentElement.parentElement;
+                // get produce session info
+                var dishID = $('div[class="btn btn-primary btn-success"]', row).attr('data-id');
+                var quantity = $('input[class="quantity form-control"]', row).val();
+                var ingredients_str = '';
+                var select_ingredients = $('.populate.select2-offscreen', '#ingredients_produce_generate_' + dishID);
+                
+                var check = true;
+                for (var i = 0; i < select_ingredients.length; i++) {
+                    $(select_ingredients[i]).closest('tr').prev('tr').css('color', '#767676');
+                    var value = $(select_ingredients[i]).select2("val");
+                    if (value == '') {
+                        $(select_ingredients[i]).closest('tr').prev('tr').css('color', 'red');
+                        check = false;
+                    }
+                    ingredients_str += value + ',';
+                }
+                if (!check) {
+                    $('div[class="btn btn-primary btn-success"]', row).click();
+                    validate_ingredient = false;
+                    return false;
+                }
+
+                ingredients_str = ingredients_str.substr(0, ingredients_str.length - 1);
+                
+                // build request data
+                var produce_session_json = { DishID: dishID, Quantity: quantity, IngredientsString: ingredients_str };
+                requestData['ListProduceSession'].push(produce_session_json);
+            });
+
+            if (!validate_ingredient) return;
+
+            $.ajax({
+                url: "/Admin/ProduceSessionManagement/ProduceSessionGenerate",
+                type: 'POST',
+                data: { 'json': JSON.stringify(requestData) },
+                async: false,
+                success: function (data) {
+                    if (data == "Success") {
+                        location.reload();
+                    } else if (data == "Error") {
+                        $('.alert-danger', '#produceSession-generate-body').css('visibility', 'visible');
+                    }
+                },
+                error: function (data) {
+                    $('.alert-danger', '#produceSession-generate-body').css('visibility', 'visible');
+                }
+            });
+        }
+
+        function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            link.click();
+            $('#qrcode_print').val('true');
+        }
+
+        function DownloadQRCode() {
+            var filename = $('#inserted_dishitem_name').val() + '_' + $('#inserted_dishitem_cookingtime').val() + '.gif';
+            if (filename != "undefined_undefined.gif") {
+                downloadURI($('#qrcode_image').attr('src'), filename);
+            }
+        }
+
+        function DismissPrintQRCode() {
+            $('#qrcode_print').val('true');
+            $('#produceSession-qrcode').modal('hide');
+        }
+    </script>
+}

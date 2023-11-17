@@ -1,0 +1,13 @@
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\bin\Debug\QRCodeSample.exe
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\bin\Debug\QRCodeSample.pdb
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\bin\Debug\ThoughtWorks.QRCode.dll
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\bin\Debug\ThoughtWorks.QRCode.pdb
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\obj\Debug\QRCodeSample.QrCodeSampleApp.resources
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\obj\Debug\QRCodeSample.Properties.Resources.resources
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\obj\Debug\QRCodeSampleApp.csproj.GenerateResource.Cache
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\obj\Debug\QRCodeSample.exe
+C:\Users\Lubu\Desktop\QRCode\QRCodeSampleApp\obj\Debug\QRCodeSample.pdb
+C:\Users\Lubu\Desktop\QRCodeSampleApp\obj\Debug\QRCodeSample.exe
+C:\Users\Lubu\Desktop\QRCodeSampleApp\obj\Debug\QRCodeSample.pdb
+C:\Users\Duy\Dropbox\Capstone\Learn-it-yourself\QR Code Demo\QRCodeSampleApp\obj\Debug\QRCodeSample.exe
+C:\Users\Duy\Dropbox\Capstone\Learn-it-yourself\QR Code Demo\QRCodeSampleApp\obj\Debug\QRCodeSample.pdb

@@ -1,0 +1,205 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*
+===================================================
+				OTHER COLORS
+===================================================
+*/
+body {
+	background: url(../images/dark-body-bg.jpg) repeat;
+}
+#wrapper {
+	background: url(../images/dark-body-bg.jpg) repeat;
+}
+#header {
+	background: url(../images/dark-body-bg.jpg) repeat;
+}
+.top-nav {
+	background: none repeat scroll 0 0 #fff;
+}
+.top-nav ul li a, .blog-text h5 {
+	color: #fff;
+}
+.top-nav ul li {
+	border-left: 1px solid #3c3c3c;
+}
+.bx-wrapper .bx-pager .bx-pager-item, .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+	background: url(../images/banner-cap-bg.gif) repeat;
+}
+#banner .bx-wrapper .bx-prev:hover {
+	background-color: #525252;
+}
+#banner .bx-wrapper .bx-next:hover {
+	background-color: #525252;
+}
+.heading {
+	background: #262626;
+}
+.heading h2 {
+	color: #fff;
+}
+.accordion-heading .accordion-toggle {
+	background-color: #151315 !important;
+	color: #8a898a !important;
+	background-image: url("../images/plus-icon.png");
+	background-position: 94% center;
+	background-repeat: no-repeat;
+}
+.accordion-group {
+	background: url(../images/banner-cap-bg.gif) repeat-x left bottom !important;
+	margin: 0 !important;
+}
+.head h2 {
+	color: #fff;
+}
+.accordion-inner {
+	background: url(../images/accordion-bg.gif) repeat;
+}
+.left-box h3 {
+	color: #fcc71f;
+}
+.food-critic-box {
+	background: #262626;
+}
+.featured-slider {
+	border: 1px solid #0f0f0f;
+}
+.featured-slider li {
+	border-left: 1px solid #262626;
+}
+.review-blockquote {
+	background-image: url(../images/dark-quote-icon.png);
+	background-repeat: no-repeat;
+	background-position: 18px 6px;
+	background-color: #070707;
+	border: 1px solid #3a3939;
+	color: #fff;
+}
+.review-blockquote p{
+	color:#fff;
+}
+.form-receipe .textarea {
+	background: #010101;
+	border: 1px solid #545454;
+}
+.empty-border {
+	background: url(../images/reviw-bg.gif) repeat;
+}
+.reservation-section {
+	background: #1e1c1e;
+	border: 1px solid #262626;
+}
+.reservation-box-1 {
+	border-right: 1px solid #262626;
+}
+.reservation-box-2 {
+	border-right: 1px solid #262626;
+}
+.reservation-box-1 h4 {
+	color: #616161;
+}
+.reservation-box-1 strong.title {
+	color: #fcb800;
+}
+.reservation-box-2 h4 {
+	color: #616161;
+}
+.reservation-box-2 p {
+	color: #616161;
+}
+.reservation-box-3 h4 {
+	color: #616161;
+}
+.reservation-box-3 p {
+	color: #616161;
+}
+.events-box-head {
+	background:#171717;
+}
+.events-box-head h5 {
+	color: #fff;
+}
+.events-box {
+	background: none;
+}
+.chef-box {
+	background: #000;
+	border: none;
+}
+.expertise-list h5 {
+	color: #3b3b3b;
+}
+.expertise-list ul li{
+	color:#777;
+}
+.chart strong.title{
+	color:#616161 !important;
+}
+.percentage span{
+	color:#616161 !important;
+}
+.chef-slider .carousel-control.left {
+	top: 0;
+	color: #fff;
+	background:#2a2725;
+}
+.chef-slider .carousel-control.right {
+	top: 0;
+	color: #fff;
+	background:#2a2725;
+}
+#footer {
+	background: #1e1c1e;
+	border-top: 5px solid #252525;
+}
+.footer-section-3 {
+	background: #525252;
+}
+.copy-section strong.copy {
+	font-weight: 600;
+}
+.head{
+	background:url(../images/blog-line2.png) repeat-x left bottom;
+}
+.accordion-heading .accordion-toggle {
+    background-color: #262626 !important;
+    background-image:url(../images/dark-plus-icon.png) !important;
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    color: #151515;
+    display: block;
+    font-family: 'museo500';
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    padding: 13px;
+    text-decoration: none;
+}
+.jcarousel-skin-tango .jcarousel-container{
+	background:#262626 !important;
+}
+.featured-slider li{
+	border-left:1px solid #373737;
+}
+.featured-slider li strong.hover-panel{
+	background:#000;
+	color:#493c39;
+}
+.accordion-heading .accordion-toggle{
+	margin-bottom:1px !important;
+}
+#calendar{
+	background:#fff;
+}
+.blog-text{
+	color:#fff;
+}
+.none{
+	background:none;
+	border:none;
+}
+.chef-box .text .head strong.designation, .bottom-sec strong.time, .left-side{
+	color:#000;
+}

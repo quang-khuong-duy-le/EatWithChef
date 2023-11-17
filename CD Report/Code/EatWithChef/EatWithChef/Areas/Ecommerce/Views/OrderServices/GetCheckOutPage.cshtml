@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "GetCheckOutPage";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        getCheckoutData();
+    })
+</script>
+<section id="content" class="container">
+    <div id="login-option" style="margin-top: 30px">
+        <p id="login-bypass" style="margin-left: 35px">
+            Đã có tài khoản Eat With Chef?
+			<a href="javascript:void(0);" class="bold" data-toggle="modal" data-target="#loginPartial" style="color: #f15a22">Đăng nhập</a>
+        </p>
+    </div>
+    <section class="checkout-form-container">
+        <div class="span9" style="margin: 0; background-color: white;">
+            <div class="panel">
+                <p class="hidden-info" onclick="$('.hidden-info').css('opacity',0);$('.hidden-info').css('z-index',-1);">Tạo tài khoản bằng email này!</p>
+
+                <p>Thông tin giao hàng</p>
+
+                <div class="">
+                    <p>Người nhận</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="ReceiverName">
+                </div>
+
+                <div>
+                    <p>Email</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="ReceiverEmail">
+                </div>
+
+                <div>
+                    <p>Địa chỉ</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="ReceiverAddress">
+                </div>
+
+                <div>
+                    <p>Điện thoại</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="ReceiverPhone">
+                </div>
+
+                <div class="large-control">
+                    <p>Ghi chú</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="OrderNote">
+                </div>
+
+                <div>
+                    <p>Mật khẩu</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="CreateAccountPass">
+                </div>
+
+                <div>
+                    <p>Xác nhận MK</p>
+                    <input type="text" placeholder=" .................................................................................................................................................................................................................................................................................................. " value="" id="CreateAccountConfirmPass">
+                </div>
+
+                <p>Thông tin tài khoản</p>
+
+                <div style="clear: both; height: 1px; opacity: 0;"></div>
+                <p>Xác nhận giỏ hàng</p>
+                <div class="order-cart-confirm">
+                </div>
+
+
+            </div>
+        </div>
+        <div class="span3" style="background-color: white;">
+            <div class="order-summary">
+                <p style="margin: 0 0 30px; color: #ddd; font-size: 13px;">Thông tin của bạn điền sẽ giúp chúng tôi phục vụ bạn tốt hơn</p>
+
+                <p class="left-info">Tổng cộng (<span id="total-count-checkout" style="color: #f15a22;"></span>)</p>
+                <p class="right-info" id="total-price-checkout"></p>
+                <p class="left-info">Giao hàng </p>
+                <p class="right-info">0</p>
+
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div class="span3">
+            <div style="background-color: white;">
+                <div class="final-total">
+                    <p class="left-info">Thành tiền</p>
+                    <p class="right-info" id="all-price-checkout"></p>
+                </div>
+
+                <p style="padding: 20px; color: #ddd; font-size: 13px;">Hãy chắc rằng bạn hoàn toàn đồng ý với điều kiện và quy định của chúng tôi khi đặt hàng</p>
+            </div>
+            <button class="btn-check-out" onclick="SubmitCheckOut()">Thanh toán</button>
+        </div>
+        <div style="clear: both"></div>
+    </section>
+</section>

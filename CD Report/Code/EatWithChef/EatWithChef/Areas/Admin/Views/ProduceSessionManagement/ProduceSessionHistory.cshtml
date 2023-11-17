@@ -1,0 +1,144 @@
+﻿@model EatWithChef.Areas.Admin.Models.ListDishItemModel
+@{
+    int counter = 0;
+}
+
+@if (Model == null)
+{ 
+    <div class="alert alert-block alert-danger fade in">
+        Lỗi hệ thống! Xin thử lại sau.
+    </div>
+}
+else if (Model.ListDishItem.Count == 0)
+{ 
+    <div class="alert alert-info fade in">
+        Chưa có Phiên Chế Biến nào!
+    </div>
+}
+else
+{
+    <div class="adv-table">
+        <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <table class="display table table-bordered table-striped dataTable" id="produce_history_table" aria-describedby="dynamic-table_info">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 204px; vertical-align:middle">Món ăn</th>
+                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 130px;vertical-align:middle">
+                            <center>Hình ảnh</center>
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                            <center>Đầu bếp</center>
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                            <center>Thời điểm chế biến</center>
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                            <center>Số lượng</center>
+                        </th>
+                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                            <center>QRCode</center>
+                        </th>
+                        <th class="sorting_desc_disabled" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 102px;vertical-align:middle">
+                            <center>Xóa</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th rowspan="1" colspan="1">Món ăn</th>
+                        <th rowspan="1" colspan="1">
+                            <center>Hình ảnh</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Đầu bếp</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Thời điểm chế biến</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Số lượng</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>QRCode</center>
+                        </th>
+                        <th rowspan="1" colspan="1">
+                            <center>Xóa</center>
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    @foreach (var dishProduce in Model.ListDishItem)
+                    {
+                        counter++;
+                        if (counter % 2 == 1)
+                        {
+                        <tr class="odd">
+                            <td class=" ">@dishProduce.DishName</td>
+                            <td class=" ">
+                                <center><img class="small-thumb-history" src="@dishProduce.DishImage" width="40px" height="40px" /></center>
+                            </td>
+                            <td class=" ">
+                                <center>@dishProduce.ChefName</center>
+                            </td>
+                            <td class="">
+                                <center>@dishProduce.CookingTime</center>
+                            </td>
+                            <td class="">
+                                <center>@dishProduce.Quantity</center>
+                            </td>
+                            <td class="">
+                                <center><button type="button" class="btn btn-primary" onclick="downloadURI('/Images/QRCode/@dishProduce.QRCode', '@dishProduce.DishName'+'_'+'@dishProduce.CookingTime'+'.gif')"><i class="icon-download-alt"></i></button></center>
+                            </td>
+                            @if (dishProduce.Deletable)
+                            {
+                            <td class="">
+                                <center><button type="button" class="btn btn-danger" onclick='DeleteProduceSession("@dishProduce.Id", "True")'>X</button></center>
+                            </td>
+                            }
+                            else 
+                            {
+                                <td class="">
+                                <center><button type="button" style="opacity:0.5" class="btn btn-danger" onclick='DeleteProduceSession("@dishProduce.Id", "False")'>X</button></center>
+                            </td>
+                            }
+                        </tr>
+                        }
+                        else
+                        {
+                        <tr class="even">
+                            <td class=" ">@dishProduce.DishName</td>
+                            <td class=" ">
+                                <center><img class="small-thumb-history" src="@dishProduce.DishImage" width="40px" height="40px" /></center>
+                            </td>
+                            <td class=" ">
+                                <center>@dishProduce.ChefName</center>
+                            </td>
+                            <td class="">
+                                <center>@dishProduce.CookingTime</center>
+                            </td>
+                            <td class="">
+                                <center>@dishProduce.Quantity</center>
+                            </td>
+                            <td class="">
+                                <center><button type="button" class="btn btn-primary" onclick="downloadURI('/Images/QRCode/@dishProduce.QRCode', '@dishProduce.DishName'+'_'+'@dishProduce.CookingTime'+'.gif')"><i class="icon-download-alt"></i></button></center>
+                            </td>
+                            @if (dishProduce.Deletable)
+                            {
+                            <td class="">
+                                <center><button type="button" class="btn btn-danger" onclick='DeleteProduceSession("@dishProduce.Id", "True")'>X</button></center>
+                            </td>
+                            }
+                            else 
+                            {
+                                <td class="">
+                                <center><button type="button" style="opacity:0.5" class="btn btn-danger" onclick='DeleteProduceSession("@dishProduce.Id", "False")'>X</button></center>
+                            </td>
+                            }
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

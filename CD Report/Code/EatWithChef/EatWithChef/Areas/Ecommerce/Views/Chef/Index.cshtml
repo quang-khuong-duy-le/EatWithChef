@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Bữa ăn ngon cùng đầu bếp nổi tiếng - Trang đầu bếp";
+    Layout = "~/Areas/Ecommerce/Views/Shared/_LayoutFrontend.cshtml";
+}
+@model IEnumerable<Domain.Entity.ChefDTO>
+<hr class="double" />
+@if (Model != null && Model.Count() > 0)
+{
+    <section class="chef-section">
+        @foreach (var item in Model)
+        {
+            <a href="dau-bep/1">
+            <div class="row-fluid">
+                <div class="span9" style="margin-left: 12%;">
+                    <div id="myCarousel-02" class="carousel slide chef-slider">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="chef-box">
+                                    <div class="frame">
+                                        <img src="@item.Image" alt="@item.ChefName">
+                                        <div class="social-box">
+                                          <ul>
+                                            <li class="facebook"><a href="#">Facebook</a></li>
+                                            <li class="twitter"><a href="#">Twitter</a></li>
+                                          </ul>
+                                        </div>
+                                    </div>
+                                    <div class="text">
+                                        <div class="head">
+                                            <h5>@item.ChefName</h5>
+                                        </div>
+                                        <div class="expertise-list">
+                                            @item.Description
+                                        </div>
+                                        <div class="performance-box">
+                                            <div class="container-pie">
+                                                @if (item.ChefSkill != null && item.ChefSkill.Count > 0)
+                                                {
+                                                    foreach (var skill in item.ChefSkill)
+                                                    { 
+                                                    <div class="chart">
+                                                        <div class="percentage" data-percent="@skill.Score"><span>@skill.Score</span>%</div>
+                                                        <strong class="title">@skill.SkillName</strong>
+                                                    </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </a>
+            <hr class="double" />
+        }
+    </section>
+}
+else
+{
+    <h1>Chưa có đầu bếp</h1>
+}

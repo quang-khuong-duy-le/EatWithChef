@@ -1,0 +1,183 @@
+﻿@model EatWithChef.Areas.Admin.Models.ListDishCategoryModel
+@{
+    ViewBag.Title = "Quản lý Danh Mục Món Ăn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int counter = 0;
+}
+
+@section headcss {
+    <link href="~/Content/backend/assets/stylesheets/plugins/bootstrap_switch/bootstrap-switch.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/plugins/bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
+    <link href="~/Content/backend/assets/stylesheets/custom.css" rel="stylesheet" />
+    <link href="~/Content/backend/data-tables/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/backend/editable-table/editable-table.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/backend/alertify/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/backend/wHumanMsg/wHumanMsg.css" rel="stylesheet" />
+    <style type="text/css">
+        .fileupload {
+            width:100px;
+        }
+    </style>
+}
+
+
+
+@section scripts {
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap_switch/bootstrapSwitch.min.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+    <script src="~/Content/backend/data-tables/jquery.dataTables.js"></script>
+    <script src="~/Content/backend/data-tables/DT_bootstrap.js"></script>
+    
+    <script src="~/Content/backend/editable-table/table-editable-dishcategory.js"></script>
+    <script src="~/Content/backend/assets/javascripts/plugins/select2/select2.js"></script>
+    <script src="~/Content/backend/jquery-thumbhover/jquery.thumbhover.js"></script>
+    <script src="~/Content/backend/alertify/alertify.min.js"></script>
+    <script src="~/Content/backend/wHumanMsg/wHumanMsg.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+            $("img.small-thumb").thumbPopup({
+                imgSmallFlag: "",
+                imgLargeFlag: "",
+                cursorTopOffset: 10,
+                cursorLeftOffset: 10
+            });
+            $('a.toggle-nav.btn.pull-left').click(function () {
+                $('#editable-sample').css('width', '100%');
+            });
+        });
+        
+        function browse_image(sender) {
+            var w = 700;
+            var h = 450;
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            var browse_window = window.open('/Admin/Admin/BrowseFile', 'GetImageFromElfinder', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            browse_window.onbeforeunload = function () {
+                var image = $('#LogoUrl').val();
+                if (image != '') {
+                    $('#image', sender).val(image);
+                    var index = image.lastIndexOf('/');
+                    var filename = image.substring(index + 1, image.length);
+                    $(sender).next('span.fileupload-preview').text(filename);
+                }
+                $('#LogoUrl').val('');
+            }
+        }
+
+        function validateType(sender, category_id) {
+            var check = false;
+            if ($(sender).val() == "") {
+                $(sender).css("border-color", "red");
+                sender.placeholder = "Xin nhập tên!";
+                return false;
+            } else {
+                $(sender).css("border", "1px solid #e2e2e4");
+                sender.placeholder = "";
+
+                var url = "/Admin/DishCategoryManagement/CheckDishCategoryName?name=" + $(sender).val();
+                if (typeof category_id != 'undefined') {
+                    url += "&categoryid=" + category_id;
+                } else {
+                    url += "&categoryid=0";
+                }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    async: false,
+                    success: function (data) {
+                        if (data == 'Success') {
+                            $(sender).next('p.alert-danger').css('visibility', 'hidden');
+                            check = true;
+                        } else {
+                            $(sender).next('p.alert-danger').css('visibility', 'visible');
+                        }
+                    },
+                    error: function (errMsg) {
+                        var hm = $("body").wHumanMsg();
+                        hm.wHumanMsg('Lỗi xảy ra. Xin thử lại sau.');
+                        $(sender).next('p.alert-danger').css('visibility', 'hidden');
+                    }
+                });
+                return check;
+            }
+        }
+    </script>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+        <h1 class="pull-left">
+            <i class="icon-edit"></i>
+            <span>@ViewBag.Title</span>
+        </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <input type="hidden" id="LogoUrl" name="LogoUrl" value="" />
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <button id="editable-sample_new" class="btn btn-primary">
+                                Tạo Mới &nbsp;<i class="icon-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="editable-sample_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <table class="table table-striped table-hover table-bordered dataTable" id="editable-sample" aria-describedby="editable-sample_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 216px;">Tên</th>
+                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 257px;">Mô tả</th>
+                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Image: activate to sort column ascending" style="width: 207px; text-align:center">Hình ảnh</th>
+                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="IsActive: activate to sort column ascending" style="width: 100px; text-align:center">Hủy</th>
+                                    <th class="sorting_desc_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Edit" style="width: 100px; text-align:center">Sửa</th>
+                                </tr>
+                            </thead>
+
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                @if (Model != null && Model.ListDishCategory != null && Model.ListDishCategory.Count > 0)
+                                {
+                                    foreach (var dc in Model.ListDishCategory)
+                                    {
+                                        if (counter % 2 != 0)
+                                        {
+                                            <tr class="odd">
+                                                    <td class=" " style="width:300px">@dc.Name</td>
+                                                    <td class=" " style="width:500px">@dc.Description</td>
+                                                    <td class=" " style="width:100px"><center><img class="small-thumb" src="@dc.Image" width="40px" height="40px"/></center></td>
+                                                    <td class=" " style="width:100px"><center><button type="button" class="btn btn-danger delete"><i class="icon-remove"></i> Xóa</button></center></td>
+                                                    <td class=" " style="width:100px"><center><button type="button" class="btn btn-info edit"><i class="icon-refresh"></i> Sửa</button></center></td>
+                                                    <input type="hidden" id="dish_category_id" name="dish_category_id" value="@dc.Id" />
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr class="even">
+                                                    <td class=" " style="width:300px">@dc.Name</td>
+                                                    <td class=" " style="width:500px">@dc.Description</td>
+                                                    <td class=" " style="width:100px"><center><img class="small-thumb" src="@dc.Image" width="40px" height="40px"/></center></td>
+                                                    <td class=" " style="width:100px"><center><button type="button" class="btn btn-danger delete"><i class="icon-remove"></i> Xóa</button></center></td>
+                                                    <td class=" " style="width:100px"><center><button type="button" class="btn btn-info edit"><i class="icon-refresh"></i> Sửa</button></center></td>
+                                                    <input type="hidden" id="dish_category_id" name="dish_category_id" value="@dc.Id" />
+                                            </tr>
+                                        }
+                                        counter++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

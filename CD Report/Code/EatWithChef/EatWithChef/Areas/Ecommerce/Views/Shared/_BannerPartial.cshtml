@@ -1,0 +1,62 @@
+﻿@{
+    var DayWeek = new Dictionary<int, string>();
+    DayWeek.Add(1, "Thứ Hai");
+    DayWeek.Add(2, "Thứ Ba");
+    DayWeek.Add(3, "Thứ Tư");
+    DayWeek.Add(4, "Thứ năm");
+    DayWeek.Add(5, "Thứ sáu");
+    DayWeek.Add(6, "Thứ bảy");
+    DayWeek.Add(0, "Chủ nhật");
+}
+@if(ViewBag.MenuDate != null){
+<section id="banner" style="height: 610px; border: 0;z-index: 1;">
+    <div style="width: 100%; height: 500px; overflow: hidden; position: relative;">
+        <img style="min-width: 2500px; display: block; height: 500px; position: absolute; top: 0; left: -550px;z-index:-1;" src="~/Content/frontend/images/banner-img.jpg" />
+        <div class="container">
+            <div class="register-from">
+                <p>Đăng ký tài khoản</p>
+                <div>
+                    <input type="text" class="small-input" name="" placeholder="Họ"/>
+                    <input type="text" class="small-input" name="" placeholder="Tên"/>
+                    <input type="text" class="large-input" name="" placeholder="Email"/>
+                    <input type="text" class="large-input" name="" placeholder="Mật khẩu (tối thiểu 6 ký tự)"/>
+                    <input type="button" class="" value="Tạo tài khoản"/>
+                    <p>Đăng ký tài khoản là bạn đã đồng ý <span style="text-decoration:underline">Điều khoản và Dịch vụ</span> của chúng tôi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="category-menu">
+        <div class="container" style="position: relative">
+            @{
+                var Day = "";
+                DayWeek.TryGetValue((int)ViewBag.MenuDate.DayOfWeek, out Day);
+            }
+            <div class="list-menu">
+                <div class="menu-title"><span id="show-menu">@Day @ViewBag.MenuDate.Day/@ViewBag.MenuDate.Month</span>
+                    <div>
+                        <ul id="list-choice-menu">
+                            @Html.Action("GetListFutureMenu", "Menu", new { MenuDay = ViewBag.MenuDate })
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-left"><a href="javascript:void(0)" id="previous-menu-link" onclick="moveMenu(0)"></a></div>
+                <div class="control-right"><a href="javascript:void(0)" id="next-menu-link" onclick="moveMenu(1)"></a></div>
+            </div>
+            @Html.Action("GetAllDishCategory", "Menu")
+            <div class="filter-icon" onmouseover="$('.filter-region').css('display','block')" onmouseout="$('.filter-region').css('display','none')">
+                <div></div>
+            </div>
+
+            <div class="filter-region" onmouseover="$('.filter-region').css('display','block')" onmouseout="$('.filter-region').css('display','none')">
+                <ul>
+                    @Html.Action("GetAllTags","Menu")
+                </ul>
+            </div>
+            <div class="cart-icon" onmouseover="showcart('65px',0)" onmouseout="showcart('-300px',-1)">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</section>
+}

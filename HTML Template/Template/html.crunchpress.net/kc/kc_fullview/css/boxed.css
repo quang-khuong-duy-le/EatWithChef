@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	background: url(../images/boxed-body-bg.gif) repeat;
+}
+#wrapper{
+	background:#fff;
+}
+.boxed {
+	max-width: 1210px !important;
+	margin: 0 auto;
+	box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+	-webkitbox-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+	float: none !important;
+}

@@ -1,0 +1,142 @@
+﻿@model EatWithChef.Areas.Admin.Models.DishManagementModel
+@{
+    string taglist = "";
+    int index = Model.Dish.Image.LastIndexOf('/');
+    string filename = Model.Dish.Image.Substring(index + 1, Model.Dish.Image.Length - index - 1);
+    int id = Model.Dish.Id;
+}
+<input type="hidden" id="id" name="id" value="@id" />
+<button class="btn btn-danger" onclick="DeleteDish(this)" data-id="@Model.Dish.Id" style="float:right; margin-right: 15px; width: 70px; font-size:medium; font-weight:400">Xóa <i class="icon-remove"></i></button>
+<div id="wizard_update">
+    <h2>Thông tin Món Ăn</h2>
+    <section>
+        <div style="width: 100%; float: right; padding: 50px; padding-top: 10px">
+            <div class="form-group">
+                <label>Tên</label>
+                <input type="text" class="form-control" id="name_update" name="name_update" onblur="validateType('name_update','@id')" style="display: inline; margin-left: 50px; width: 50%" class="form-control" value="@Model.Dish.Name"/>
+                <p class="alert-danger" style="display:inline; margin-left:30px; visibility:hidden">Tên này đã tồn tại!</p>
+            </div>
+            <div class="form-group">
+                <label>Danh mục</label>
+                <select id="categoryID_update" name="categoryID_update" style="display: inline; margin-left: 6px; width: auto" class="form-control xsmall">
+                    @foreach (var category in Model.ListDishCategory)
+                    {
+                        if (category.Id == Model.Dish.CategoryID)
+                        {
+                        <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                        <option value="@category.Id">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Giá</label>
+                <input type="text" class="form-control" id="price_update" name="price_update" style="display: inline; margin-left: 52px; width: 20%" value="@Model.Dish.Price" />
+            </div>
+            <div class="form-group">
+                @foreach (var tag in Model.Dish.Tags)
+                {
+                    taglist += tag.Name + ",";
+                }
+                @if (taglist.Length > 0)
+                {
+                    taglist = taglist.Remove(taglist.Length - 1);
+                }
+                <label>Tags</label>
+                <ul id="newsTags_update" name="newsTags_update"></ul>
+                <input id="taglist_update" name="taglist_update" type="hidden" value="@taglist"/>
+                <input id="taglistId_update" name="taglistId_update" type="hidden" value="@taglist"/>
+            </div>
+            <div class="form-group">
+                <label>Hình ảnh</label>
+                <div class="fileupload fileupload-exists" data-provides="fileupload">
+                    <span class="btn btn-white btn-file" onclick="browse_image(this, image_update)">
+                        <span class="fileupload-new"><i class="icon-refresh"></i>Chọn hình</span>
+                        <span class="fileupload-exists"><i class="icon-refresh"></i>Chọn hình</span>
+                        <input type="hidden" id="image_update" name="image_update" value="@Model.Dish.Image">
+                    </span>
+                    <span class="fileupload-preview" style="margin-left: 5px;">@filename</span>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('next');"><i class="icon-circle-arrow-right"></i> Tiếp tục</button>
+            </div>
+        </div>
+    </section>
+
+    <h2>Mô tả</h2>
+    <section>
+        <div style="width: 100%;">
+            <div class="form-group">
+                <textarea rows="3" id="description_update" name="description_update">@Model.Dish.Description</textarea>
+            </div>
+            <div class="pull-right" style="margin-top: 10px;">
+                <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('previous');"><i class="icon-circle-arrow-left"></i>Trở lại</button>
+                <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('next');"><i class="icon-circle-arrow-right"></i>Tiếp tục</button>
+            </div>
+        </div>
+    </section>
+
+    <h2>Hướng dẫn nấu</h2>
+    <section>
+        <div style="width: 100%;">
+            <div class="form-group">
+                <textarea rows="3" id="cookingGuide_update" name="cookingGuide_update">@Model.Dish.CookingGuide</textarea>
+            </div>
+            <div class="pull-right" style="margin-top: 10px;">
+                <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('previous');"><i class="icon-circle-arrow-left"></i>Trở lại</button>
+                <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('next');"><i class="icon-circle-arrow-right"></i>Tiếp tục</button>
+            </div>
+        </div>
+    </section>
+
+    <h2>Chọn nguyên liệu</h2>
+    <section>
+        <div class="clearfix">
+            <span style="display: -webkit-box; float: left;">
+                <label>
+                    Tìm kiếm
+                    <input type="text" id="pick_keyword_update" value="" class="form-control medium" style="margin-bottom: 5px; margin-right: 4px; width: 150px; margin-top: 0px" />
+                </label>
+                <label>
+                    Danh mục
+                    <select id="pick_ingredient_categoryID_update" class="form-control small" style="width: 160px; margin-right: 4px; margin-top: 0px">
+                        @foreach (var cate in Model.ListIngredientCategory)
+                        {
+                            <option value="@cate.Id">@cate.Name</option>
+                        }
+                    </select>
+                </label>
+            </span>
+            <span id="picking_ingredient_instruction_update" style="float: right; margin-right: 10px; margin-top:30px">
+                <h5 style="color:crimson">Kéo thả nguyên liệu vào khung bên đây</h5>
+            </span>
+        </div>
+        <div class="col-md-7" style="min-height: 400px; max-height: 400px; padding: 5px; overflow: scroll; overflow-x: hidden; border: 3px solid cadetblue;">
+            <ul id="pick_list_ingredient_update" class="connected sortable list" style="width: 100%; min-height: 350px; z-index: 100">
+            </ul>
+        </div>
+
+        <div class="" style="min-width: 270px; min-height: 400px; max-height: 400px; margin-top: 0px; padding: 5px; float: right; overflow: scroll; overflow-x: hidden; border: 3px solid cadetblue;">
+            <ul id="pick_selected_ingredient_update" class="connected sortable list no2" style="z-index: 1; min-height: 350px; min-width: 240px">
+                @foreach (var ingredient in Model.Dish.Ingredients)
+                {
+                    <li data-id="@ingredient.Id" style="box-shadow: 3px 3px 10px darkgray">
+                        <div style="word-wrap: break-word;">
+                            <center><img src="@ingredient.ImageUrl" width="80px" height="80px" style=""/></center>
+                            <center>@ingredient.Name</center>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="pull-right" style="margin-top: 30px">
+            <button class="btn btn-primary" type="button" onclick="$('#wizard_update').steps('previous');"><i class="icon-circle-arrow-left"></i> Trở lại</button>
+            <button class="btn btn-primary" type="button" onclick="UpdateDish()"><i class="icon-check-sign"></i> Chỉnh sửa</button>
+            <p class="alert-danger alert-error" id="error_message" style="visibility: hidden; margin-top:5px">Lỗi xảy ra. Xin hãy thử lại sau!</p>
+        </div>
+    </section>
+</div>

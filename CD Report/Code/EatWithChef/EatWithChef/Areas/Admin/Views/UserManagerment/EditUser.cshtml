@@ -1,0 +1,74 @@
+﻿@model EatWithChef.Areas.Admin.Models.UserProfileModel 
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" id="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Thông tin Người dùng</h4>
+        </div>
+        <div class="modal-body row">
+            <div class="col-md-5 img-modal">
+            </div>
+            <div class="col-md-7" style="width: 95%; float: right">
+                <div class="form-group">
+                            <img style="width:190px; margin-left:140px" src="@Model.Chef.ImageURL" />
+                        </div>
+                        <div class="form-group">
+                            <label>Tên Đăng nhập</label>
+                            <input id="UserName" value="@Model.GetuserbyId.UserName" style="width: 70%;margin-left:10px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input id="FullName" value="@Model.GetuserbyId.FullName" style="width: 70%;margin-left:40px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input id="Email" value="@Model.GetuserbyId.Email" style="width: 70%;margin-left:80px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control"/>
+                        </div>
+                        <div class="row" style="margin-bottom:15px">
+                        <div class="col-sm-6" style="width:65%">
+                            <label>Điện thoại</label>
+                            <input id="Phone" value="@Model.GetuserbyId.Telephone" style="width: 58%;margin-left:48px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control" />
+                        </div>
+                        <div class="col-sm-6" style="width:35%">
+                            <label>Giới tính</label>
+                            @if (@Model.GetuserbyId.IsFemale)
+                            {
+                                <input id="Gender" value="Nữ" style="width: 63px; margin-left: 0px; display: inline; background-color: #FFF;" disabled="disabled" class="form-control" />
+                            }
+                            else
+                            {
+                                <input id="Gender" value="Nam" style="width: 63px; margin-left: 0px; display: inline; background-color: #FFF;" disabled="disabled" class="form-control" />
+                            }
+
+                        </div>
+                            </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input id="Address" value="@Model.GetuserbyId.Address" style="width: 70%;margin-left:72px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày sinh</label>
+                            <input id="Birthday" value="@Model.GetuserbyId.DateOfBirth.ToShortDateString()" style="width: 70%;margin-left:52px; display: inline;background-color: #FFF;" disabled="disabled" class="form-control"/>
+                        </div>
+               @* <input type="hidden" id="NumOfUserRole" value="@Model.GetRoleOfUser.Count" disabled="disabled"/>
+                @for (int i = 0; i < Model.GetRoleOfUser.Count; i++)
+                {
+                    <input type="hidden" id="userRole-@i" value="@Model.GetRoleOfUser.ElementAt(i).RoleName" />
+                }*@
+               @* <div class="form-group">
+                    <label style="margin-right:53px;">Vai trò</label>
+                    <select multiple="" name="role_item_add" style="width: 300px;background-color: #FFF;"  class="populate select2-offscreen" tabindex="-1" id="role-region">
+                        @foreach (var role in Model.AllRoles)
+                        {
+                            <option value="@role.RoleName">@role.RoleName</option>
+                        }
+                    </select>
+                </div>*@
+                <div class="pull-right">
+                   @* <button class="btn btn-primary" type="button" onclick="SaveEdit(@Model.GetuserbyId.UserId,'@Model.GetuserbyId.UserName')">Lưu</button>*@
+                    <button type="button" style="margin-right:28px" class="btn btn-primary" id="button2" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

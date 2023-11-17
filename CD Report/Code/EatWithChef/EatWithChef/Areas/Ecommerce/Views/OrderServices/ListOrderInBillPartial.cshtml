@@ -1,0 +1,25 @@
+﻿@model EatWithChef.Areas.Ecommerce.Models.BillViewModel
+@if (Model != null && Model.OrderView != null && Model.OrderView.Count > 0)
+{
+    foreach (var item in Model.OrderView)
+    {
+    <div style="font-weight: bold">Đơn hàng ngày @String.Format("{0:dd/MM/yyyy}", item.DeliveryDate)</div>
+    <div class="list-dish">
+        @for (int i = 0; i < item.OrderDetailView.Count; i++)
+        {
+            <div class="dish-item">
+                <div class="dish-image">
+                    <center><img src="@item.OrderDetailView.ElementAt(i).DishImageUrl"/></center>
+                </div>
+                <div class="dish-name" title="@item.OrderDetailView.ElementAt(i).DishName">@item.OrderDetailView.ElementAt(i).DishName</div>
+                <div class="dish-price">@item.OrderDetailView.ElementAt(i).UnitPrice X</div>
+                <div class="quantity">@item.OrderDetailView.ElementAt(i).Quantity</div>
+            </div>
+        }
+    </div>
+    }
+}
+else
+{ 
+    <h3>Không tìm thấy hóa đơn. Vui lòng kiểm tra lại mã hóa đơn!</h3>
+}

@@ -1,0 +1,78 @@
+﻿@model EatWithChef.Areas.Admin.Models.IngredientModel
+<div class="modal-dialog" style="width: 70%">
+    <div class="modal-content" style="height: 350px">
+        <div class="modal-header">
+            <button type="button" id="buttonclose" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Thông tin nguyên liệu</h4>
+        </div>
+        <div class="modal-body row">
+            <div class="col-md-5 img-modal" style="width: 300px">
+                <img src="@Model.IngredientbyId.ImageUrl" alt="" style="width: 280px; height:224px">
+                @*<input type="file" id="ImageUrl-' + ingredient.ID + '" name="ImageUrl">*@
+                <div class="fileupload fileupload-exists" data-provides="fileupload" style="margin-top: 5px">
+                    <span class="btn btn-white btn-file" onclick="browse_image(this,ImageUrlUdate)">
+                        <span class="fileupload-new"><i class="icon-camera"></i></span>
+                        <span class="fileupload-exists"><i class="icon-camera"></i>Đổi hình</span>
+                        <input type="hidden" id="ImageUrlUdate" name="ImageUrl" value="@Model.IngredientbyId.ImageUrl">
+                    </span>
+                    <span class="fileupload-preview" style="margin-left: 5px;"></span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>Tên</label>
+                    <input id="UpdateName" onblur="validateName(@Model.IngredientbyId.Id,'UpdateName')" value="@Model.IngredientbyId.Name" class="form-control" style="display: inline; width: 56%; margin-left: 144px">
+                    <p class="alert-danger" style="margin-top: 3px; width: 130px; margin-left: 175px; visibility: hidden">Tên này đã tồn tại!</p>
+                </div>
+                <div class="form-group">
+                    <label>Danh mục</label>
+                    <select id="UpdateCategory" name="Category" class="form-control xsmall" style="width: auto; display: inline; margin-left: 100px">
+                        @foreach (var category in Model.ListIngreCategory)
+                        {
+                            if (category.Id == Model.IngredientbyId.IngredientCategory.Id)
+                            {
+                            <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                            <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nhà cung cấp mặc định</label>
+                    <select id="UpdateSupplierDefault" name="Supplier" class="form-control xsmall" style="width: 56%; display: inline; margin-left: 5px">
+                        @foreach (var sup in Model.Listsupplier)
+                        {
+                            if (sup.Id == Model.IngredientItem.SupplierID)
+                            {
+                            <option value="@sup.Id" selected>@sup.Name</option>
+                            }
+                            else
+                            {
+                            <option value="@sup.Id">@sup.Name</option>
+                            }
+                        }                 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label style="margin-right: 85px">Truy nguyên</label>
+                    @if (Model.IngredientbyId.IsTracibility)
+                    {
+                        <input type="checkbox" id="UpdateIsTracibility" name="IsTracibility" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="UpdateIsTracibility" name="IsTracibility" />
+                    }
+                </div>
+            </div>
+            <div class="pull-right" style="margin-right: 30px">
+                <button class="btn btn-primary" style="margin-right: 5px" onclick="UpdateIngredient(@Model.IngredientbyId.Id,@Model.IngredientItem.SupplierID)" type="button">Lưu</button>
+                <button class="btn btn-danger" type="button" onclick="Delete(@Model.IngredientbyId.Id)">Xóa</button>
+                <p class="alert-danger" style="visibility: hidden">Lỗi! Hãy thử lại.</p>
+            </div>
+        </div>
+    </div>
+</div>

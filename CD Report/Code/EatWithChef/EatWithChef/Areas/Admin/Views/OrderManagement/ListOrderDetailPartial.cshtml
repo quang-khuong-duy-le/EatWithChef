@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Domain.Entity.OrderDetail>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    { 
+    <tr>
+        <td>@item.Dish.Name</td>
+        <td>
+            <div class='text-center'>@item.Quantity</div>
+        </td>
+        <td>
+            <div class='text-right'>@item.UnitPrice</div>
+        </td>
+    </tr>
+    }
+}

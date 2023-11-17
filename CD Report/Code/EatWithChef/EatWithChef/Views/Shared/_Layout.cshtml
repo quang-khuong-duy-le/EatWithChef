@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bữa ăn ngon cùng đầu bếp nổi tiếng</title>
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Lato|Roboto:400,500,700|Open+Sans:600,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+    <link type="text/css" href="~/Content/frontend/css/custom.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/colors.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/fullcalendar.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/font-awesome.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/flexslider.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/frontend/css/style.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/frontend/skins/tango/skin.css" rel="stylesheet" />
+    @RenderSection("headcss", required: false)
+
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/custom.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/html5.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+</head>
+
+<body style="background-color: #F7F7F7">
+    <div class="modal fade" id="loginPartial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:auto; height:445px;top:50%;margin:-222px 0 0 -425px;display:none">
+        @Html.Partial("_LoginPartial")
+    </div>
+    <div id="wrapper" style="z-index:1">
+        <header id="header" style="border: 0;z-index: 1;">
+            <div style="z-index: 1; height: 130px; width: 100%; background-color: white; border-bottom: 1px solid #ccc;">
+                <div class="container" style="position: relative">
+                    <div class="logo"></div>
+                    <ul style="left: 0;">
+                        <li><a href="/trang-chu" class="bold">Thực đơn</a></li>
+                        <li>Đầu bếp</li>
+                        <li>Xem đơn hàng</li>
+                        <li>Liên hệ</li>
+                    </ul>
+                    <ul style="right: 0;">
+                        @if(!User.Identity.IsAuthenticated){
+                        <li><a href="javascript:void(0)" class="bold" data-toggle="modal" data-target="#loginPartial">Đăng nhập</a></li>
+                        <li><a href="/Account/Register" class="bold">Đăng ký</a></li>
+                        }else{
+                            <li>Welcome, @User.Identity.Name</li>
+                            <li><a href="@Url.Action("LogOff","Account")" style="text-decoration:none">Đăng xuất</a></li>
+                        }
+                        <li style="position: relative;">CART
+                            <div onmouseover="showcart(0,1)" onmouseout="showcart('-300px',-1)" style="width: 70px; height: 54px; position: absolute; top: 0; left: -5px; text-align: center; background-color: white">CART</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="position: relative; z-index: -1">
+                <div id="shopping-cart" onmouseover="showcart(0,1)" onmouseout="showcart('-300px',-1)">
+                    <div class="container" style="overflow: hidden">
+                        <div style="max-width: 1100px; width: 100%; position: relative">
+                            <div style="z-index: 1;">
+                                <div id="contain-item">
+                                    <div id="slider-cart">
+                                    </div>
+                                </div>
+                                <div id="price-table">
+                                    <div style="border-bottom: 1px solid #ccc; padding: 0 0 15px 0; margin: 0 0 7px 0;">
+                                        <div class="title-price">Số lượng</div>
+                                        <div class="value-price" id="number-of-cart-item"></div>
+                                        <div style="clear: both"></div>
+                                    </div>
+                                    <div>
+                                        <div class="title-price" style="font-size: 16px;">Thành tiền</div>
+                                        <div class="value-price" id="total-price"></div>
+                                        <div style="clear: both"></div>
+                                    </div>
+                                    <a href="/thanh-toan">Thanh toán</a>
+                                </div>
+                                <div style="clear: both"></div>
+                            </div>
+                            <div id="none-item">Giỏ hàng hiện tại của bạn chưa có món nào! Hãy chọn ngay nào!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @RenderBody()
+        <footer id="footer">
+            <div class="row-fluid">
+                <section class="footer-section-1">
+                    <div class="bg-opacity-2">
+                        <div class="container">
+                            <div class="span3">
+                                <div class="featured-dishes">
+                                    <h4>Featured Dishes</h4>
+                                    <ul>
+                                        <li>
+                                            <div class="frame">
+                                                <img src="~/Content/frontend/images/featured-footer-img-1.jpg" />
+                                            </div>
+                                            <div class="text">
+                                                <strong class="title">Fried Chicked with
+                      Almond Sauce</strong>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="frame">
+                                                <img src="~/Content/frontend/images/featured-footer-img-2.jpg" />
+                                            </div>
+                                            <div class="text"><strong class="title">Beef Steak with Jalapeno Sauce</strong> </div>
+                                        </li>
+                                        <li>
+                                            <div class="frame">
+                                                <img src="~/Content/frontend/images/featured-footer-img-3.jpg" />
+                                            </div>
+                                            <div class="text"><strong class="title">Beef Steak with Jalapeno Sauce</strong> </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="recent-post">
+                                    <div class="featured-dishes">
+                                        <h4>Recent Blog Posts</h4>
+                                        <ul>
+                                            <li>
+                                                <div class="recent-post-box">
+                                                    <strong class="date-area"><span class="mnt">Sep</span> <span class="date">27</span> <span class="year">2013</span> </strong>
+                                                    <div class="recent-post-frame">
+                                                        <img src="~/Content/frontend/images/recent-post-img-1.jpg" />
+                                                    </div>
+                                                </div>
+                                                <div class="recent-post-text"><strong class="title">Balanced diet facts unleashed. </strong></div>
+                                            </li>
+                                            <li>
+                                                <div class="recent-post-box">
+                                                    <strong class="date-area"><span class="mnt">Sep</span> <span class="date">29</span> <span class="year">2013</span> </strong>
+                                                    <div class="recent-post-frame">
+                                                        <img src="~/Content/frontend/images/recent-post-img-2.jpg" />
+                                                    </div>
+                                                </div>
+                                                <div class="recent-post-text"><strong class="title">Cooking ecperts on the streets.</strong> </div>
+                                            </li>
+                                            <li>
+                                                <div class="recent-post-box">
+                                                    <strong class="date-area"><span class="mnt">Sep</span> <span class="date">30</span> <span class="year">2013</span> </strong>
+                                                    <div class="recent-post-frame">
+                                                        <img src="~/Content/frontend/images/recent-post-img-3.jpg" />
+                                                    </div>
+                                                </div>
+                                                <div class="recent-post-text"><strong class="title">Tips for stuffed Chicken</strong> </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <form method="post" action="http://html.crunchpress.net/kc/kc_fullview/contact.php" class="footer-form">
+                                    <h4>Contact US Now!</h4>
+                                    <ul class="form-list-3">
+                                        <li class="span12">
+                                            <input type="text" class="input-2" value="Name" name="name" title="Name" required>
+                                        </li>
+                                        <li class="span12">
+                                            <input type="text" class="input-2" value="Email" name="email" title="email" required>
+                                        </li>
+                                        <li class="span12 margin-non">
+                                            <textarea class="textarea" name="comments" cols="10" rows="10" title="textarea">Message</textarea>
+                                        </li>
+                                        <li class="span2 margin-non">
+                                            <input type="submit" class="btns btn-submit-3" value="SUBMIT" name="submit" title="SUBMIT">
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                            <div class="span3">
+                                <div class="watch-box">
+                                    <div class="watch-img">
+                                        <img src="~/Content/frontend/images/watch-img.png" title="Giờ làm việc - Eat with chef" alt="Giờ làm việc - Eat with chef" />
+                                        <div class="time-box"><strong class="time">Weekdays 11am to 11pm</strong> <strong class="time">Weekends 11am to 2am</strong> </div>
+                                    </div>
+                                    <strong class="book-table">For Table Reservation <span class="red">0800 CUISINE</span></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="twitter-feed-section">
+                    <div class="bg-opacity">
+                        <div class="container">
+                            <div class="span12">
+                                <div class="twitter-feed">
+                                    <div id="myCarousel-03" class="carousel slide">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#myCarousel-03" data-slide-to="0" class="active"></li>
+                                            <li data-target="#myCarousel-03" data-slide-to="1"></li>
+                                            <li data-target="#myCarousel-03" data-slide-to="2"></li>
+                                            <li data-target="#myCarousel-03" data-slide-to="3"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="active item"><strong class="twitter">Kitchen Cuisine Announced free dinner for couples getting married on this Christmas! <a href="#" class="click">Get an Invite http://t.co/8gSD177</a></strong></div>
+                                            <div class="item"><strong class="twitter">Kitchen Cuisine Announced free dinner for couples getting married on this Christmas! <a href="#" class="click">Get an Invite http://t.co/8gSD177</a></strong></div>
+                                            <div class="item"><strong class="twitter">Kitchen Cuisine Announced free dinner for couples getting married on this Christmas! <a href="#" class="click">Get an Invite http://t.co/8gSD177</a></strong></div>
+                                            <div class="item"><strong class="twitter">Kitchen Cuisine Announced free dinner for couples getting married on this Christmas! <a href="#" class="click">Get an Invite http://t.co/8gSD177</a></strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-section-2">
+                    <div class="container">
+                        <div class="section-2-inner">
+                            <h5>Chef’s Collection</h5>
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <div class="dishe-deatil">
+                                        <div class="frame">
+                                            <img src="~/Content/frontend/images/chef-collection-img-1.jpg" />
+                                        </div>
+                                        <div class="text">
+                                            <strong class="dishe-name">Fajita Pizza with Extra Cheese</strong> <strong class="detail">Pepper, Chilli, Capsicum
+                    Vegitables. Coen etc, </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="dishe-deatil">
+                                        <div class="frame">
+                                            <img src="~/Content/frontend/images/chef-collection-img-2.jpg" />
+                                        </div>
+                                        <div class="text">
+                                            <strong class="dishe-name">Fajita Pizza with Extra Cheese</strong> <strong class="detail">Pepper, Chilli, Capsicum
+                    Vegitables. Coen etc, </strong>
+                                            <p id="back-top"><a href="#top" class="back-top">Back to Top</a> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="dishe-deatil">
+                                        <div class="frame">
+                                            <img src="~/Content/frontend/images/chef-collection-img-3.jpg" />
+                                        </div>
+                                        <div class="text">
+                                            <strong class="dishe-name">Fajita Pizza with Extra Cheese</strong> <strong class="detail">Pepper, Chilli, Capsicum
+                    Vegitables. Coen etc, </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-section-3">
+                    <div class="container">
+                        <div class="span6">
+                            <div class="copy-section"><strong class="copy">&copy; 2013 Kitchen Cusisne, Designed by <a href="http://crunchpress.com/" class="link" target="_blank">CrunchPress.com</a></strong></div>
+                        </div>
+                        <div class="span6">
+                            <div class="footer-social-box">
+                                <ul>
+                                    <li class="social-icon-1"><a href="#">p</a></li>
+                                    <li class="social-icon-2"><a href="#">twitter</a></li>
+                                    <li class="social-icon-3"><a href="#">facebook</a></li>
+                                    <li class="social-icon-4"><a href="#">facebook</a></li>
+                                    <li class="social-icon-5"><a href="#">facebook</a></li>
+                                    <li class="social-icon-6"><a href="#">facebook</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="~/Content/frontend/js/bootstrap.min.js"></script>
+    <script defer src="~/Content/frontend/js/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/fullcalendar.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/excanvas.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.easy-pie-chart.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.fitvids.js"></script>
+
+    <script type="text/javascript" src="~/Content/frontend/js/jquery.jcarousel.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

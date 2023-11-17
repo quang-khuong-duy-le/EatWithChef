@@ -1,0 +1,33 @@
+﻿@model Domain.Entity.DishItem
+
+@if (Model == null)
+{
+    <input type="hidden" id="qrcode_print" value="true" />
+    
+    <div class="alert alert-info fade in">
+        Lỗi hệ thống! Xin thử lại sau.
+    </div>
+}
+else
+{
+    <input type="hidden" id="qrcode_print" value="true" />
+    <input type="hidden" id="inserted_dishitem_name" value="@Model.Dish.Name" />
+    <input type="hidden" id="inserted_dishitem_cookingtime" value="@Model.CookingTime.Value.ToLocalTime()" />
+    
+    <div class="alert alert-info fade in" style="display: none">
+        Mã QRCode bên dưới được sử dụng để in lên <strong>@Model.Quantity</strong> sản phẩm <strong>@Model.Dish.Name</strong>! Quá trình tải đã bắt đầu, nếu chưa xin hãy &nbsp;
+        <a href="#" onclick="DownloadQRCode()" style="color: royalblue; font-weight: 700">NHẤN VÀO ĐÂY</a>
+    </div>
+    
+    <div class="alert alert-block alert-danger fade in" style="display: none">
+        Mã QRCode cho <strong>@Model.Quantity</strong> sản phẩm <strong>@Model.Dish.Name</strong> vẫn chưa được tải xuống! <a href="#" onclick="DownloadQRCode()" style="color: purple; font-weight: 700">NHẤN VÀO ĐÂY</a> để tải.
+    </div>
+
+    <center><img src="/Images/QRCode/@Model.QRCode" id="qrcode_image" width="200px" height="200px" /></center>
+    
+    <div class="pull-right">
+        <button class="btn btn-round btn-danger" type="button" onclick="DismissPrintQRCode()">Bỏ Qua</button>
+    </div>
+    
+}
+

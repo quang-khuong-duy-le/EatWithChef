@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EatWithChef.Areas.Ecommerce.Models.DishViewModel>
+@using EatWithChef.Areas.Ecommerce.Models
+@{
+    var starRef = new Dictionary<int, string>();
+    starRef.Add(0, "none");
+    starRef.Add(1, "one");
+    starRef.Add(2, "two");
+    starRef.Add(3, "three");
+    starRef.Add(4, "four");
+    starRef.Add(5, "five");
+}
+@if(Model != null && Model.Count() > 0){
+<div class="list-of-dish">
+    <div class="container" style="height: 1000px;">
+        <center>
+                <div class="control-silder">
+                    <div class="back-to-menu" onclick="CloseDetailDish()">Quay về</div>
+                    <div id="name-dish-detail">@Model.ElementAt(0).DishName</div>
+                    <div id="next-item" class="control-item" onclick="nextItemSlider()"><span>Món tiếp ></span><p>@Model.ElementAt(1).DishName</p></div>
+                </div>
+                <div class="show-slider">
+                    <div class="slider-list" style="width:@(Model.Count() * 940)px">
+                        <input type="hidden" id="max-dish" value="@Model.Count()" />
+                        @{
+                            int count = 0;
+                            foreach (DishViewModel item in Model)
+                            {
+                                <div class="item-slider" id="item-slider-@count">
+                                    <input id="name-dish-@count" type="hidden" value="@item.DishName"/>
+                                    <div class="dish-info-item">
+                                        <div class="left-info">
+                                            <ul>
+                                                <li id="info-@item.DishID" class="active-li" onclick="activeTabDetail(this,@item.DishID)"><p>01</p> Mô tả</li>
+                                                <li id="prep-info-@item.DishID" onclick="activeTabDetail(this,@item.DishID)"><p>02</p> Sơ chế</li>
+                                                <li id="ingredients-@item.DishID" onclick="activeTabDetail(this,@item.DishID)"><p>03</p> Nguyên liệu</li>
+                                            </ul>
+
+                                            <div class="text-detail active" id="tab-@item.DishID-0">@Html.Raw(item.DishDescription)</div>
+                                            <div class="text-detail"  id="tab-@item.DishID-1">@Html.Raw(item.DishDescription) SM</div>
+                                            <div class="text-detail"  id="tab-@item.DishID-2">DM</div>
+
+                                            <div class="star-rate">
+                                                Điểm đánh giá
+                                                @{
+                                                    var starString = "none";
+                                                    starRef.TryGetValue(Int32.Parse(item.DishRate.ToString().Split('.')[0]), out starString);
+                                                }
+                                                <div class="star @starString"></div>
+                                            </div>
+
+                                            <div class="final-row">
+                                                <p>@item.DishPrice</p>
+                                                @if (item.Quota <= 0) { 
+                                                    <div class="super-add-button" style="cursor:default; opacity:0.5"><div><img src="~/Content/images/add-button.png" /></div> Thêm vào giỏ hàng</div>
+                                                } else {
+                                                    <div class="super-add-button" onclick="addToCart(@item.DishID)"><div><img src="~/Content/images/add-button.png" /></div> Thêm vào giỏ hàng</div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="right-info">
+                                            <img src="@item.DishImage" title="@item.DishName"/>
+                                            <div class="dish-in-cart-details" id="dish-in-cart-details-@item.DishID"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                count++;
+                            }
+                        }
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+            </center>
+    </div>
+</div>
+}

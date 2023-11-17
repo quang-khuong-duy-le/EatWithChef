@@ -1,0 +1,61 @@
+﻿@model EatWithChef.Areas.Admin.Models.SupplierModel 
+<div class="modal-dialog" style="width: 600px;">
+    <div class="modal-content" style="border: 1px solid beige;">
+        <div class="modal-header">
+            <button id="buttonAllIngreDefault" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Cập nhập nhà cung cấp mặc định sau khi xóa @Model.Supplier.Name</h4>
+        </div>
+        <div class="modal-body row">
+            <div class="col-md-7" style="width: 95%; float: right">
+                <div class="form-group">
+                    <div class="panel-body" style="overflow: scroll; overflow-x: hidden; max-height:500px">
+                        <table class="table users-table table-condensed table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="" style="width:50%">Tên Nguyên liệu</th>
+                                    <th class="" style="width:50%">Nhà cung cấp mặc định</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="gallery2">
+                                @{
+                                    int i = 0;
+                                    foreach (var ingredient in Model.ListIngrebySupId)
+                                    {                        
+                                    <tr data-id2="@ingredient.Id" >
+                                        <td class="">@ingredient.Name</td>
+                                        <td class="">
+                                            <select id="SupplierTH-@i" name="Supplier" style="width:100%">
+                                                @foreach (var supplier in Model.AllSupplier)
+                                                {
+                                                    if (supplier.Id == @Model.Supplier.Id)
+                                                    {
+
+                                                    }
+                                                    else
+                                                    {                                       
+                                                    <option value="@supplier.Id" >@supplier.Name</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                    </tr>
+                                                i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                       @* <ul class="pagination pagination-sm" id="paging">
+                            <li class="disabled"><a href="#">«</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">»</a></li>
+                        </ul>*@
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary" type="button" onclick="UpdateAllIngredientDefault(@Model.Supplier.Id)">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

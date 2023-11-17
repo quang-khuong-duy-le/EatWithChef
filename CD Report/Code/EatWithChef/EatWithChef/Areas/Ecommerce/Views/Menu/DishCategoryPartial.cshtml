@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Domain.Entity.DishCategory>
+<style>
+    .sticky-header-nav a:not(.action) {
+        display: inline-block;
+        font-size: 13px;
+        margin-right: 8px;
+        padding: 16px 6px 5px 6px;
+        line-height: 38px;
+        cursor: pointer;
+        font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        color:#888;
+        text-decoration:none;
+    }
+
+    .sticky-header-nav a:hover {
+        color:#f27242;
+    }
+</style>
+<div id="menu-section-nav" class="menu-section-nav sticky-header-nav" style="float:left;margin-right:40px;position:relative">
+    @{
+        foreach (var item in Model)
+        { 
+            if(item.Id == Model.ElementAt(0).Id)
+            {
+                <a href="javascript:void(0);" class="category-menu-scroll" style="padding:16px 8px 5px; margin:0" data-section="@item.Id">@item.Name</a>
+            } 
+            else
+            {
+                <a href="javascript:void(0);" class="category-menu-scroll" style="padding:16px 8px 5px; margin:0" data-section="@item.Id">@item.Name</a>        
+            }
+        }
+    }
+    <div id="choice-menu" style="position:absolute;width:72px;top:59px;height:5px; background-color:#f27242;transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-webkit-transition:all 0.2s ease-out;"></div>
+</div>

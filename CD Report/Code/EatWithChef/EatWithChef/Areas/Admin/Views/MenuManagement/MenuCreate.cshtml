@@ -1,0 +1,390 @@
+﻿ <div class="modal-dialog" style="width: 820px">
+        <div class="modal-content" style="min-height:500px; max-height: 600px;border: solid 1px white;" >
+            <div class="modal-header" style="background-color:/*rgba(55, 158, 81, 0.81)*/#f34541 ;height:50px;">
+                <input type="hidden" id="inputgetdate" value="@ViewBag.MenuDate" />
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="font-family:monospace;font-size:20px; color:black;font-weight:bold;margin-top: -5px;color:white">Chọn Món Ăn Cho Thực Đơn Mới  <i class="text-success icon-book icon-large align-right" style="color: white !important"/></h4>           
+            </div>
+
+            <div class="modal-body row" style="max-width:800px;">
+
+                <div style="margin-bottom: 10px;font-size: large;font-family:cursive;margin-top: -10px;">
+                    <a style="margin-left: 200px;">Món Ăn</a>
+                    <a style="margin-left: 205px;">Thực Đơn/</a>
+                    <a style="font-size:14px;font-weight:bold;">Xuất Hiện Đến</a>
+                     <input type="text" id="timepicker1" style="width:90px;margin-left:5px;border-radius: 5px;border: solid darkslateblue;text-align: center;" value="10:00:00" onblur="changeFocus()"/>
+
+                </div>
+                <div class="col-md-7" style=" min-height: 450px; max-height: 450px;margin-left:16px;overflow: scroll; overflow-x: hidden;border: solid 3px; ">
+                  
+                    <div id="searchByName-Our">
+                             <select id="DishCate" >
+                                  <option value="0" >Tất Cả</option>
+                                   @foreach (var item in ViewBag.ListCat)
+                                   {
+                             <option value="@item.Id" >@item.Name</option>
+                                   }
+                             </select>
+                                <input id="searchByName" placeholder="Nhập tên để tìm kiếm"/>
+                        </div>
+                   
+
+                    <ul id="list-dish" class="sortable grid" style="width: 380px;margin-left:30px;margin-top:30px">
+                        @*     <li data-id="1"> <img style="width: 80px; height: 80px";  src="~/Content/backend/images/chat-avatar2.jpg" /><h3>aaa
+                           </h3></li>*@
+                      
+                        
+                        @foreach (var item in ViewBag.ListDish)
+                        {
+                            
+                            <li id="dish-@item.Dish.Id" data-id="@item.Dish.Id">
+
+                                <div id="image-dish-@item.Dish.Id"><img src="@item.Dish.Image" style="max-height:80px; max-width:80px;border: solid 1px black;" /></div>
+                                <div id="name-dish-@item.Dish.Id">@item.Dish.Name</div>
+                                <div hidden="hidden"><a id="price-dish-@item.Dish.Id" style="color:red">@item.Dish.Price</a> đ<br/></div>
+                                <div hidden="hidden"><a id="quota-dish-@item.Dish.Id" >20</a> Phần</div>
+                                <a id="cat-dish-@item.Dish.Id" data-catid="@item.DishCategory.Id" hidden="hidden">@item.DishCategory.Id</a>
+
+                            </li> 
+                        }
+
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-5 img-modal" style="width: 300px;">
+
+                    <div id="gallery" class="media-gal" style="width: 300px; min-height: 450px; max-height: 450px; margin-top: 0px; overflow: scroll; overflow-x: hidden;  background-color: lightgoldenrodyellow;border: solid 3px;border-radius: 5px;">
+
+                        <ul class="connected list no2" style="margin-left:-30px;margin-top:15px">
+                        </ul>
+
+                    </div>
+                    <button id="submit1" class="btn btn-primary btn-xl btn-animate-demo" style="margin-top: 5px; margin-left:90px;font-family:monospace;font-size:medium"  onclick="SubmitAddDishToMenu()"><i class="text-success icon-save icon-small align-right" style="color: white !important"/> Lưu</button>
+                    <button id="close" class="btn btn-danger btn-xl btn-animate-demo" data-dismiss="modal" style="margin-top: 5px;margin-left:10px;height:33px;font-family:serif;font-size:medium";>Đóng</button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    
+    //Js for Create Modal
+    $(function () {
+
+        // Draggable
+        $(".col-md-7 li").draggable({
+            // brings the item back to its place when dragging is over
+            revert: true,    
+        });
+
+        //Droppable
+        $("#gallery").droppable({
+
+            tolerance: "touch",
+            drop: function (event, ui) {
+
+                var gallery = $(this),
+						move = ui.draggable,
+						itemId = gallery.find("ul li[data-id='" + move.attr("data-id") + "']");
+
+                if (itemId.html() != null) {
+                    itemId.find("input").val(parseInt(itemId.find("input").val()) + 1);
+                }
+                else {
+
+                    addgallery(gallery, move);
+                 
+                }
+
+            }
+        });
+        function addgallery(gallery, move) {
+            //add in client
+            var price = $("#price-dish-" + move.attr("data-id")).html();
+            var quota = $("#quota-dish-" + move.attr("data-id")).html();
+            var cat = $("#cat-dish-" + move.attr("data-id")).html();
+            var name = $("#name-dish-" + move.attr("data-id")).html();
+            var img = $("#image-dish-" + move.attr("data-id")).html();
+           
+            gallery.find("ul").append('<li id="dish-choice-' + move.attr("data-id") + '" data-id="' + move.attr("data-id") + '">'
+					+ '<span class="name">'
+
+                     + "<div id=" + "image-dish-" + move.attr("data-id") + ">" + img + "</div>" +
+                                    "<div id=" + "name-dish-" + move.attr("data-id") + ">" + name + "</div>" +
+                                    "<a id=" + "price-dish-" + move.attr("data-id") + ">" + price + "</a> đ<br>" +
+                                    "<a id=" + "quota-dish-" + move.attr("data-id") + ">" + quota + "</a> Phần" +
+                                     "<a id=" + "cat-dish-" + move.attr("data-id") + " data-catid=" + cat + " hidden=" + "hidden" + ">" + cat + "</a>" + "</span>"
+
+                    + '</span>'
+
+                    + '<button style="margin-left:170px;margin-top:-230px;position:relative;"  class="btn btn-danger btn-xs btn-animate-demo" class="edit" onclick="removeGallery(' + move.attr("data-id") + ')">&#10005;</button>'
+            + '<button style="margin-left: 65px;margin-top: -120px;padding:1px 3px;line-height:1;border-radius:5px;font-family:monospace;" class="btn btn-success btn-xs btn-animate-demo" onclick="editPrice(' + move.attr("data-id") + ')"><div class="text-success icon-edit icon-small align-right" style="color: white !important"> Sửa</button>'
+            + '<button style="margin-left: -41px;margin-top: -80px;padding:1px 3px;line-height:1;border-radius:5px;font-family:monospace;" class="btn btn-success btn-xs btn-animate-demo" onclick="editQuota(' + move.attr("data-id") + ')"><div class="text-success icon-edit icon-small align-right" style="color: white !important"> Sửa</button></li>');
+            $("#dish-" + move.attr("data-id")).remove();
+        }
+    });
+    ///
+    function removeGallery(id) {
+        var price = $("#price-dish-" + id).html();
+        var quota = $("#quota-dish-" + id).html();
+        var cat = $("#cat-dish-" + id).html();
+        var name = $("#name-dish-" + id).html();
+        var img = $("#image-dish-" + id).html();
+        
+        $("#list-dish").append("<li id='dish-" + id + "' data-id='" + id + "' class='ui-draggable' style='position: relative;'>" +
+                                     "<div id=" + "image-dish-" + id + ">" + img + "</div>" +
+                                    "<div id=" + "name-dish-" + id + ">" + name + "</div>" +
+                                    "<div"+ " hidden=" + "hidden" +">" + "<a id=" + "price-dish-" + id + ">" + price + "</a> đ<br>" + "</div>" +
+                                    "<div" + " hidden=" + "hidden" + ">" + "<a id=" + "quota-dish-" + id + " hidden=" + "hidden" + ">" + quota + "</a> Phần" + "</div>" +
+                                     "<a id=" + "cat-dish-" + id + " data-catid=" + cat + " hidden=" + "hidden" + ">" + cat + "</a>" + "</span>"
+            + "</li>");
+        $("#dish-choice-" + id).remove();
+
+        $("#dish-" + id).draggable({
+
+            // brings the item back to its place when dragging is over
+            revert: true,
+
+            // once the dragging starts, we decrease the opactiy of other items
+            // Appending a class as we do that with CSS
+            drag: function () {
+                $(this).addClass("active");
+                $(this).closest("#product").addClass("active");
+            },
+
+            // removing the CSS classes once dragging is over.
+            stop: function () {
+                $(this).removeClass("active").closest("#product").removeClass("active");
+            }
+        });
+    }
+
+    function editPrice(ID) {
+
+        var price = $("#price-dish-" + ID).html();
+
+        alertify.prompt("Nhập giá mới cho món ăn:", function (e, str) {
+            if (e & str.length > 0 & !isNaN(str) & str > 0) {
+
+                $("#price-dish-" + ID).html(str);
+                alertify.success("Giá của món ăn đã được đổi thành: " + str);
+            } else {
+                alertify.error("Dữ liệu không đúng, giá của món ăn phải là số nguyên dương!");
+            }
+        }, price);
+        return false;
+    }
+
+    function editQuota(ID) {
+        var quota = $("#quota-dish-" + ID).html();
+
+        alertify.prompt("Nhập số lượng cho món ăn:", function (e, quota) {
+            if (e & quota.length > 0 & !isNaN(quota) & quota > 0) {
+                $("#quota-dish-" + ID).html(quota);
+                alertify.success("Số lượng của món ăn được đổi thành:" + quota);
+            } else {
+                alertify.error("Dữ liệu không đúng, Số Lượng phải lớn hơn 0  !");
+            }
+        }, quota);
+        return false;
+
+
+    }
+
+
+    //Add dish to menu
+    function SubmitAddDishToMenu() {
+
+
+        //d += (seconds) * 1000 + (minutes) * 60000 + (hours) * 3600000;
+
+        //get dish
+        var listDish = new Array();
+        //var ul = $("#gallery").find("ul");
+        $("#gallery").find("ul").find('li').each(function () {
+            var current = $(this);
+            var id = current.attr("data-id");
+            var price = $("#price-dish-" + id).html();
+            var quota = $("#quota-dish-" + id).html();
+            var dish1 = new Object();
+            dish1.Id = id;
+            dish1.Price = price;
+            dish1.Quota = quota;
+            listDish.push(dish1);
+        });
+        if (listDish.length == 0) {
+            alertify.alert("Cần có ít nhất một món ăn trong Thực đơn");
+
+
+        } else {
+            //get date
+            var selectDate = new Date($("#inputgetdate").val());
+            var selectTimeString = $("#timepicker1").val();
+           
+            selectTimeString = $("#inputgetdate").val().replace("12:00:00 AM", selectTimeString);
+         
+            var selectTime = new Date(selectTimeString);
+
+
+            var dataInfo = JSON.stringify(listDish);
+
+            $.ajax({
+                url: "/MenuManagement/CreateListDishToMenu",
+                type: "POST",
+                data: { info: dataInfo, dt: DateToStr(selectDate), timeClose: DateToStr(selectTime) },
+                success: function (result) {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+  
+    $("#timepicker1").timepicker({
+        showMeridian: false,
+        showSeconds: true,
+        defaultTime: '17:00:00'
+    });
+
+
+
+
+
+    //$('#timepicker1').timepicker();
+
+    var mainList = new Array();
+
+    $('#myModal').ready(function () {
+      
+        //Search by name:
+        $('#searchByName-Our').bind('input', function () {
+            search();
+        });
+       
+
+        //get main list
+        $("#list-dish").find('li').each(function () {
+            var current = $(this);
+            var id = current.attr("data-id");
+            var price = $("#price-dish-" + id).html();
+            var quota = $("#quota-dish-" + id).html();
+            var cat = $("#cat-dish-" + id).html();
+            var html = $("#dish-" + id).html();
+            var dish = new Object();
+
+            dish.Id = id;
+            dish.Price = price;
+            dish.Quota = quota;
+            dish.Cat = cat
+            dish.html = html;
+            mainList.push(dish);
+        });
+
+        //Search by cat:
+        $("#DishCate").change(function () {
+            search();
+        });
+    });
+
+        function search(){
+        
+            //Get dish in gallrey          
+            var listDishM = new Array();
+            $("#gallery").find("ul").find('li').each(function () {
+                var current = $(this);
+                var id = current.attr("data-id");
+                var price = $("#price-dish-" + id).html();
+                var quota = $("#quota-dish-" + id).html();
+                var cat = $("#cat-dish-" + id).html();
+                var dish = new Object();
+                dish.Id = id;
+                dish.Price = price;
+                dish.Quota = quota;
+                dish.Cat = cat
+                listDishM.push(dish);
+            });
+
+            var listDish1 = new Array();
+            //get dish in category
+            var selectCat = $("#DishCate").val();
+            for (var i = 0; i < mainList.length; i++)
+            {
+                if (mainList[i].Cat == selectCat || selectCat == 0) {
+                    listDish1.push(mainList[i]);
+                }
+            }
+
+            //remove exist in gallery           
+            for (var i = 0; i < listDish1.length; i++) {          
+                for (var j = 0; j < listDishM.length; j++) {
+                    //console.log(listDish1[i].Id + "---" + listDishM[j].Id);
+                    if (listDish1[i].Id == listDishM[j].Id) {                       
+                        listDish1.splice(i, 1);
+                        --i;
+                        //console.log("Removed: " + i);
+                        break;
+                    }
+                }              
+            }
+
+            //search:
+            var keyword = $("#searchByName").val();
+            console.log("tao---"+keyword);
+            for (var i = 0; i < listDish1.length; i++) {
+                var html = "<div>"+listDish1[i].html+"</div>";
+                var id = '#name-dish-' + listDish1[i].Id;
+                var elements = $(html);
+                var name = $(id, elements).html().trim();
+                var pos = name.search(keyword);
+                if (pos == -1) {
+                    listDish1.splice(i, 1);
+                    --i;
+                }
+            }
+
+            //show list menu
+            $("#list-dish").html("");
+            for (var i = 0; i < listDish1.length; i++) {
+                $("#list-dish").append("<li id='dish-" + (listDish1[i]).Id + "' data-id='" + (listDish1[i]).Id +
+                    "' class='ui-draggable' style='position: relative;'>" + (listDish1[i]).html + "</li>");
+                $("#dish-" + (listDish1[i]).Id).draggable({
+
+                    // brings the item back to its place when dragging is over
+                    revert: true,
+
+                    // once the dragging starts, we decrease the opactiy of other items
+                    // Appending a class as we do that with CSS
+                    drag: function () {
+                        $(this).addClass("active");
+                        $(this).closest("#product").addClass("active");
+                    },
+
+                    // removing the CSS classes once dragging is over.
+                    stop: function () {
+                        $(this).removeClass("active").closest("#product").removeClass("active");
+                    }
+                });//end dish
+            }//end for
+        };
+        $(document).ready(function () {
+
+            $("#timepicker1").click(function () {
+                $('.fa-angle-down').addClass('icon-chevron-down');
+                $('.fa-angle-up').addClass('icon-chevron-up');
+            });
+
+            $(".fa").click(function () {
+
+            });
+
+            $('.fa').focusout(function () {
+                var time = $('#timepicker1').val();
+
+            });
+        });
+</script>

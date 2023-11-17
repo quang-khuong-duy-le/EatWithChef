@@ -1,0 +1,44 @@
+﻿Guest:
+- Xem thông tin web --> (Feedback hệ thống)
+- Xem chi tiết món ăn 
+	+ Món ăn
+		Cách nấu do đầu bếp đưa ra.
+		Thông tin cơ bản
+		Giá
+		Label thông báo: nhiều đường, béo, cay, kids,...
+	+ Menu 
+		Nhiều món ăn
+		Bài viết về menu
+	+ Truy vết
+		Web: google map
+		Mobile: QR code
+- Xem thông tin đầu bếp
+- Event đặc biệt (giảm giá, khuyến mãi, đầu bếp nổi tiếng mới đến trong thời gian ngắn)
+- Available (phụ thuộc vào đầu bếp)
+- Search món ăn theo giá, chế độ (Cay, ngọt...)
+- Register
+User: 	   
+- Tính năng của Guest
+- Login, logout
+- Order
+- Quan ly order (huy don hang, xem lai
+- Quan ly thong tin ca nhan
+- Danh gia mon an (rating)
+- Gui phan hoi cho dau bep ve cac mon an
+- Lên lịch order (Google calendar?Table?)
+admin:
+- Thống kê nguyên liệu còn lại --> đề xuất mua thêm nguyên liệu dựa vào các món user order.
+	   _ Them/ xoa / sua thong tin nguyen lieu (nguon goc, ngay nhap...)
+	   _ quan li user
+	   _ quan li chef
+	   _ quan li order(confirm trang thai order)
+	   _ quan li kho (so nguyen lieu con lai, nhung thu phai mua)
+	   _ quan li cac hoat dong giam gia, khuyen mai
+chef:      
+           _ tao cac mon an
+	   _ them/ xoa / sua thong tin cac mon an (cach nau, so luong nguyen lieu, quy trinh lam cac mon an)
+	   _ sap xep lich cho cac mon an
+	   _ chinh sua thong tin ca nhan
+- Quản lý xung đột món ăn
+- Clone menu.
+Enroll: SE06AMKOHU
